@@ -1,0 +1,42 @@
+{
+  "nhits":127,
+  "parameters":{
+     "dataset":"bornes-podotactiles",
+     "rows":10,
+     "start":0,
+     "format":"json",
+     "timezone":"UTC"
+  },
+  "records":[
+     {
+        "datasetid":"bornes-podotactiles",
+        "recordid":"2a0f0ca034dd536786a012fe8abf0bd8b0628c85",
+        "fields":{
+           "geo_shape":{
+              "coordinates":[
+                 3.0324945,
+                 50.6594495
+              ],
+              "type":"Point"
+           },
+           "geo_point_2d":[
+              50.6594495,
+              3.0324945
+           ],
+           "highway":"crossing",
+           "crossing":"traffic_signals",
+           "_id":"node/1605539838",
+           "tactile_paving":"yes"
+        },
+        "geometry":{
+           "type":"Point",
+           "coordinates":[
+            10.580891015028164,
+            35.90467212891514
+           ]
+        },
+        "record_timestamp":"2017-12-31T13:21:22.41Z"
+     }
+
+  ]
+}

@@ -1,0 +1,97 @@
+<div class="flex-column align-items-stretch">
+    <div class="settings-panel__titre mt-3">
+        <span>Liste des machines</span>
+    </div>
+    <br>
+    <div class="row">
+         <!--SEARCH-->
+         <div class="col-md-4 mt-2">
+            <div class="group">
+                        <i class="fas fa-search" style="position: absolute;
+                        top: 55%;
+                        transform: translateY(-50%);
+                        left: 5%;"></i>
+                        <input placeholder="Chercher" type="search" class="input"
+                            (input)="onSearchChange($event.target.value)">
+            </div>
+        </div>
+        <!---->
+        <div class="col-md-8 justify-content-end" style="text-align: end;"
+        *ngIf="AuthenticationService.hasPermission(['MS_A','MS_W','GL_A','ERP_A'])">
+            <button type="button" class="btn btn-primary ml-2" (click)="add()">
+                <em class="fa fa-plus-circle mr-2"></em>
+                <span>Ajouter</span>
+            </button>
+        </div>
+    </div>
+    <br><br>
+    <div class="row">
+        <div class="col-lg-4 col-sm-6" *ngFor="let equipment of equipmentList" >
+            <div>
+                <div class="card card-default">
+                    <div class="card-body">
+                        <table width="100%">
+                            <tr>
+                                <td>
+                                    <h4 class="mt-0 mb-1"> {{equipment.name}}
+                                        <span class="text-right float-right"
+                                            style="font-size: 13px; line-height: 25px;">
+                                            <a *ngIf="AuthenticationService.hasPermission(['MS_A','MS_W','GL_A','ERP_A'])" 
+                                            placement="left" tooltip="Modifier" (click)="update(equipment)" class="link-blue">
+                                                <em class="fa mr-2 fas fa-pencil-alt"></em>
+                                            </a>
+                                            <a placement="left" tooltip="Supprimer"
+                                            *ngIf="AuthenticationService.hasPermission(['MS_A','MS_W','GL_A','ERP_A'])" 
+                                             (click)="delete(equipment)" class="link-blue">
+                                                <em class="fa mr-2 fas fa-trash"></em>
+                                            </a>
+                                            <span *ngIf="equipment.stateEnum === 'actif'" class="circle bg-success circle-lg" placement="left" tooltip="Etat"></span>
+                                            <span *ngIf="equipment.stateEnum != 'actif'" class="circle bg-danger circle-lg" placement="left" tooltip="Etat"></span>
+
+                                        </span>
+                                    </h4>
+                                    <div class="d-flex">
+                                        <div class="text-left">
+                                            <p class="text-muted mt-0 mb-0">{{equipment.reference}} </p>
+                                            <small>
+                                                <span>Emplacement : </span> {{equipment.emplacement}} </small><br>
+                                            <small>
+                                                <span>Date d'achat : </span> {{equipment.purchaseDate}} </small><br>
+                                            <small>
+                                                <div class="badge" style="background-color: rgb(38, 150, 252);">
+                                                    <b>{{equipment.categoryEnum}}</b>
+                                                </div>
+                                            </small>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <app-empty-data-info [ifEmpty]=ifEmpty [message]="message"></app-empty-data-info>
+    <hr>
+    <!-- pagination -->
+    <app-spi-pagination (onGetPage)="pageSize = $event.pageSize;getPage($event.currentPage)"
+    [currentPage]="currentPage"
+    [lastPage]="lastPage"
+    [pageSize]="pageSize"
+    [totalElements]="totalElements"></app-spi-pagination>
+    <table width="100%" cellpadding="2" class="summary">
+        <tr>
+            <td>
+                <div class="circle bg-success circle-lg"></div>
+            </td>
+            <td> Il est encore actif</td>
+        </tr>
+        <tr>
+            <td>
+                <div class="circle bg-danger circle-lg"></div>
+            </td>
+            <td> N'est plus actif, il est vendu, perdu, détruit, en panne ou autres </td>
+        </tr>
+    </table>
+</div>

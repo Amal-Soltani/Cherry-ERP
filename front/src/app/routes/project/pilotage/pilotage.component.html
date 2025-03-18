@@ -1,0 +1,196 @@
+<div class="settings-panel panel-widget_dash-content">
+    <div class="panel-widget_inner flex-column align-items-stretch">
+
+        <br>
+        <div class="settings-panel__titre">
+            <b>
+                <em class="fa-1x mr-2 fa-industry fas"></em>
+                <span> Pointage de production</span>
+            </b>
+        </div>
+        <div class="row">
+            <!--SEARCH-->
+            <div class="col-md-4 mt-2">
+                <div class="group">
+                    <i class="fas fa-search" style="position: absolute;
+                            top: 55%;
+                            transform: translateY(-50%);
+                            left: 5%;"></i>
+                    <input placeholder="Chercher" type="search" class="input"
+                        (input)="onSearchChange($event.target.value)">
+                </div>
+            </div>
+            <!--SEARCH-->
+            <div class="col-md-8 mt-1 justify-content-end" style="text-align: end;">
+                <button (click)="Exporter()" type="button" class="btn btn-primary ml-2">
+                    <em class="fas fa-download"></em>
+                    <span class="ml-2 no_display_onmobile">Exporter</span>
+                </button>
+                <button *ngIf="AuthenticationService.hasPermission(['PR_M_W', 'PR_M_A', 'PR_A_W', 'PR_A_A','GL_A','ERP_A']) &&
+                idProjet !=0 " type="button" class="btn btn-primary ml-2" (click)="add()">
+                    <em class="fas fa-plus-circle"></em>
+                    <span class="ml-2 no_display_onmobile">Ajouter</span>
+                </button>
+            </div>
+        </div>
+        <br>
+        <div class="list-group mb-2 mt-2">
+            <a class="list-group-item"
+                style="border: 1px; border-radius: 5px #f5f9fd; box-shadow: #f5f9fd; background-color: #f5f9fd">
+                <br>
+                <table class="wd-wide" id="table1-data">
+                    <tbody>
+                        <tr>
+                            <td class="wd-xs no_display_onmobile">
+                                <div class="px-2"><em class="fa-2x mr-2 fas fa-chart-line"></em></div>
+                            </td>
+                            <td>
+                                <div class="px-2">
+                                    <h4 class="mb-2"><span>TRS :
+                                        </span>{{TRS}} %</h4>
+                                    <small class="text-muted"> Taux
+                                        de Disponibilité * Taux de Performance * Taux de Qualité</small>
+                                </div>
+                            </td>
+                            <td class="wd-sm d-none d-lg-table-cell">
+                                <div class="px-2">
+                                    <p class="m-0">Taux de Disponibilité </p>
+                                    <small class="text-muted">{{diponibility}}
+                                        %</small>
+                                </div>
+                            </td>
+                            <td class="wd-sm d-none d-lg-table-cell">
+                                <div class="px-2">
+                                    <p class="m-0">Taux de Performance </p>
+                                    <small class="text-muted">{{performance}}
+                                        %</small>
+                                </div>
+                            </td>
+                            <td class="wd-sm d-none d-lg-table-cell">
+                                <div class="px-2">
+                                    <p class="m-0">Taux de Qualité </p>
+                                    <small class="text-muted">{{quality}}
+                                        %</small>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </a>
+        </div>
+        <br>
+        <div>
+            <table class="display nowrap dataTable no-footer dtr-inline collapsed grid-template table-striped"
+                id="table2-data">
+                <thead>
+                    <tr class="no_display_onmobile">
+                        <th colspan="5" class="grid-template_th" style=" border-right: 1pt #1499af solid !important;">
+                            <em class="icon-info mr-2"></em>
+                        </th>
+                        <th colspan="2" class="grid-template_th"
+                            style="text-align: center; border-right: 1pt #1499af solid !important;">
+                            <em class="mr-2 far fa-clock"></em>Temps en minutes
+                        </th>
+                        <th colspan="3" class="grid-template_th" style="text-align: center;">
+                            <em class="mr-2 fas fa-screwdriver"></em>Quantité
+                        </th>
+                    </tr>
+                    <tr>
+                        <th class="grid-template_th">Tâche/OF</th>
+                        <th class="grid-template_th no_display_onmobile">Projet</th>
+                        <th class="grid-template_th no_display_onmobile">Opérateur et Machine</th>
+                        <th class="grid-template_th no_display_onmobile">Gamme</th>
+                        <th class="grid-template_th no_display_onmobile"
+                            style="border-right: 1pt #1499af solid !important;">Date</th>
+                        <th class="grid-template_th no_display_onmobile">Temps(mn)
+                        </th>
+                        <th class="grid-template_th no_display_onmobile"
+                            style="border-right: 1pt #1499af solid !important;">T. Arrêt(m)</th>
+                        <th class="grid-template_th">QT </th>
+                        <th class="grid-template_th">Qt.R</th>
+                        <th class="grid-template_th">Qt.NC </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="grid-template__row" *ngFor="let p of pilotageList">
+                    <td> [{{p.tache.reference}}] {{p.tache.titre}}
+                    <tr><small><b> Produit : {{p.tache.product.libelle}}</b></small></tr>
+                    <tr><small><b> OF.client: </b> {{p.tache.ofexterne}}</small></tr>
+                    <tr><small><b> OF.interne: </b> {{p.tache.reference}}</small></tr>
+                    </td>
+                    <td> [{{p.tache.projet.reference}}] {{p.tache.projet.titre}}</td>
+                    <td class="no_display_onmobile">
+                        <tr><em class="fa fa-user mr-2"></em> [{{p.employee.employeeNumber}}] {{p.employee.firstName}}
+                            {{p.employee.lastName}}</tr>
+                        <tr><em class="fas fa-industry mr-2"></em> {{p.equipment}}</tr>
+                        <tr> {{p.productionLigne.name}}</tr>
+                    </td>
+                    <td class="no_display_onmobile">
+                        {{p.phase}}
+                    </td>
+                    <td class="no_display_onmobile" style="border-right: 1pt #1499af solid !important;">
+                        <tr><i>{{p.dateDebut | date:'dd-MM-yyyy'}} </i></tr>
+                        <tr><small style="color: #000;"> {{p.dateDebut | date:'HH:mm'}} <em
+                                    class="fas fa-arrow-right"></em>{{p.dateFin | date:'HH:mm'}} </small></tr>
+
+                    </td>
+                    <td class="no_display_onmobile">
+                        <tr><em class="far fa-clock mr-2"></em> {{ calculateTimeWorked(p) }}
+                        </tr>
+                        <tr><small>{{p.tempsMachine}}(MN) * {{p.qteTotale}} = <span style="color: green;">
+                                    {{p.tempsMachine * p.qteTotale}} </span>
+                                (MN) </small></tr>
+                    </td>
+                    <td class="no_display_onmobile" style="border-right: 1pt #1499af solid !important;">
+                        {{p.tempsArret}}</td>
+                    <td class="no_display_onmobile">{{p.qteTotale}}</td>
+                    <td class="no_display_onmobile">{{p.qteRebut}}</td>
+                    <td class="no_display_onmobile">
+                        <tr>
+                            <td style="border: none;">{{p.qteNC}}</td>
+                            <td style="border: none;"
+                                *ngIf="AuthenticationService.hasPermission(['PR_M_W', 'PR_M_A', 'PR_A_W', 'PR_A_A','GL_A','ERP_A'])">
+                                <a placement="left" tooltip="Modifier" class="link-blue" (click)="update(p)">
+                                    <em class="fa mr-2 fas fa-pencil-alt"></em>
+                                </a>
+                                <a placement="left" tooltip="Supprimer" class="link-blue" (click)="delete(p)">
+                                    <em class="fa mr-2 fas fa-trash"></em></a>
+                            </td>
+                        </tr>
+                </tbody>
+            </table>
+
+            <app-empty-data-info [ifEmpty]=ifEmpty [message]="message"></app-empty-data-info>
+
+        </div><br>
+        <!-- pagination -->
+        <app-spi-pagination (onGetPage)="pageSize = $event.pageSize;getPage($event.currentPage)"
+            [currentPage]="currentPage" [lastPage]="lastPage" [pageSize]="pageSize"
+            [totalElements]="totalElements"></app-spi-pagination>
+        <hr>
+        <table width="100%" cellpadding="2" class="summary no_display_onmobile">
+            <tr>
+                <td><b>TRS : </b></td>
+                <td> Taux de disponibilité * Taux de Peformance * Taux de Qualité
+                </td>
+            </tr>
+            <tr>
+                <td><b>Taux de disponibilité :</b></td>
+                <td>(Temps total - Temps d’arrêt)/Temps Total </td>
+            </tr>
+            <tr>
+                <td><b>Taux de Performance :</b></td>
+                <td> Qt Total Théorique / Qt Total produite </td>
+            </tr>
+            <tr>
+                <td><b>Taux de Qualité :</b></td>
+                <td> (Qt Total produite - Qt NC - Qt rebut) / Qt Total produite </td>
+            </tr>
+            <tr>
+                <td><b>Le temps d’arrêt total :</b></td>
+                <td> Temps de chargement de série + Temps de Réglage + Temps de panne
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>

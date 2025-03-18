@@ -1,0 +1,85 @@
+{
+  "title": {
+    "show": true,
+    "text": "",
+    "subtext": "",
+    "sublink": ""
+  },
+  "theme": "infographic",
+  "tooltip": {
+    "show": true,
+    "trigger": "axis",
+    "axisPointer": {
+      "type": "cross"
+    }
+  },
+  "legend": {
+    "show": false,
+    "data": [],
+    "bottom": 30
+  },
+  "grid": {
+    "left": 10,
+    "right": 10,
+    "bottom": 60,
+    "containLabel": true
+  },
+  "series": [
+    {
+      "id": "",
+      "name": "",
+      "coordinateSystem": "leaflet",
+      "url": "",
+      "joinBy": [],
+      "color": "green",
+      "symbolSize": 15,
+      "label": {
+        "emphasis": {
+          "show": true,
+          "formatter": "{a} {@[2]}",
+          "position": "top"
+        }
+      },
+      "type": "scatter",
+      "idY": "",
+      "idX": "",
+      "kpi": "",
+      "data": []
+    }
+  ],
+  "visualMap": {
+    "min": 0,
+    "max": 5,
+    "left": 26,
+    "bottom": 40,
+    "showLabel": true,
+    "text": [
+      "Min",
+      "Max"
+    ],
+    "pieces": [
+      {
+        "gt": 20,
+        "label": "0 - 1",
+        "color": "#8e2525",
+        "gte": 0,
+        "lt": 1
+      },
+      {
+        "gte": 1,
+        "lt": 2,
+        "label": "1- 2",
+        "color": "#ff8c71"
+      }
+    ],
+    "show": true
+  },
+  "leaflet": {
+    "center": [ 9.6, 36 ],
+    "zoom": 8,
+    "roam": true,
+    "layerControl": {
+      "position": "topright"
+    }
+  }
+}

@@ -1,0 +1,74 @@
+<form [formGroup]="fileform">
+    <div class="modal-header">
+        <h4 class="modal-title pull-left">Document</h4>
+        <button type="button" class="close pull-right" aria-label="Fermer" (click)="activeModal.close()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div *ngIf="doc == null">
+            <label for="file1" class="file-upload" style="margin: 3px;">
+                <input style="display: none;" type="file" id="file1" ng2fileselect multiple
+                    (change)="onFileSelected($event)">
+                <label for="file1" class="btn btn-secondary btn-block">Choisir vos fichiers</label>
+
+            </label>
+        </div>
+        <div class="row" style="zoom: 0.9;">
+            <div class="col-lg-12">
+                <table class="display nowrap dataTable no-footer 
+                    dtr-inline collapsed grid-template table-striped">
+                    <thead>
+                        <tr>
+                            <th class="grid-template_th">Nom </th>
+                            <th class="grid-template_th">Indice </th>
+                            <th class="grid-template_th">Taille</th>
+                            <th class="grid-template_th">Niveau de chargement</th>
+                            <th width="80px" class="grid-template_th">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody *ngFor="let d of documentList ; index as i">
+                        <tr class="grid-template__row">
+                            <td>
+                                <input placeholder="nom" [(ngModel)]="d.name" formControlName="name" disabled
+                                    class="form-control" />
+                            </td>
+                            <td>
+                                <input placeholder="Indice" [(ngModel)]="d.indice" formControlName="indice"
+                                    class="form-control" />
+                            </td>
+                            <td>
+                                <input placeholder="taille" [(ngModel)]="d.size" formControlName="size" disabled
+                                    class="form-control" />
+                            </td>
+                            <td>
+                                <div *ngIf="fileStatus.status==='progress'">
+                                    <div class="progress" style="height: 20px;margin-bottom:20px;">
+                                        <div class="progress-bar" role="progressbar"
+                                            [style.width.%]="fileStatus.percent">{{fileStatus.percent}}</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td nowrap>
+                                <button *ngIf="doc == null" (click)="uploadFile(d)" type="button" class="btn btn-info btn-xs">
+                                    <span>Importer</span>
+                                    <span class="fa icon-cloud-upload mr"></span>
+                                </button>
+                                <button *ngIf="doc != null" (click)="save(d)" type="button" class="btn btn-info btn-xs">
+                                    <span>Enregistrer</span>
+                                </button>
+                            </td>
+                        </tr>
+
+
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+    <!-- Modal footer -->
+    <div class="modal-footer">
+        <button type="button" (click)="activeModal.close()" class="btn btn-default">Annuler</button>
+    </div>
+</form>

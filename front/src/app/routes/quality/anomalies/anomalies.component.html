@@ -1,0 +1,73 @@
+<div class="panel-widget_dash">
+    <div class="settings-panel">
+        <div class="breadcrumb-page panel-widget_dash">
+            <div class="panel-widget_inner">
+                <div class="row w-100 align-items-center">
+                    <div class="col-md-6">
+                        <h1 class="page__titre-h1"><span>Gestion des anomalies</span></h1>
+                    </div>
+                    <div class="col-md-6"></div>
+                </div>
+            </div>
+        </div>
+        <div class="panel-widget_inner pt-4 flex-column align-items-stretch">
+            <br>
+            <div class="row">
+                <!--SEARCH-->
+                <div class="col-md-4 mt-2">
+                    <div class="group">
+                                <i class="fas fa-search" style="position: absolute;
+                                top: 55%;
+                                transform: translateY(-50%);
+                                left: 5%;"></i>
+                                <input placeholder="Chercher" type="search" class="input"
+                                    (input)="onSearchChange($event.target.value)">
+                    </div>
+                </div>
+                <!---->
+                <div *ngIf="AuthenticationService.hasPermission(['QT_A','QT_W','GL_A','ERP_A'])"
+                 class="col-md-8 justify-content-end" style="text-align: end;">
+                    <button (click)="add()" type="button" class="btn btn-primary ml-2">
+                        <em class="mr-2 fas fa-plus-circle"></em>
+                        <span class="no_display_onmobile">Ajouter</span>
+                    </button>
+                </div>
+            </div><br>
+            <div>
+                <table class="display nowrap dataTable no-footer dtr-inline collapsed grid-template table-striped">
+                    <thead>
+                        <tr>
+                            <th class="grid-template_th">Catégorie</th>
+                            <th class="grid-template_th">Type</th>
+                            <th class="grid-template_th">Date de création</th>
+                            <th class="grid-template_th">Date de modification</th>
+                            <th data-priority="2" class="grid-template_th"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="grid-template__row" *ngFor="let anomalie of anomliesList">
+                            <td><b>{{anomalie.categorie}} </b></td>
+                            <td class="no_display_onmobile">{{anomalie.type}}</td>
+                            <td class="no_display_onmobile">{{anomalie.creationDate | date: 'dd-MM-YYYY hh:mm' }} </td>
+                            <td class="no_display_onmobile">{{anomalie.modificationDate | date: 'dd-MM-YYYY hh:mm' }} </td>
+                            <td *ngIf="AuthenticationService.hasPermission(['QT_A','QT_W','GL_A','ERP_A'])"
+                            width="120" data-priority="2" class="grid-template__action">
+                                <a placement="left" tooltip="Modifier" class="link-blue" (click)="update(anomalie)">
+                                    <em class="fa mr-2 fas fa-pencil-alt"></em>
+                                </a>
+                                <a placement="left" tooltip="Supprimer" class="link-blue" (click)="delete(anomalie)">
+                                    <em class="fa mr-2 fas fa-trash"></em>
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <app-empty-data-info [ifEmpty]=ifEmpty [message]="message"></app-empty-data-info>
+                <app-spi-pagination
+                 (onGetPage)="pageSize = $event.pageSize;getPage($event.currentPage)" [currentPage]="currentPage"
+                 [lastPage]="lastPage" [pageSize]="pageSize"
+                 [totalElements]="totalElements"></app-spi-pagination>
+            </div>
+        </div>
+    </div>
+</div>

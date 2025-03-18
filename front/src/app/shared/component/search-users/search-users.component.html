@@ -1,0 +1,81 @@
+<span *ngIf="!multiple">
+  <ng-select [items]="users"
+             [(ngModel)]="user" [ngModelOptions]="{standalone: true}"
+             [multiple]="multiple"
+             [disabled]="disabled" [loading]="loading"
+             placeholder="Recherche utilisateurs"
+             (focus)="loadListUsers()"
+             (change)="onChange($event)" [searchFn]="customSearchFn"
+             i18n-placeholder>
+  <ng-template ng-label-tmp let-item="item">
+    <div style="margin: 3px;">
+      <div class="media">
+        <div class="mr-2 img-profil__photo28" *ngIf="!item?.employee?.imageUrl" [innerHTML]="item?.employee?.firstName|user2Lettre:item?.employee?.lastName"></div>
+        <img class="mr-1 img-thumbnail rounded-circle thumb28" style="max-width: 30px;" *ngIf="item?.employee?.imageUrl" src="{{item?.employee?.imageUrl}}"
+             tooltipHtml="{{item?.employee?.firstName}} {{item?.employee?.lastName}}" alt="Image" appImgFallback="assets/img/default-image.png"/>
+        <div class="media-body">
+          <h5 class="m-0 text-bold mr-1">
+            <span [innerHTML]="item?.employee?.firstName"></span> &nbsp;<span [innerHTML]="item?.employee?.lastName"></span>
+          </h5>
+        </div>
+    </div>
+    </div>
+  </ng-template>
+  <ng-template ng-option-tmp let-item="item" let-index="index">
+    <div class="media">
+      <div class="mr-2 img-profil__photo28" *ngIf="!item?.employee?.imageUrl" [innerHTML]="item?.employee?.firstName|user2Lettre:item?.employee?.lastName"></div>
+      <img class="mr-1 img-thumbnail rounded-circle thumb28" style="max-width: 30px;" *ngIf="item?.employee?.imageUrl" src="{{item?.employee?.imageUrl}}"
+           tooltipHtml="{{item?.employee?.firstName}} {{item?.employee?.lastName}}" alt="Image" appImgFallback="assets/img/default-image.png"/>
+      <div class="media-body">
+        <h5 class="m-0 text-bold mr-1">
+          <span [innerHTML]="item?.employee?.firstName"></span> &nbsp;<span [innerHTML]="item?.employee?.lastName"></span>
+        </h5>
+        <div class="text-sm text-muted" [ngStyle]="{color:  '#FFFFFF' }" [innerHTML]="item?.email" style="display: inline-block;font-size: 11px"></div>
+      </div>
+    </div>
+  </ng-template>
+</ng-select>
+</span>
+
+
+<span *ngIf="multiple">
+  <ng-select [items]="users"
+             [(ngModel)]="selectedIds" [ngModelOptions]="{standalone: true}"
+             [multiple]="multiple"
+             [disabled]="disabled"
+             [placeholder]="placeholder"
+             bindValue="id"
+             (focus)="loadListUsers()"
+             (change)="onChange($event)" [searchFn]="customSearchFn">
+  <ng-template ng-label-tmp let-item="item">
+    <div style="margin: 3px;">
+      <div class="media mt-1">
+        <div class="mr-1 img-profil__photo28" *ngIf="!item?.employee?.imageUrl" [innerHTML]="item?.employee?.firstName|user2Lettre:item?.employee?.lastName"></div>
+        <img style="max-width: 30px;" class="mr-1 img-thumbnail rounded-circle thumb28" *ngIf="item?.employee?.imageUrl" src="{{item?.employee?.imageUrl}}"
+             alt="Image" appImgFallback="assets/img/default-image.png"/>
+        <div class="media-body">
+          <h5 class="mt-1 text-bold mr-1">
+            <span [innerHTML]="item?.employee?.firstName"></span> &nbsp;<span [innerHTML]="item?.employee?.lastName"></span>
+          </h5>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+  <ng-template ng-option-tmp let-item="item" let-index="index">
+    <div class="media">
+
+      <div class="mr-2 img-profil__photo28" *ngIf="!item?.employee?.imageUrl" [innerHTML]="item.employee?.firstName|user2Lettre:item.employee?.lastName"></div>
+      <img style="width: 30px;" class="mr-1 img-thumbnail rounded-circle thumb28" *ngIf="item?.employee?.imageUrl" src="{{item?.employee?.imageUrl}}"
+           tooltipHtml="{{item?.employee?.firstName}} {{item?.employee?.lastName}}" alt="Image" appImgFallback="assets/img/default-image.png"/>
+
+      <div class="media-body">
+        <h5 class="m-0 text-bold mr-1" >
+          <span [innerHTML]="item?.employee?.firstName"></span> &nbsp;<span [innerHTML]="item?.employee?.lastName"></span>
+        </h5>
+        <div class="text-sm text-muted" [ngStyle]="{color:  '#FFFFFF' }" [innerHTML]="item?.email" style="display: inline-block;font-size: 11px"></div>
+      </div>
+
+    </div>
+  </ng-template>
+</ng-select>
+</span>

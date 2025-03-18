@@ -1,0 +1,29 @@
+{
+  "environment": "prod",
+  "urlWebsocket": "https://51.178.18.238:8085/cherry-hse/ws/notifications",
+  "APIEndpoint": "/cherry-hse",
+  "modules": [
+    "STOCK", "ACHAT", "COMMERCIAL", "FINANCE",
+    "CRM",  "SAV", "PROJET", "DOCUMENTAIRE", "ANALYSE", "CHAT",
+    "PRODUCTION", "QUALITY", "GMAO",
+    "HR", "ALERT",
+    "CLIENT_MANAGEMENT",
+    "PROJECT_MANAGEMENT",
+    "HR_MANAGEMENT",
+    "PARTIAL_PAYMENT",
+    "SPIDASH"
+  ],
+  "plans": ["TRIAL", "STANDARD", "PREMIUM", "ENTREPRISE"],
+  "reCaptchaSiteKey": "6LeWNjkaAAAAANsQ6fvjZYCPCM6d11QDncJePVwy",
+  "locales":  [
+    { "code": "fr", "label": "Français" },
+    { "code": "en", "label": "English" }
+  ],
+  "localize": true,
+
+  "rolesByComponent": {
+    "AdminComponent": { "R": ["ERP_A"], "W": ["ERP_A"], "A": ["ERP_A"], "S": ["ERP_A"] },
+    "CompanyListComponent": { "R": ["ERP_A"], "W": ["ERP_A"], "A": ["ERP_A"], "S": ["ERP_A"] },
+    "ViewCompanyComponent": { "R": ["ERP_A"], "W": ["ERP_A"], "A": ["ERP_A"], "S": ["ERP_A"] }
+  }
+}

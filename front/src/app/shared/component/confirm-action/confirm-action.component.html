@@ -1,0 +1,15 @@
+<div class="modal-header">
+    <h4 class="modal-title pull-left" i18n>Confirmer</h4>
+    <button type="button" class="close pull-right" aria-label="Femer" (click)="activeModal.close()" i18n-aria-label>
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    {{message}}
+    <br>
+    <span [innerHTML]="info"></span>
+</div>
+<div class="modal-footer">
+    <button type="button" (click)="confirmAction()" class="btn btn-primary" i18n>Oui</button>
+    <button type="button" (click)="activeModal.close()" class="btn btn-default" i18n>Non</button>
+</div>

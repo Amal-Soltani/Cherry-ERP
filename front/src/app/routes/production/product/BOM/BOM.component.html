@@ -1,0 +1,144 @@
+<div class="settings-panel panel-widget_dash-content">
+    <div class="panel-widget_inner pt-4 flex-column align-items-stretch">
+        <div class="row ">
+            <div class="col-md-12">
+                <div class="row">
+                    <!--SEARCH-->
+                    <div *ngIf="idProjet != null" class="col-md-4 mt-2">
+                        <div class="group">
+                            <i class="fas fa-search" style="position: absolute;
+                                top: 55%;
+                                transform: translateY(-50%);
+                                left: 5%;"></i>
+                            <input placeholder="Chercher" type="search" class="input"
+                                (input)="onSearchChange($event.target.value)">
+                        </div>
+                    </div>
+                    <!---->
+                    <div *ngIf="AuthenticationService.hasPermission(['PJ_A','PRJ_W','GL_A','ERP_A'])"
+                     class="col-md-12 justify-content-end" style="text-align: end;">
+                        <button (click)="add()" type="button" class="btn btn-primary"
+                            *ngIf="nomenclatureList.length == 0 || idProjet != null">
+                            <em class="fas fa-plus-circle"></em>
+                            <span class="ml-1 ">Ajouter</span>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <br />
+        <div class="row ">
+            <div class=" col-md-12">
+                <table class="display nowrap dataTable no-footer dtr-inline collapsed grid-template
+                table-striped">
+                    <thead>
+                        <tr>
+                            <th class="grid-template_th">Référence</th>
+                            <th class="grid-template_th">Produit</th>
+                            <th class="grid-template_th">Date de création</th>
+                            <th class="grid-template_th">Date de modification</th>
+                            <th class="grid-template_th">Type produit </th>
+                            <th class="grid-template_th">Type fabrication </th>
+                            <th class="grid-template_th">Procède de fabrication </th>
+                            <th class="grid-template_th">indice</th>
+                            <th class="grid-template_th" style="width: 70px;"></th>
+                        </tr>
+                    </thead>
+                    <tbody *ngFor="let product of nomenclatureList">
+                        <tr class="grid-template__row" style="cursor: pointer;">
+                            <td class="no_display_onmobile ">
+                                <em class="mr-2 fas fa-angle-down"></em>
+                                {{product.bom.reference}}
+                            </td>
+                            <td class="no_display_onmobile " (click)="detail(product)"> {{product.libelle}} </td>
+                            <td class="no_display_onmobile " (click)="detail(product)"> {{product.bom.creationDate | date :
+                                'd-MM-y hh:mm' }} </td>
+                            <td class="no_display_onmobile " (click)="detail(product)"> {{product.bom.modificationDate | date :
+                                'd-MM-y hh:mm' }} </td>
+                            <td *ngIf="product.typeProduct === 'ASSEMBLAGE'" class="no_display_onmobile " (click)="detail(product)"> Produit
+                                Assemblé </td>
+                            <td *ngIf="product.typeProduct === 'CONSTRUIRE'" class="no_display_onmobile " (click)="detail(product)">
+                                Produit à construire </td>
+                            <td *ngIf="product.typeProduct === 'MATERIEL'" class="no_display_onmobile " (click)="detail(product)">
+                                Matériel </td>
+                            <td class="no_display_onmobile " (click)="detail(product)"> {{product.bom.manufacturingType}} </td>
+                            <td class="no_display_onmobile " (click)="detail(product)"> {{product.bom.manufacturingProcesses}} </td>
+                            <td class="no_display_onmobile " style="color: blue;"
+                             (click)="download(product.bom.indice)" > {{product.bom.indice}} </td>
+                            <td *ngIf="AuthenticationService.hasPermission(['PJ_A','PRJ_W','GL_A','ERP_A'])"
+                            class="no_display_onmobile " width="120">
+                                <a (click)="update(product.bom, product.id)" class="link-blue" placement="left"
+                                    tooltip="Modifier"><em class="fa mr-2 fas fa-pencil-alt"></em></a>
+                                <a (click)="delete(product.bom,product.id)" placement="left"
+                                    tooltip="Supprimer" class="link-blue"><em class="fa mr-2 fas fa-trash"></em></a>
+                            </td>
+                        </tr>
+                        <tr *ngIf="product.info == true">
+                            <td colspan="8" class="hiddenRow">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-setting__item">
+                                            <label class="form-setting__label">
+                                                <span>Description</span>
+                                            </label>
+                                            <div class="form-setting__input"> {{product.bom.designation}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <table *ngIf="ProductList?.length!=0" class="col-md-12">
+                                        <thead>
+                                            <th style="border: none;">
+                                                <em class="mr-2 fas fa-angle-down"></em>
+                                                Sous-Produit
+                                            </th>
+                                            <th style="border: none; text-align: center;">Type de Produit</th>
+                                            <th style="border: none; text-align: center;">Quantité par Assemblage </th>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let p of ProductList">
+                                                <td>
+                                                    <a [routerLink]="['/mes/product/list/',p.child.id]"
+                                                        style="color: blue;">{{p.child.libelle}}</a>
+                                                </td>
+                                                <td *ngIf="p.child.typeProduct === 'ASSEMBLAGE'"
+                                                    style=" text-align: center;"> Produit Assemblé </td>
+                                                <td *ngIf="p.child.typeProduct === 'CONSTRUIRE'"
+                                                    style=" text-align: center;"> Produit à construire </td>
+                                                <td style=" text-align: center;"> {{p.qteParAssemblage}}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <br>
+                                    <table *ngIf="articleList?.length!=0" class="col-md-12">
+                                        <thead>
+                                            <th style="border: none;">
+                                                <em class="mr-2 fas fa-angle-down"></em>
+                                                Article
+                                            </th>
+                                            <th style="border: none; text-align: center;">Quantité par Assemblage </th>
+                                            <th style="border: none; text-align: center;">Dimension brute</th>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let a of articleList">
+                                                <td> {{a.article.libelle}}</td>
+                                                <td style=" text-align: center;"> {{a.grossQuantity}} </td>
+                                                <td style=" text-align: center;"> {{a.rawDimension}}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <app-empty-data-info [ifEmpty]=ifEmpty [message]="message"></app-empty-data-info>
+
+                <!-- pagination -->
+                <app-spi-pagination *ngIf="idProjet != null" (onGetPage)="pageSize = $event.pageSize;getPage($event.currentPage)"
+                    [currentPage]="currentPage" [lastPage]="lastPage" [pageSize]="pageSize"
+                    [totalElements]="totalElements"></app-spi-pagination>
+            </div>
+        </div>
+    </div>
+</div>

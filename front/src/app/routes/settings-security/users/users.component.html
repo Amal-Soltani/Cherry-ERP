@@ -1,0 +1,61 @@
+<div class="settings-panel" >
+  <div class="panel-widget_inner pt-4 flex-column align-items-stretch">
+    <div class="settings-panel__titre" i18n>Utilisateurs</div>
+    <div class="row">
+      <div class="col">
+        <div style="max-width: 200px">
+          <input class="form-control" placeholder="Recherche" type="text" name="search"  i18n-placeholder>
+        </div>
+      </div>
+      <div class="col-auto justify-content-end" style="text-align: end;">
+        <button (click)="add()" type="button" class="btn btn-primary ml-2">
+          <em class="fas fa-plus-circle"></em><span class="ml-1 no_display_onmobile" i18n>Ajouter</span>
+        </button>
+        <button (click)="invite(false)" type="button" class="btn btn-primary ml-2">
+          <em class="fas fa-envelope-open"></em><span class="ml-1 no_display_onmobile" i18n>Inviter par email</span>
+        </button>
+        <button (click)="invite(true)" type="button" class="btn btn-primary ml-2 no_display_onmobile">
+          <em class="fas fa-envelope-open"></em><span class="ml-1" i18n>Inviter un partenaire externe</span>
+        </button>
+      </div>
+    </div>
+    <br/>
+    <table class="display nowrap dataTable no-footer dtr-inline collapsed grid-template table-striped">
+      <thead>
+      <tr>
+        <th class="grid-template_th no_display_onmobile" i18n>Matricule</th>
+        <th class="grid-template_th" i18n>Nom et Prénom</th>
+        <th class="grid-template_th" i18n>Email</th>
+        <th class="grid-template_th no_display_onmobile" i18n>Activation</th>
+        <th class="grid-template_th no_display_onmobile" i18n>Dernière Connexion</th>
+        <th class="grid-template_th no_display_onmobile" i18n>Dernière modification</th>
+        <th class="grid-template_th" data-priority="2"></th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr class="grid-template__row" *ngFor="let objt of users | filter:filter; let i = index">
+        <td class="no_display_onmobile">
+          <span *ngIf="objt.employee?.external">
+            <b class="badge badge-primary">{{objt.employee?.externalType}}</b>
+          </span>
+          <b>{{objt.employee.employeeNumber}}</b>
+        </td>
+        <td><b>{{objt.employee.firstName}} {{objt.employee.lastName}}</b></td>
+        <td>{{objt.email}}</td>
+        <td class="no_display_onmobile">
+        </td>
+        <td class="no_display_onmobile">
+
+          <span tooltip="Total connexions" i18n-tooltip>[{{objt.connection}}]</span>
+        </td>
+        <td class="no_display_onmobile"></td>
+        <td class="grid-template__action" data-priority="2">
+          <a (click)="update(objt)" class="link-blue" placement="left" tooltip="Modifier" i18n-tooltip><em class="fa mr-2 fas fa-pencil-alt"></em></a>
+          <!-- <a (click)="delete(objt)" placement="left" tooltip="Supprimer" i18n-tooltip class="link-blue"><em class="fa mr-2 fas fa-trash"></em></a> -->
+        </td>
+      </tr>
+      </tbody>
+    </table>
+    <!-- pagination -->
+  </div>
+</div>

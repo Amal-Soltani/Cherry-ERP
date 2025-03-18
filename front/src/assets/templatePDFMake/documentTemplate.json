@@ -1,0 +1,104 @@
+{
+  "pageOrientation": "portrait",
+  "pageMargins": [10, 90, 10, 30],
+  "compress": false,
+  "footer": {},
+  "header": {
+    "columns": []
+  },
+  "content": [
+    {
+      "text": "",
+      "alignment": "center"
+    },
+
+    {
+      "text": "DEVIS \nN° : VD001/2020",
+      "style": "header",
+      "alignment": "center"
+    },
+    "\n\n\n",
+    {
+      "columns": [
+        {
+          "text": "Societe: OTalent sarl \n c est mon adress ici \n Email ou telephone ici ",
+          "bold": true,
+          "alignment" : "left"
+        },
+        {
+          "text": "Tunis le 22/10/2020 \n Devis:  EURO",
+          "bold": true,
+          "alignment" : "right"
+        }
+      ],
+      "margin": [ 0, 5, 0, 5 ],
+      "fontSize": 9
+    },
+    "\n",
+    {
+      "style": "tableExample",
+      "table": {
+        "widths": [75, 150, 43, 50, 55, 55, 63],
+        "body": []
+      },
+      "layout": {}
+    }, "\n",  {
+			"columns": [
+        {
+          "width": "*",
+          "style": "tableExample",
+          "table": {
+            "body": [
+              []
+            ]
+          }
+        },{ "width": 5, "text" : "" },
+				{
+				    "style": "tableExample",
+    				"table": {
+              "widths": ["*","*"],
+              "body": [[]]
+            },
+            "layout": {}
+				}
+			]
+	},
+    {
+       "columns": [
+        {
+          "text": "",
+          "bold": false,
+          "alignment" : "left"
+        }
+      ],
+      "margin": [ 0, 5, 0, 5 ],
+      "fontSize": 9
+    },
+    {
+      "columns": [
+        {
+          "text": "",
+          "bold": false,
+          "alignment" : "left"
+        }
+      ],
+      "margin": [ 0, 5, 0, 5 ],
+      "fontSize": 9
+    }
+  ],
+  "styles" : {
+    "header": {"fontSize": 13, "bold": true, "color" : "#111111"},
+    "subheader": {"fontSize": 13,"bold": false},
+    "quote": {"italics": true},
+    "small": {"fontSize": 8},
+    "tableExample": {"margin": [0, 0, 0, 0],"fontSize": 8},
+    "tableHeader": {"bold": true,"fontSize": 8,"color": "black", "fillColor" : "#c1dda5"},
+    "tableHeaderBlack": {"bold": true,"fontSize": 8,"color": "black", "fillColor" : "#FFFFFF"}
+  },
+  "info": {
+    "title": "DOCUMENT Cheery ERP",
+    "author": "By Cheery ERP",
+    "subject": "",
+    "keywords": "SPISOFT"
+  }
+}

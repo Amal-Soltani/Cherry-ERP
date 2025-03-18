@@ -1,0 +1,87 @@
+
+h2 {
+    margin: 0;
+    font-size: 16px;
+  }
+  
+  ul {
+    margin: 0;
+    padding: 0 0 0 1.5em;
+  }
+  
+  li {
+    margin: 1.5em 0;
+    padding: 0;
+  }
+  
+  b { /* used for event dates/times */
+    margin-right: 3px;
+  }
+  
+  .demo-app {
+    display: flex;
+    min-height: 100%;
+    font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
+    font-size: 14px;
+  }
+  
+  .demo-app-sidebar {
+    border-radius: 10px;
+    margin-top: 100px;
+    width: 300px;
+    line-height: 2.5;
+    background: #eaf9ff;
+    border-right: 1px solid #d3e2e8;
+    max-height: 380px;
+  }
+  
+  .demo-app-sidebar-section {
+    padding: 2em;
+  }
+  
+  .demo-app-main {
+    flex-grow: 1;
+    padding: 3em;
+  }
+  
+  .fc { /* the calendar root */
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  
+  .is-invalid {
+    border: 1px solid red;
+}
+
+
+
+
+.fc-event-title {
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+.fc-event-time {
+  color: #007bff;
+  font-weight: bold;
+}
+
+.fc-event-content {
+  padding: 10px;
+  border: 1px solid #ced4da;
+  background-color: #f8f9fa;
+  border-radius: 5px;
+}
+
+.custom-tooltip {
+  background-color: #e0ecf9;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  border: 1px solid #e0ecf9;
+  z-index: 1000;
+  position: absolute;
+  pointer-events: none;
+}
+

@@ -1,0 +1,38 @@
+<form [formGroup]="phaseform" (ngSubmit)="onSubmit()">
+    <div class="modal-header">
+        <h4 class="modal-title pull-left">Étapes de gamme d'usinage</h4>
+        <button type="button" aria-label="Fermer" class="close pull-right" (click)="activeModal.close()">
+            <span aria-hidden="true">×</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-setting__item">
+                    <label class="form-setting__label">
+                        <span>Nom</span>
+                        <sup>*</sup></label>
+                    <div class="form-setting__input d-md-flex">
+                        <input [(ngModel)]="phase.name" type="text" formControlName="name" placeholder="Nom" class="form-control"
+                        [ngClass]="{'is-invalid': phaseform.controls['name'].invalid && 
+                            (submitted || phaseform.controls['name'].touched || phaseform.controls['name'].dirty)}">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-setting__item">
+                    <label class="form-setting__label">
+                        <span>Description</span>
+                    </label>
+                    <div class="form-setting__input d-md-flex">
+                        <input type="text" [(ngModel)]="phase.description" formControlName="description" placeholder="Description" class="form-control">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-primary">Enregistrer</button>
+        <button type="button" class="btn btn-default" (click)="activeModal.close()">Annuler</button>
+    </div>
+</form>

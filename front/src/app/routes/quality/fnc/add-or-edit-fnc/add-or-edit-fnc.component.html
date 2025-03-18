@@ -1,0 +1,294 @@
+<form [formGroup]="FNCform" (ngSubmit)="onSubmit()">
+    <div class="modal-header">
+        <h4 class="modal-title pull-left">Fiche Du Produit Non-Conforme</h4>
+        <button type="button" aria-label="Fermer" class="close pull-right" (click)="activeModal.close()">
+            <span aria-hidden="true">×</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-setting__item">
+                    <label class="form-setting__label">
+                        <span>N° FNC </span>
+                        <sup>*</sup>
+                    </label>
+                    <div class="form-setting__inp">
+                        <input type="text" [(ngModel)]="fiche.reference" formControlName="reference" disabled class="form-control">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-setting__item">
+                    <label class="form-setting__label">
+                        <b class="form-setting__label">Projet</b>
+                    </label>
+                    <div class="form-setting__input">
+                        <input type="text" [(ngModel)]="projetREF" formControlName="projetREF" disabled class="form-control">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <table width="100%" cellpadding="2" class="summary">
+                    <tr>
+                        <td style="width: 120px;">
+                            <b class="form-setting__label">
+                                <span>N° FNC </span>
+                                <sup>*</sup>
+                            </b>
+                        </td>
+                        <td>
+                            <input type="text" formControlName="reference" disabled class="form-control">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><b class="form-setting__label">Auditeur</b></td>
+                        <td>
+                            <ng-select style="width: calc(100%);" placeholder="Recherche employé(s)"
+                            formControlName="employee" [(ngModel)]="employee" (change)="selectedEmp($event)">
+                                <ng-option *ngFor="let employee of employees" [value]="employee">
+                                    [{{employee.employeeNumber}}] {{employee.firstName}} {{employee.lastName}}
+                                </ng-option>
+                            </ng-select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <b class="form-setting__label">
+                                <span>Date de l'audit </span><sup>*</sup>
+                            </b>
+                        </td>
+                        <td>
+                            <input type="date" [(ngModel)]="fiche.date" formControlName="reportDate" class="form-control"
+                            [ngClass]="{'is-invalid': FNCform.controls['reportDate'].invalid && 
+                            (submitted || FNCform.controls['reportDate'].touched || FNCform.controls['reportDate'].dirty)}">
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="col-md-6">
+                <table width="100%" cellpadding="2" class="summary">
+                    <tr>
+                        <td style="width: 120px;">
+                            <b class="form-setting__label">Projet</b>
+                        </td>
+                        <td>
+                            <ng-select style="width: calc(100%);" placeholder="Recherche projet"
+                                formControlName="projet" [(ngModel)]="fiche.projet" (change)="getTacheList($event)">
+                                <ng-option *ngFor="let projet of projects" [value]="projet.id">
+                                    [{{projet.reference}}] {{projet.titre}}
+                                </ng-option>
+                            </ng-select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td> <b class="form-setting__label">Tâche/OF</b></td>
+                        <td>
+                            <div>
+                                <ng-select style="width: calc(100%);" placeholder="Recherche taches"
+                                    formControlName="tache" [(ngModel)]="tache" (change)="getDetails($event)" (change)="selectedTache($event)">
+                                    <ng-option *ngFor="let tache of taches" [value]="tache">
+                                        {{tache.reference}}: {{tache.titre}}
+                                    </ng-option>
+                                </ng-select>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><b class="form-setting__label">Equipement</b></td>
+                        <td>
+                            <div>
+                                <ng-select placeholder="Recherche équipement" formControlName="equipment" [(ngModel)]="fiche.equipment">
+                                    <ng-option *ngFor="let equipment of equipments" [value]="equipment.name">
+                                        [{{equipment.reference}}] {{equipment.name}}
+                                    </ng-option>
+                                </ng-select>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-md-6">
+                <p class="lead bb"><b>Détails</b></p>
+                <div class="form-group row">
+                    <div class="col-md-4">
+                        <strong>Bon de commande(s) :</strong>
+                    </div>
+                    <div class="col-md-8"> {{BC}}</div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-md-4">
+                        <strong>Produit:</strong>
+                    </div>
+                    <div class="col-md-8"> {{product}} </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-md-4">
+                        <strong>Projet:</strong>
+                    </div>
+                    <div class="col-md-8"> {{projet}} </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-md-4">
+                        <strong>Client:</strong>
+                    </div>
+                    <div class="col-md-8"> {{client}} </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <p class="lead bb"><b>OF</b></p>
+                <div class="form-group row">
+                    <div class="col-md-4">OF Client :</div>
+                    <div class="col-md-8">
+                        <strong>{{OFclient}}</strong>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-md-4">Quantité demandé :</div>
+                    <div class="col-md-8">
+                        <strong>{{qte}}</strong>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-md-4">Status:</div>
+                    <div class="col-md-8">
+                        <span *ngIf="status === 'a_faire'" class="badge badge-info px-2"><b>À faire</b></span>
+                        <span *ngIf="status === 'en_cours'" class="badge badge-secondary px-2"><b>En cours</b></span>
+                        <span *ngIf="status === 'termine'" class="badge badge-success px-2"><b>Terminé</b></span>
+                        <span *ngIf="status === 'bloque'" class="badge badge-warning px-2"><b>Bloqué</b></span>
+                        <span *ngIf="status === 'en_validation'" class="badge badge-primary px-2"><b>En
+                                validation</b></span>
+                        <span *ngIf="status === 'valide'" class="badge badge-success px-2"><b>Validé</b></span>
+                        <span *ngIf="status === 'rejete'" class="badge badge-danger px-2"><b>Rejeté</b></span>
+                        <span *ngIf="status === 'annule'" class="badge badge-dark px-2"><b>Annulé</b></span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-md-4">Priorité:</div>
+                    <div class="col-md-8">
+                        <em *ngIf="priority === 'haute'" class="circle circle-lg bg-warning" tooltip="Haute"></em>
+                        <em *ngIf="priority === 'tres_haute'" class="circle circle-lg bg-danger"
+                            tooltip="Trés haute"></em>
+                        <em *ngIf="priority === 'moyenne'" class="circle circle-lg bg-primary" tooltip="Moyenne"></em>
+                        <em *ngIf="priority === 'basse'" class="circle circle-lg bg-info" tooltip="Basse"></em>
+                        <em *ngIf="priority === 'tres_basse'" class="circle circle-lg bg-dark"
+                            tooltip="Trés Basse"></em>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-setting__item">
+                    <label class="form-setting__label">
+                        <span>Liste des non Conformités </span><sup>*</sup>
+                    </label>
+                    <div class="form-setting__input">
+                        <table
+                            class="display nowrap dataTable no-footer dtr-inline collapsed grid-template table-striped">
+                            <thead>
+                                <tr>
+                                    <th class="grid-template_th" style="width: 150px;">
+                                        <span>Défaut</span><sup>*</sup>
+                                    </th>
+                                    <th class="grid-template_th" style="width: 80px;">Non conformités</th>
+                                    <th class="grid-template_th" style="width: 80px;">Rébuts</th>
+                                    <th class="grid-template_th" style="width: 80px;">Coût FNC</th>
+                                    <th class="grid-template_th" style="width: 80px;">Décision</th>
+                                    <th class="grid-template_th" style="width: 20px;">
+                                        <a placement="left" tooltip="Ajouter" class="link-blue" (click)="addRow()"
+                                            aria-describedby="tooltip-298">
+                                            <em class="fa mr-2 fa-plus-square"></em>
+                                        </a>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody *ngFor="let row of Rows">
+                                <tr>
+                                    <td>
+                                        <ng-select *ngIf="!row.isSaved" [(ngModel)]="row.col1" formControlName="col1"
+                                            style="display: block; width: 100%;"  [ngClass]="{'is-invalid': FNCform.controls['col1'].invalid && 
+                                            (submitted || FNCform.controls['col1'].touched || FNCform.controls['col1'].dirty)}">
+                                            <ng-option *ngFor=" let a of anomalies" [value]="a.type">
+                                                {{a.type}}
+                                            </ng-option>
+                                        </ng-select>
+                                        <div *ngIf="row.isSaved">{{row.col1}}</div>
+                                    </td>
+                                    <td>
+                                        <input *ngIf="!row.isSaved" type="number" min="1" class="form-control"
+                                        [(ngModel)]="row.col2" formControlName="col2" >
+                                        <div *ngIf="row.isSaved">{{row.col2}}</div>
+                                    </td>
+                                    <td>
+                                        <input *ngIf="!row.isSaved" type="number" min="0" class="form-control"
+                                        [(ngModel)]="row.col3" formControlName="col3" >
+                                        <div *ngIf="row.isSaved">{{row.col3}}</div>
+                                    </td>
+                                    <td>
+                                        <input *ngIf="!row.isSaved" type="number" min="0" class="form-control"
+                                        [(ngModel)]="row.col4" formControlName="col4" >
+                                        <div *ngIf="row.isSaved">{{row.col4}}</div>
+                                    </td>
+                                    <td>
+                                        <ng-select *ngIf="!row.isSaved" [(ngModel)]="row.col5" style="display: block; width: 100%;"
+                                            formControlName="col5">
+                                            <ng-option *ngFor="let key of decisionKeys(decision)" [value]="key">
+                                                {{decision[key]}}
+                                            </ng-option>
+                                        </ng-select>
+                                        <div *ngIf="row.isSaved">{{row.col5}}</div>
+                                    </td>
+                                    <td>
+                                        <a *ngIf="!row.isSaved" placement="left" tooltip="Ajouter" class="link-blue"
+                                            (click)="add(row)" aria-describedby="tooltip-100">
+                                            <em class="fa mr-2 fa-save"></em>
+                                        </a>
+                                        <a *ngIf="!row.isSaved" placement="left" tooltip="Annuler" class="link-blue"
+                                            (click)="Annuler(row)" aria-describedby="tooltip-332">
+                                            <em class="fa mr-2 fas fa-undo"></em>
+                                        </a>
+                                        <a *ngIf="row.isSaved" (click)="update(row)" tooltip="Modifier"
+                                            class="link-blue" draggable="false">
+                                            <em class="fa mr-2 fas fa-pencil-alt"></em>
+                                        </a>
+                                        <a *ngIf="row.isSaved" (click)="delete(row)" tooltip="Supprimer"
+                                            class="link-blue" draggable="false">
+                                            <em class="fa mr-2 fas fa-times"></em>
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="grid-template_th"> Description </td>
+                                    <td colspan="8">
+                                        <input *ngIf="!row.isSaved" type="text" class="form-control" maxlength="250"
+                                        [(ngModel)]="row.col6" formControlName="col6">
+                                        <div *ngIf="row.isSaved">{{row.col6}}</div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="grid-template_th"> Cause Racine </td>
+                                    <td colspan="8">
+                                        <input *ngIf="!row.isSaved" type="text" class="form-control" maxlength="250"
+                                        [(ngModel)]="row.col7" formControlName="col7">
+                                        <div *ngIf="row.isSaved">{{row.col7}}</div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-primary">Enregistrer</button>
+        <button type="button" class="btn btn-default" (click)="activeModal.close()">Annuler</button>
+    </div>
+</form>

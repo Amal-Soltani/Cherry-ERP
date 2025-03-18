@@ -1,0 +1,229 @@
+{
+  "pageMargins": [20, 90, 20, 30],
+  "compress": false,
+  "footer": {},
+  "header": {
+    "columns": []
+  },
+  "content": [{
+    "table": {
+      "widths": ["*"],
+      "body": [
+        [""],
+        [""]
+      ]
+    },
+    "layout": {}
+  }, {
+    "text": "\n\nBon de travail \n N° WO-00003/2021",
+    "style": "header",
+    "alignment": "center"
+  }, "\n\n\n", {
+    "columns": [
+      {
+        "stack": [
+          {
+            "text": [{
+              "text": "\nTitre: ",
+              "bold": true,
+              "alignment": "left",
+              "fontSize": 10
+            }, {
+              "text": "............................",
+              "alignment": "left",
+              "fontSize": 10
+            }]
+          }, {
+            "text": [{
+              "text": "\nResponsable: ",
+              "bold": true,
+              "alignment": "left",
+              "fontSize": 10
+            }, {
+              "text": "............................",
+              "alignment": "left",
+              "fontSize": 10
+            }]
+          }, {
+            "text": [{
+              "text": "\nMachine: ",
+              "bold": true,
+              "alignment": "left",
+              "fontSize": 10
+            }, {
+              "text": "............................",
+              "alignment": "left",
+              "fontSize": 10
+            }]
+          }, {
+            "text": [{
+              "text": "\nEmplacement: ",
+              "bold": true,
+              "alignment": "left",
+              "fontSize": 10
+            }, {
+              "text": "............................",
+              "alignment": "left",
+              "fontSize": 10
+            }]
+          },
+          {
+            "text": [{
+              "text": "\nDescription : ",
+              "bold": true,
+              "alignment": "left",
+              "fontSize": 10
+            }, {
+              "text": "............................",
+              "alignment": "left",
+              "fontSize": 10
+            }]
+          }]
+      },
+
+      {
+
+        "stack": [
+          {
+            "text": "\nDate début : ..............................................",
+            "bold": true,
+            "alignment": "right"
+          },
+          {
+            "text": "\nDate fin : ..............................................",
+            "bold": true,
+            "alignment": "right"
+          }
+        ]
+      }
+
+    ],
+    "margin": [0, 5, 0, 5],
+    "fontSize": 10
+  },  "\n",
+
+    {
+      "columns": [
+        {
+
+          "stack": [{
+            "text": "________________________________________________________________________________________________________________ ",
+            "color": "#555555",
+            "alignment": "center",
+            "fontSize": 10
+          },  {
+            "text": "\nCoût de non production : ..............................................",
+            "bold": true,
+            "alignment": "left",
+            "fontSize": 10
+          },
+            {
+              "text": "\nCoût de sous-traitance : ..............................................",
+              "bold": true,
+              "alignment": "left",
+              "fontSize": 10
+            },
+            {
+              "text": "\nCoût de pièces de rechange : ..............................................",
+              "bold": true,
+              "alignment": "left",
+              "fontSize": 10
+            },
+            {
+              "text": "\nAutre coût : ..............................................",
+              "bold": true,
+              "alignment": "left",
+              "fontSize": 10
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "columns": [{
+        "width": "*",
+        "style": "tableExample",
+        "table": {
+          "body": [
+            []
+          ]
+        }
+      }, {
+        "width": 5,
+        "text": ""
+      }, {
+        "style": "tableExample",
+        "table": {
+          "widths": ["*", "*"],
+          "body": [
+            []
+          ]
+        },
+        "layout": {}
+      }]
+    }, {
+      "columns": [{
+        "text": {
+          "text": [{
+            "text": "\n\n",
+            "bold": true,
+            "fontSize": 10
+          }, {
+            "text": "",
+            "fontSize": 10
+          }]
+        },
+        "bold": false,
+        "alignment": "left"
+      }],
+      "margin": [0, 5, 0, 5],
+      "fontSize": 10
+    }, {
+      "columns": [{
+        "text": "",
+        "bold": false,
+        "alignment": "left"
+      }],
+      "margin": [0, 5, 0, 5],
+      "fontSize": 10
+    }],
+  "styles": {
+    "header": {
+      "fontSize": 14,
+      "bold": true,
+      "color": "#111111"
+    },
+    "subheader": {
+      "fontSize": 14,
+      "bold": false
+    },
+    "quote": {
+      "italics": true
+    },
+    "small": {
+      "fontSize": 9
+    },
+    "tableExample": {
+      "margin": [0, 0, 0, 0],
+      "fontSize": 9
+    },
+    "tableHeader": {
+      "bold": true,
+      "fontSize": 9,
+      "color": "#000",
+      "fillColor": "#FFFFFF"
+    },
+    "tableHeaderBlack": {
+      "bold": true,
+      "fontSize": 9,
+      "color": "black",
+      "fillColor": "#FFFFFF"
+    }
+  },
+  "info": {
+    "title": "DOCUMENT Cheery ERP",
+    "author": "By Cheery ERP",
+    "subject": "",
+    "keywords": "SPISOFT"
+  }
+}

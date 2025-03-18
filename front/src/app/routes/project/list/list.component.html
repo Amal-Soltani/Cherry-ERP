@@ -1,0 +1,216 @@
+<div class="flex-column align-items-stretch">
+    <div class="settings-panel">
+        <div class="panel-widget_inner pt-0 flex-column align-items-stretch">
+            <div class="settings-panel__titre">
+                <span>Liste des projets</span>
+            </div>
+            <br>
+            <div class="row">
+                <!--SEARCH-->
+                <div class="col-md-4 mt-2">
+                    <div class="group">
+                        <i class="fas fa-search" style="position: absolute;
+                                top: 55%;
+                                transform: translateY(-50%);
+                                left: 5%;"></i>
+                        <input placeholder="Chercher" type="search" class="input"
+                            (input)="onSearchChange($event.target.value)">
+                    </div>
+                </div>
+                <!--SEARCH-->
+                <!--STATUS-->
+                <div class="col-md-4 mt-2" style="text-align: center;">
+                    <span>
+                        <span class="mr-1 badge" (click)="get('tous')"
+                            style="cursor: pointer; background-color: rgb(176, 175, 175); border-color: rgb(176, 175, 175);">
+                            <em class="mr-2 fas fa-bullseye"></em>
+                            <b>Tous</b>
+                        </span>
+                        <span class="mr-1 badge" (click)="get('brouillon')"
+                            style="cursor: pointer; background-color: rgb(58, 63, 81);border-color: rgb(58, 63, 81);">
+                            <b>Brouillon</b>
+                        </span>
+                        <span class="mr-1 badge" (click)="get('en_cours')"
+                            style="cursor: pointer; background-color: rgb(35, 183, 229);border-color: rgb(35, 183, 229);">
+                            <b>En cours</b>
+                        </span>
+                        <span class="mr-1 badge" (click)="get('cloture')"
+                            style="cursor: pointer; background-color: rgb(240, 80, 80);border-color: rgb(240, 80, 80);">
+                            <b>Terminé</b>
+                        </span>
+                    </span>
+                </div>
+                <!--STATUS-->
+                <!--ADD-->
+                <div class="col-md-4 justify-content-end mt-2" style="text-align: end;"
+                *ngIf="AuthenticationService.hasPermission(['PJ_A','PJ_W','GL_A','ERP_A'])">
+                    <button (click)="add()" type="button" class="btn btn-primary sm-2" style="margin-right: 4px;">
+                        <em class="fa fa-plus-circle mr-2"></em><span>Ajouter</span>
+                    </button>
+                </div>
+                <!---->
+            </div>
+            <br>
+            <!--PROJET-->
+            <div class="row">
+                <div class="col-xl-4 col-lg-6" *ngFor="let p of projetList">
+                    <div class="card b">
+                        <div class="card-header" style="height: 48.8px;">
+                            <div class="float-right"
+                            *ngIf="AuthenticationService.hasPermission(['PJ_A','PJ_W','GL_A','ERP_A'])">
+                                <div class="float-right link-blue">
+                                    <span class="btn-group ml-5">
+                                        <!--UPDATE DELETE-->
+                                        <button class="btn btn-link">
+                                            <em (click)="detail(p)" class="fa fa-ellipsis-v fa-lg"></em>
+                                        </button>
+
+                                        <ul *ngIf="p.isClicked == true" role="menu"
+                                            class="dropdown-menu dropdown-menu-right-forced show"
+                                            style="inset: 100% auto auto 0px; transform: translateY(0px);">
+                                            <a (click)="update(p)" class="dropdown-item link-blue">
+                                                <em class="fa mr-2 fas fa-pencil-alt"></em>
+                                                <span>Modifier</span>
+                                            </a>
+                                            <a *ngIf="p.isClicked == true" (click)="delete(p)"
+                                                class="dropdown-item link-blue">
+                                                <em class="fa mr-2 fas fa-trash"></em>
+                                                <span>Supprimer</span>
+                                            </a>
+
+                                        </ul>
+                                        <!---->
+                                    </span>
+                                </div>
+                            </div>
+                            <h5 class="m-0"> Projet {{p.reference}} </h5>
+                            <small class="text-muted">
+                                <span> de {{p.dateLancement| date : 'd-MM-y'}} à {{p.datePrevueLivraison | date
+                                    :'d-MM-y'}}</span>
+                                <span *ngIf="p.production === true"> | Production</span>
+                            </small>
+                        </div>
+                        <div class="card-body">
+                            <div class="d-flex align-items-center">
+                                <div class="w-100">
+                                    <div class="d-flex text-sm">
+                                        <p>Temps écoulé </p>
+                                        <p class="ml-auto"><strong>{{calculateTimeWorked(p)}}%</strong></p>
+                                    </div>
+                                    <div tooltip="Temps écoulé" aria-describedby="tooltip-14">
+                                        <div class="progress" style="height: 7px;margin-bottom:20px;">
+                                            <div class="progress-bar" role="progressbar"
+                                                [style.width.%]="calculateTimeWorked(p)"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="text-align: center; margin-top: 10px;">
+                                <div *ngIf="p.changeStatus == false">
+                                    <span>
+                                        <div *ngIf="p.statut === 'en_cours'" class="badge badge-info px-2">
+                                            <em class="mr-1"></em>
+                                            <a tooltip="Cliquer pour changer le statut" style="cursor: pointer;"
+                                                (click)="changeS(p)" href="javascript:void(0);"
+                                                aria-describedby="tooltip-20">En cours</a>
+                                        </div>
+                                        <div *ngIf="p.statut === 'brouillon'" class="badge badge-dark px-2">
+                                            <em class="mr-1"></em>
+                                            <a tooltip="Cliquer pour changer le statut" style="cursor: pointer;"
+                                                (click)="changeS(p)" href="javascript:void(0);"
+                                                aria-describedby="tooltip-20">Brouillon</a>
+                                        </div>
+                                        <div *ngIf="p.statut === 'cloture'" class="badge badge-danger px-2">
+                                            <em class="mr-1"></em>
+                                            <a tooltip="Cliquer pour changer le statut" style="cursor: pointer;"
+                                                (click)="changeS(p)" href="javascript:void(0);"
+                                                aria-describedby="tooltip-20">Terminé</a>
+                                        </div>
+                                    </span>
+                                </div>
+                                <div *ngIf="p.changeStatus == true">
+                                    <div class="form-setting__item"
+                                        style="display: inline-block; width: 120px; text-align: initial;">
+                                        <div class="form-setting__input">
+                                            <ng-select placeholder="Statut" [(ngModel)]="p.statut">
+                                                <ng-option *ngFor="let key of keys(statut)" [value]="key">
+                                                    {{statut[key]}}
+                                                </ng-option>
+                                            </ng-select>
+                                        </div>
+                                    </div>
+                                    <a *ngIf="AuthenticationService.hasPermission(['PJ_A','PJ_W','GL_A','ERP_A'])"
+                                     placement="right" class="link-blue ml-1" (click)="updateS(p)">
+                                        <em class="fa fas fa-undo"></em>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <table class="table">
+                            <tbody>
+                                <tr>
+                                    <td> {{p.titre}} </td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Client: </strong>
+                                        <strong *ngIf="p.employee != null">[{{p.employee.employeeNumber}}]
+                                            {{p.employee.firstName}}
+                                            {{p.employee.lastName}}</strong><br>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <strong>Date de lancement: {{p.dateLancement}}
+                                        </strong> <span style="color: red;"></span>
+                                    </td>
+                                </tr>
+                                <tr class="no_display_onmobile">
+                                    <td>
+                                        <strong>Date prévue de livraison: {{p.datePrevueLivraison}}</strong>
+                                    </td>
+                                </tr>
+                                <tr class="no_display_onmobile">
+                                    <td><strong>Localisation: {{p.localisation}}</strong> </td>
+                                </tr>
+                                <tr class="no_display_onmobile">
+                                    <td *ngIf="p.equipeList?.length > 0">
+                                        <span *ngFor="let equipe of p.equipeList">
+                                            <a class="inline">
+                                                <div class="rounded-circle img-profil__photo24"
+                                                    tooltip={{equipe.col1}},{{equipe.col2}}>
+                                                    {{equipe.col1.substring(0, 1)}}{{equipe.col2.substring(0, 1)}}
+                                                </div>
+                                            </a>
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span *ngIf="p.equipeList?.length == 0">
+                                            <strong>Equipe vide</strong>
+                                        </span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="card-footer text-center bt0">
+                            <button routerLink="/project/list/{{p.id}}/general-info" type="button"
+                                class="btn btn-secondary">Gérer le project</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div *ngIf="projetList?.length==0" class="alert"
+                        style="text-align: center; color: #838282; border: 1pt solid #d1d1d1;">
+                        <em class="fas fa-info-circle"></em> Pas de données à afficher
+                    </div>
+                </div>
+            </div>
+            <!--PROJET-->
+            <!-- pagination -->
+            <app-spi-pagination (onGetPage)="pageSize = $event.pageSize;getPage($event.currentPage)"
+                [currentPage]="currentPage" [lastPage]="lastPage" [pageSize]="pageSize"
+                [totalElements]="totalElements"></app-spi-pagination>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,17 @@
+<div class="modal-header">
+    <h4 class="modal-title pull-left" i18n>Confirmer</h4>
+    <button type="button" class="close pull-right" aria-label="Femer" (click)="activeModal.close()" i18n-aria-label>
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+  <span i18n>Voulez-vous vraiment confirmer la suppression ?</span>
+  <span *ngIf="securedmode">
+    <input type="text" placeholder="Tappez YES si vous êtes sure" class="form-control" [(ngModel)]="securedModeResponse" i18n-placeholder/>
+  </span>
+</div>
+<!-- Modal footer -->
+<div class="modal-footer">
+    <button type="button" (click)="confirmDelete()" class="btn btn-primary" i18n>Oui</button>
+    <button type="button" (click)="activeModal.close()" class="btn btn-default" i18n>Non</button>
+</div>

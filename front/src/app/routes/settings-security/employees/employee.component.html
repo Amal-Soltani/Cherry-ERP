@@ -1,0 +1,58 @@
+<div class="settings-panel">
+  <div class="panel-widget_inner pt-4 flex-column align-items-stretch">
+    <div class="settings-panel__titre" *ngIf="!external" i18n>Gestion des employés</div>
+    <div class="settings-panel__titre" *ngIf="external" i18n>Gestion des partenaires externes</div>
+    <div class="row">
+      <div class="col">
+        <div style="max-width: 200px">
+          <input class="form-control" placeholder="Recherche" type="text" name="search"
+                 *ngIf="employees?.length>0">
+        </div>
+      </div>
+      <div class="col-auto justify-content-end" style="text-align: end;">
+        <button  type="button" class="btn btn-primary">
+          <em class="fas fa-plus-circle"></em><span class="ml-1 no_display_onmobile" i18n>Ajouter</span>
+        </button>
+      </div>
+    </div>
+    <br />
+    <div *ngIf="employees?.length>0">
+      <table class="display nowrap dataTable no-footer dtr-inline collapsed grid-template table-striped">
+        <thead>
+        <tr>
+          <th class="grid-template_th" i18n>Matricule</th>
+          <th class="grid-template_th" i18n>Poste</th>
+          <th class="grid-template_th" i18n>Téléphone</th>
+          <th class="grid-template_th no_display_onmobile" i18n>Date de création</th>
+          <th class="grid-template_th no_display_onmobile" i18n>Date de modification</th>
+          <th class="grid-template_th" data-priority="2"></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr class="grid-template__row"
+            *ngFor="let objt of employees | filter:filter; let i = index">
+          <td>
+
+          </td>
+          <td>{{objt.post}}</td>
+          <td>{{objt.phone}}</td>
+          <td class="no_display_onmobile"></td>
+          <td class="no_display_onmobile"></td>
+          <td class="grid-template__action" data-priority="2">
+            <a class="link-blue" placement="left" tooltip="Modifier" i18n-tooltip><em
+              class="fa mr-2 fas fa-pencil-alt"></em></a>
+            <!-- <a (click)="delete(objt)" placement="left" tooltip="Supprimer" i18n-tooltip class="link-blue"><em
+              class="fa mr-2 fas fa-trash"></em></a> -->
+          </td>
+        </tr>
+        </tbody>
+      </table>
+
+
+
+      <!-- pagination -->
+
+    </div>
+  </div>
+</div>
+

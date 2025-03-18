@@ -1,0 +1,101 @@
+<div class="content-app-admin">
+    <div class="app_dashboard container_app">
+        <div class="breadcrumb-page panel-widget_dash">
+            <div class="panel-widget_inner">
+                <div class="row w-100 align-items-center">
+                    <div class="col-md-4">
+                        <div>
+                            <h1 class="page__titre-h2-blue">
+                                <span>Référence: </span>{{projet.reference}}
+                            </h1>
+                            <div class="text-muted">
+                                <strong>Créé le : </strong> {{projet.creationDate | date: 'd-MM-y hh:mm'}}
+                                <strong> | Client : </strong>
+                                <span style="cursor: pointer;">
+                                    <span *ngIf="projet.employee != null" aria-describedby="tooltip-51">
+                                        <em class="mr-2 fas fa-building" style="color: rgb(0, 0, 0);"></em>
+                                        [{{projet.employee.employeeNumber}}] {{projet.employee.firstName}} {{projet.employee.lastName}}
+                                    </span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4" style="text-align: center;">
+                        <div>
+                            <h1 class="page__titre-h1"><span>{{projet.titre}}</span></h1>
+                            <div class="text-muted">
+                                <div class="d-flex align-items-center">
+                                    <div class="w-100">
+                                        <div tooltip="Temps écoulé" aria-describedby="tooltip-3">
+                                            <div class="progress" style="height: 7px">
+                                                <div class="progress-bar" role="progressbar"
+                                                    [style.width.%]="calculateTimeWorked()">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="wd-xxs text-right">
+                                        <div class="text-bold text-muted">{{calculateTimeWorked()}}%</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4" style="text-align: end;">
+                        <div class="float-right mt-0">
+                            <span *ngIf="equipeList?.length > 0" >
+                                <span *ngFor="let equipe of equipeList">
+                                    <a class="inline" aria-describedby="tooltip-52">
+                                        <div class="rounded-circle img-profil__photo32"
+                                        tooltip={{equipe.col1}},{{equipe.col2}}>
+                                        {{equipe.col1.substring(0,1)}}{{equipe.col2.substring(0, 1)}}</div>
+                                    </a>
+                                </span>
+                            </span>
+                            <span *ngIf="AuthenticationService.hasPermission(['PJ_A','PJ_W','GL_A','ERP_A'])">
+                                <button class="btn btn-link" (click)="open()">
+                                    <em class="fa fa-ellipsis-v fa-lg"></em>
+                                </button>
+                                <ul *ngIf="info == true" role="menu"
+                                    class="dropdown-menu dropdown-menu-right-forced show"
+                                    style="inset: 100% auto auto 0px; transform: translateY(0px);">
+                                    <a class="dropdown-item link-blue" (click)="update()">
+                                        <em class="fa mr-2 fas fa-pencil-alt"></em>
+                                        <span>Modifier</span>
+                                    </a>
+                                </ul>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="main-page settings-content">
+            <div class="menu-tabs">
+                <div class="panel-widget_inner">
+                    <a class="menu-tabs__item" [routerLink]="['/project/list']">
+                        <em class="fas fa-chevron-circle-left"></em>
+                    </a>
+                    <a class="menu-tabs__item" [class.is-active]="activeTab === 'general-info'"
+                        (click)="setActiveTab('general-info')" [routerLink]="['general-info']">Informations
+                        Générales</a>
+                    <a *ngIf="projet.production == true" [class.is-active]="activeTab === 'task'"
+                        (click)="setActiveTab('task')" class="menu-tabs__item" [routerLink]="['task']">Ordre de
+                        fabrication</a>
+                    <a class="menu-tabs__item" [class.is-active]="activeTab === 'nomenclatures'"
+                        (click)="setActiveTab('nomenclatures')" [routerLink]="['nomenclatures']">Nomenclature</a>
+                    <a *ngIf="projet.production == true" [class.is-active]="activeTab === 'pilotage'"
+                        (click)="setActiveTab('pilotage')" class="menu-tabs__item" [routerLink]="['pilotage']">Pilotage
+                        de
+                        production</a>
+                    <a *ngIf="projet.production == null || projet.production == false"
+                        [class.is-active]="activeTab === 'task'" (click)="setActiveTab('task')" class="menu-tabs__item"
+                        [routerLink]="['task']">Tâches</a>
+                </div>
+            </div>
+            <div>
+                <router-outlet></router-outlet>
+            </div>
+        </div>
+    </div>
+</div>

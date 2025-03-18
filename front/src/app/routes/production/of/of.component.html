@@ -1,0 +1,316 @@
+<div class="settings-panel">
+    <div class="settings-panel__titre"> Ordre de Fabrication (OF) </div>
+    <hr>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-setting__item">
+                <label class="form-setting__label">Client</label>
+                <div class="form-setting__input">
+                    <div style="display: block; width: 100%;">
+                        <div class="input-group">
+                            <ng-select [(ngModel)]="client" style="width: calc(100%);" (change)="getTachesList($event)"
+                                placeholder="Recherche">
+                                <ng-option *ngFor=" let c of clients" [value]="c">
+                                    [{{c.employeeNumber}}] : {{c.firstName}} {{c.lastName}}
+                                </ng-option>
+                            </ng-select>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class="card card-default" *ngIf="cl != null">
+                    <div class="card-body" style="min-height: 135px;">
+                        <table width="100%">
+                            <tr>
+                                <td style="width: 110px;">
+                                    <div class="align-items-center text-center" style="cursor: pointer;">
+                                        <div>
+                                            <div class="grid-user">
+                                                <div class="grid-user__img" style="width: 90px; height: 90px;">
+                                                    <div class="img-profil__photo90"
+                                                        style="background: rgb(0, 129, 129);">
+                                                        {{cl.firstName.substring(0, 1)}}
+                                                        {{cl.lastName.substring(0, 1)}}</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <h4 class="mt-0 mb-0"
+                                        style="width: 250px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                                        <em class="fa-user-tie fas" style="color: rgb(0, 0, 0);"></em>
+                                        {{cl.firstName}} {{cl.lastName}}
+                                    </h4>
+                                    <div class="text-left">
+                                        <p class="mb-0 text-muted"> {{cl.employeeNumber}} </p>
+                                        <small><b class="no_display_onmobile">Responsable Client : </b>
+                                            {{responsible.firstName}} {{responsible.lastName}}
+                                        </small>
+                                        <br>
+                                        <small class="no_display_onmobile"><b class="no_display_onmobile">Industrie
+                                                :</b>
+                                                {{cl.company.sector}}
+                                        </small>
+                                        <br>
+                                        <small><b class="no_display_onmobile">Adresse : </b> {{cl.company.adresse}}
+                                        </small>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-setting__item">
+                <label class="form-setting__label">Ordre de Fabrication</label>
+                <div class="form-setting__input">
+                    <div style="display: block; width: 100%;">
+                        <div class="input-group">
+                            <ng-select [(ngModel)]="tache" style="width: calc(100%);" (change)="getClient($event)"
+                                (change)="getPointagesList($event)" (change)="getListePhase($event)"
+                                placeholder="Recherche">
+                                <ng-option *ngFor=" let t of taches" [value]="t">
+                                    [{{t.reference}}] : {{t.titre}}
+                                </ng-option>
+                            </ng-select>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class="card card-default" *ngIf="tache != null">
+                    <div class="card-body" style="min-height: 135px;">
+                        <table width="100%">
+                            <tr>
+                                <td style="width: 110px;">
+                                    <div class="align-items-center text-center" style="cursor: pointer;">
+                                        <div class="img-thumbnail circle img-fluid thumb96"
+                                            style="font-size: 31px; line-height: 90px;"> OF </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="mt-0">
+                                        <div>
+                                            <em *ngIf="tache.priority === 'haute'" class="circle circle-lg bg-warning"
+                                                tooltip="Haute"></em>
+                                            <em *ngIf="tache.priority === 'tres_haute'"
+                                                class="circle circle-lg bg-danger" tooltip="Trés haute"></em>
+                                            <em *ngIf="tache.priority === 'moyenne'" class="circle circle-lg bg-primary"
+                                                tooltip="Moyenne"></em>
+                                            <em *ngIf="tache.priority === 'basse'" class="circle circle-lg bg-info"
+                                                tooltip="Basse"></em>
+                                            <em *ngIf="tache.priority === 'tres_basse'" class="circle circle-lg bg-dark"
+                                                tooltip="Trés Basse"></em> <b>{{tache.titre}}</b>
+                                            <span class="text-right float-right"
+                                                style="font-size: 13px; line-height: 25px;">
+                                                <span>
+                                                    <div *ngIf="tache.status === 'termine'"
+                                                        class="badge badge-success px-2">
+                                                        Terminée
+                                                    </div>
+                                                    <div *ngIf="tache.status === 'a_faire'"
+                                                        class="badge badge-info px-2">
+                                                        A faire
+                                                    </div>
+                                                    <div *ngIf="tache.status === 'en_cours'"
+                                                        class="badge badge-secondary px-2">
+                                                        En cours
+                                                    </div>
+                                                    <div *ngIf="tache.status === 'bloque'"
+                                                        class="badge badge-warning px-2">
+                                                        Bloquée
+                                                    </div>
+                                                    <div *ngIf="tache.status === 'en_validation'"
+                                                        class="badge badge-primary px-2">
+                                                        En validation
+                                                    </div>
+                                                    <div *ngIf="tache.status === 'valide'"
+                                                        class="badge badge-success px-2">
+                                                        Validée
+                                                    </div>
+                                                    <div *ngIf="tache.status === 'rejete'"
+                                                        class="badge badge-danger px-2">
+                                                        Rejetée
+                                                    </div>
+                                                    <div *ngIf="tache.status === 'annule'"
+                                                        class="badge badge-dark px-2">
+                                                        Annulée
+                                                    </div>
+                                                </span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex">
+                                        <div class="text-left">
+                                            <small>
+                                                <span>Référence Produit :</span>
+                                                <b>{{tache.product.reference}}</b>
+                                            </small>
+                                            <br>
+                                            <small>
+                                                <span>OF Interne :</span>
+                                                <b>{{tache.reference}}</b>
+                                            </small>
+                                            <br>
+                                            <small>
+                                                <span>OF Externe :</span>
+                                                <b>{{tache.ofexterne}}</b>
+                                            </small>
+                                            <br>
+                                            <small>
+                                                <span>Qt.Demandée :</span>
+                                                <b>{{tache.quantite}}</b>
+                                            </small>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- table-->
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="my-2 page__titre-h2-blue">
+                        <b>Pointage</b>
+                        <br>
+                        <small>
+                            <span>OF Externe :</span>
+                            <span *ngIf="tache != null">{{tache.ofexterne}}</span>
+                        </small>
+                    </h4>
+                </div>
+                <div class="card-body">
+                    <table class="display nowrap dataTable no-footer dtr-inline collapsed grid-template table-striped">
+                        <thead>
+                            <tr>
+                                <th colspan="3" class="grid-template_th"
+                                    style="text-align: center; border-right: 1pt #1499af solid !important;">
+                                    <em class="icon-info mr-2"></em>
+                                </th>
+                                <th colspan="3" class="grid-template_th"
+                                    style="text-align: center; border-right: 1pt #1499af solid !important;"><em
+                                        class="mr-2 far fa-clock"></em>Temps en minutes </th>
+                                <th colspan="4" class="grid-template_th" style="text-align: center;"><em
+                                        class="mr-2 fas fa-screwdriver"></em>Quantité </th>
+                            </tr>
+                            <tr>
+                                <th class="grid-template_th">Date début</th>
+                                <th class="grid-template_th">Employée</th>
+                                <th class="grid-template_th" style="border-right: 1pt #1499af solid !important;">Gamme
+                                </th>
+                                <th class="grid-template_th">T. Théorique (m)</th>
+                                <th class="grid-template_th">T. Pratique (m)</th>
+                                <th class="grid-template_th" style="border-right: 1pt #1499af solid !important;">T.
+                                    Arrêt(m)</th>
+                                <th class="grid-template_th">Qt. Produite</th>
+                                <th class="grid-template_th">Qt. NC</th>
+                                <th class="grid-template_th">Qt. Rebut</th>
+                            </tr>
+                        </thead>
+                        <tbody *ngIf="tache != null">
+                            <tr class="grid-template__row" *ngFor="let p of pointages">
+                                <td class="no_display_onmobile">
+                                    <i>{{p.dateDebut | date:'dd-MM-yyyy'}}</i><br>
+                                    <small style="color: #000;"> {{p.dateDebut | date:'hh:mm'}} <em
+                                            class="fas fa-arrow-right"></em>{{p.dateFin | date:'hh:mm'}} </small>
+                                </td>
+                                <td>
+                                    <em class="fas fa-user-clock mr-1"></em>{{p.employee.firstName}}
+                                    {{p.employee.lastName}}
+                                </td>
+                                <td style="border-right: 1pt #1499af solid !important;">{{p.phase}}
+                                </td>
+                                <td> {{getTheorique(p) * p.qteTotale}} <sup style="color: #000;">={{ getTheorique(p)
+                                        }}(M)*{{p.qteTotale}}</sup></td>
+                                <td class="no_display_onmobile">
+                                    <em class="far fa-clock mr-2"></em> {{ calculateTimeWorked(p) }} <br>
+                                    <small>{{p.tempsMachine}}(MN) * {{p.qteTotale}} = <span style="color: green;">
+                                            {{p.tempsMachine * p.qteTotale}} </span>
+                                        (MN) </small>
+                                </td>
+                                <td style="border-right: 1pt #1499af solid !important;">{{p.tempsArret}}</td>
+                                <td>{{p.qteTotale}}</td>
+                                <td>{{p.qteRebut}}</td>
+                                <td>{{p.qteNC}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div *ngIf="pointages?.length==0" class="alert"
+                    style="text-align: center; color: #838282; border: 1pt solid #d1d1d1;">
+                    <em class="fas fa-info-circle"></em> Pas de données à afficher
+                </div>
+                    <!-- pagination -->
+                    <app-spi-pagination
+                        (onGetPage)="pageSize = $event.pageSize;getPage($event.currentPage)" [currentPage]="currentPage"
+                        [lastPage]="lastPage" [pageSize]="pageSize"
+                        [totalElements]="totalElements"></app-spi-pagination>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quantité et Temps de production par gamme -->
+    <div class="row">
+        <!-- Quantité par gamme -->
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <highcharts-chart [Highcharts]="Highcharts" [options]="barChart1.options"></highcharts-chart>
+                </div>
+            </div>
+        </div>
+        <!-- Temps de production par gamme -->
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <highcharts-chart [Highcharts]="Highcharts" [options]="barChart2.options"></highcharts-chart>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- Quantité produite par Gamme par Opérateur -->
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="my-2 page__titre-h2-blue">
+                        <b>Quantité produite par Gamme par Opérateur</b>
+                        <br>
+                        <small>
+                            <span>OF Externe :</span>
+                            <span *ngIf="tache != null">{{tache.ofexterne}} </span>
+                        </small>
+                        <em class="ml-2 icon-info float-right"></em>
+                    </h4>
+                </div>
+                <div class="card2-container">
+                    <div class="row">
+                        <div *ngFor="let phase of liste | keyvalue">
+                            <div>
+                                <div class="card2">
+                                    <p class="card__title">{{ phase.key }}</p>
+                                    <div class="card__content">
+                                        <p class="card__title2">Quantité produite par Opérateur</p>
+                                        <p class="card__description" *ngFor="let employee of phase.value">
+                                            [{{employee.employeeNumber}}]{{employee.firstName}}
+                                            {{employee.lastName}} : {{employee.qteTotaleSum}} </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

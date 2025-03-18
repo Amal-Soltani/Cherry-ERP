@@ -1,0 +1,57 @@
+<div class="row">
+    <div class="col-md-3" style="text-align: center;">
+      <div class="form-group" *ngIf="totalElements">
+        <b>{{ (currentPage + 1) * pageSize - pageSize + 1 }}</b>
+        &nbsp;<span i18n> à </span>&nbsp;
+        <b>{{ (currentPage === lastPage) ? totalElements : (currentPage + 1) * pageSize }}</b>
+        &nbsp;<span i18n> sur </span>&nbsp;
+        <b>{{ totalElements }}</b>
+      </div>
+    </div>
+    <div class="col-md-6"
+         style="text-align: center;">
+        <button (click)="getPage(0)"
+                type="button"
+                class="btn ml-2 no_display_onmobile"
+                [disabled]="currentPage == 0"
+                i18n> Première</button>
+        <button (click)="getPage(currentPage - 1)"
+                type="button"
+                class="btn ml-2"
+                [disabled]="currentPage - 1 < 0"
+                i18n>
+            Précédente
+        </button>
+        <button (click)="getPage(currentPage + 1)"
+                type="button"
+                class="btn ml-2"
+                [disabled]="currentPage + 1 > lastPage"
+                i18n> Suivante</button>
+        <button (click)="getPage(lastPage)"
+                type="button"
+                class="btn ml-2 no_display_onmobile"
+                [disabled]="lastPage < 0 || currentPage == lastPage"
+                i18n> Dernière</button>
+    </div>
+    <div class="col-md-3"
+         style="text-align: end;">
+        <div class="form-group form-inline justify-content-end">
+
+            <div class="col-12 float-right">
+                <div class="form-group row">
+                    <div class="col-12">
+                        <span style="color:#CCC;margin-right: 10px;"
+                              i18n>Taille : </span>
+                        <select class="form-control"
+                                [(ngModel)]="pageSize"
+                                (change)="onChangePageSize($event.target.value)"
+                                [value]="pageSize">
+                            <option *ngFor="let n of listPages">{{n}}</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

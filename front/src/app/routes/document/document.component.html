@@ -1,0 +1,66 @@
+<div class="settings-panel panel-widget_dash-content">
+    <div class="panel-widget_inner pt-4 flex-column align-items-stretch">
+        <div class="row">
+             <!--SEARCH-->
+             <div class="col-md-4 mt-2">
+                <div class="group">
+                            <i class="fas fa-search" style="position: absolute;
+                            top: 55%;
+                            transform: translateY(-50%);
+                            left: 5%;"></i>
+                            <input placeholder="Chercher" type="search" class="input"
+                                (input)="onSearchChange($event.target.value)">
+                </div>
+            </div>
+            <!--SEARCH-->
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="text-center"
+                    style="border: 1pt dotted #757272; margin-bottom: 15px; padding: 25px; border-radius: 5px;">
+                    <em class="fa fa-upload mr-3"></em>
+                    <span style="color: dodgerblue; cursor: pointer;" (click)="addFile()"> cliquez ici</span>
+                    <span> pour sélectionner un document</span>
+                </div>
+                <div *ngFor="let document of documentList">
+                    <div class="list-group-item list-group-item-action"
+                        style="cursor: pointer; margin-bottom: 5px; border-radius: 5px;">
+                        <div class="media">
+                            <span class="align-self-start mx-2 thumb32">
+                                <em class="fa-2x far fa-file-excel text-success"></em>
+                            </span>
+                            <div class="media-body text-truncate" (click)="update(document)">
+                                <p class="mb-1" style="cursor: pointers;">
+                                    <strong class="text-primary1">
+                                        <span> {{document.name}}</span>
+                                    </strong>
+                                </p>
+                                <p class="mb-1 text-sm"> <b>Indice : </b>{{document.indice}}</p>
+                            </div>
+                            <div class="ml-auto" style="text-align: end;">
+                                <br/><small class="text-muted ml-2">{{document.size}} KB</small>
+                                <small>
+                                    <a title="Télécharger" (click)="download(document)" class="text-muted mr-1">
+                                        <em class="fa fa-download fa-fw"></em>
+                                    </a>
+                                    <a title="supprimer" (click)="delete(document)" class="text-muted mr-1">
+                                        <em class="fa fas fa-trash"></em>
+                                    </a>
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <app-empty-data-info [ifEmpty]=ifEmpty [message]="message"></app-empty-data-info>
+
+                <!-- pagination -->
+                <app-spi-pagination (onGetPage)="pageSize = $event.pageSize;getPage($event.currentPage)"
+                    [currentPage]="currentPage" [lastPage]="lastPage" [pageSize]="pageSize"
+                    [totalElements]="totalElements"></app-spi-pagination>
+
+            </div>
+        </div>
+    </div>
+</div>

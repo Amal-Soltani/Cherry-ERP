@@ -1,0 +1,131 @@
+<div class="settings-panel panel-widget_dash-content">
+    <div class="panel-widget_inner pt-4 flex-column align-items-stretch">
+        <div class="settings-panel__titre">
+            <span>Liste des articles</span>
+        </div>
+        <div class="row ">
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-3 mt-1">
+                        <div class="search-container">
+                            <i class="fas fa-search" style="position: absolute;
+                            top: 55%;
+                            transform: translateY(-50%);
+                            left: 10%;"></i>
+                            <input placeholder="Chercher" type="search" class="input"
+                                (input)="onSearchChange($event.target.value)">
+                        </div>
+                    </div>
+                    <div class="col-md-9 justify-content-end" style="text-align: end;"
+                        *ngIf="AuthenticationService.hasPermission(['ST_A','ST_W','GL_A','ERP_A'])">
+                        <button (click)="add()" type="button" class="btn btn-primary">
+                            <em class="fas fa-plus-circle"></em>
+                            <span class="ml-1 ">Ajouter</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br />
+        <div class="row ">
+            <div class=" col-md-12">
+                <table class="display nowrap dataTable no-footer dtr-inline collapsed grid-template
+                table-striped">
+                    <thead>
+                        <tr>
+                            <th class="grid-template_th"></th>
+                            <th class="grid-template_th">Libelle</th>
+                            <th class="grid-template_th">Matière</th>
+                            <th class="grid-template_th">Unité de mesure </th>
+                            <th class="grid-template_th" style=" width: 70px;"></th>
+                        </tr>
+                    </thead>
+                    <tbody *ngFor="let art of articleList">
+                        <tr class="grid-template__row" style="cursor: pointer;" (click)="detail(art)">
+                            <td class="no_display_onmobile ">
+                                <em class="mr-2 fas fa-angle-down"></em>
+                            </td>
+                            <td class="no_display_onmobile "> {{art.libelle}} </td>
+                            <td class="no_display_onmobile "> {{art.matiere}} </td>
+                            <td class="no_display_onmobile "> {{art.uniteMesure}} </td>
+                            <td class="no_display_onmobile" width="120">
+                                <a *ngIf="AuthenticationService.hasPermission(['ST_A','ST_W','GL_A','ERP_A'])"
+                                    (click)="update(art)" class="link-blue" placement="left" tooltip="Modifier">
+                                    <em class="fa mr-2 fas fa-pencil-alt"></em></a>
+                                <a *ngIf="AuthenticationService.hasPermission(['ST_A','ST_W','GL_A','ERP_A'])"
+                                    (click)="delete(art)" placement="left" tooltip="Supprimer" class="link-blue">
+                                    <em class="fa mr-2 fas fa-trash"></em></a>
+                            </td>
+                        </tr>
+                        <tr *ngIf="info == true && article == art">
+                            <td colspan="8" class="hiddenRow">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-setting__item">
+                                            <label class="form-setting__label">
+                                                <span>Description</span>
+                                            </label>
+                                            <div class="form-setting__input"> {{article.designation}} </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="form-setting__item">
+                                            <label class="form-setting__label">
+                                                <span>Couleur : </span>
+                                                <span>{{art.couleur}}</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="form-setting__item">
+                                            <label class="form-setting__label">
+                                                <span>Taille : </span>
+                                                <span>{{art.taille}} (CM)</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="form-setting__item">
+                                            <label class="form-setting__label">
+                                                <span>Longueur : </span>
+                                                <span>{{art.longueur}} (CM)</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="form-setting__item">
+                                            <label class="form-setting__label">
+                                                <span>Largeur : </span>
+                                                <span>{{art.largeur}} (CM)</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="form-setting__item">
+                                            <label class="form-setting__label">
+                                                <span>Hauteur : </span>
+                                                <span>{{art.hauteur}} (CM)</span>
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="col-md-12">
+                </div>
+                <div *ngIf="articleList?.length==0" class="alert"
+                    style="text-align: center; color: #838282; border: 1pt solid #d1d1d1;">
+                    <em class="fas fa-info-circle"></em> Pas de données à afficher
+                </div>
+                <!-- pagination -->
+                <app-spi-pagination (onGetPage)="pageSize = $event.pageSize;getPage($event.currentPage)"
+                    [currentPage]="currentPage" [lastPage]="lastPage" [pageSize]="pageSize"
+                    [totalElements]="totalElements"></app-spi-pagination>
+
+            </div>
+        </div>
+    </div>
+</div>

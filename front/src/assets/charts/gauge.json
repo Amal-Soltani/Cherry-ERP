@@ -1,0 +1,7 @@
+{
+  "theme": "green",
+  "tooltip": {
+    "formatter": "{a} <br/>{b} : {c}%"
+  },
+  "series": [ ]
+}

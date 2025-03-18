@@ -1,0 +1,56 @@
+<style>
+  #wrapperStartpage td {
+    vertical-align: middle;
+    text-align: center;
+  }
+  @keyframes hideshow {
+    0% { opacity: 0; }
+    10% { opacity: 0.2; }
+    20% { opacity: 0.4; }
+    30% { opacity: 0.6; }
+    40% { opacity: 0.8; }
+    50% { opacity: 1; }
+    60% { opacity: 0.8; }
+    70% { opacity: 0.6; }
+    80% { opacity: 0.4; }
+    90% { opacity: 0.2; }
+    100% { opacity: 0.1; }
+  }
+  .spistockLogoAnim {
+    animation: hideshow 1s ease infinite;
+  }
+</style>
+
+
+
+<div class="media mt-0">
+
+  <img class="mr-1 rounded-circle" src="assets/img/logo/Cherry-erp-Icon.webp"
+       style="padding: 0.125rem;background-color: #f5f7fa;border-radius: 0.25rem;max-width: 100%;height: auto;height: 30px;width:30px"
+       alt="Image" appImgFallback="assets/img/company.png"/>
+
+  <div class="media-body">
+    <h5 class="m-0 text-bold ml-2">
+      <!-- Cherry-ERP---> DWEXO
+    </h5>
+    <div class="text-sm text-muted ml-2"  style="display: inline-block;font-size: 12px">
+      <span>&copy; <!-- {{settings.getAppSetting('year')}} --->
+<!--          {{ settings.getAppSetting('name') }} ---> DWEXO VERSION
+ <!--       - VERSION {{currentVersion}} ---><span *ngIf="currentEnv"></span></span>
+    </div>
+  </div>
+
+</div>
+
+
+
+
+<span *ngIf="!isConnected">{{status}}</span>
+
+<div *ngIf="blocked" class="spistockLogoAnim" style="    position: absolute;text-align: center;
+    top: 50%;
+    left: 50%;
+    color: #ffffff;
+    padding: 10px;">
+  <br/>
+</div>

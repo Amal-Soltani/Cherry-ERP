@@ -1,0 +1,25 @@
+{
+  "title": {
+    "text": ""
+  },
+  "tooltip": {},
+  "legend": {
+    "data": []
+  },
+  "radar": {
+    "name": {
+      "textStyle": {
+        "color": "#fff",
+        "backgroundColor": "#999",
+        "borderRadius": 3,
+        "padding": [3, 5]
+      }
+    },
+    "indicator": []
+  },
+  "series": [{
+    "name": "A vs B",
+    "type": "radar",
+    "data": []
+  }]
+}

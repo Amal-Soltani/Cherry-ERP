@@ -1,0 +1,19 @@
+.wrapper {
+  overflow-x: visible;
+}
+
+.wrapper .footer-container {
+  position: fixed;
+}
+
+@media only screen and (max-width:600px) {
+  .wrapper .footer-container {
+  width: 100%;
+  height: 70px;
+  margin: 0;
+  display: flex;
+  padding: 0.1em;
+  align-items: center;
+  flex-direction: row;
+}
+}

@@ -1,0 +1,44 @@
+<form [formGroup]="anomalieform" (ngSubmit)="onSubmit()">
+    <div class="modal-header">
+        <h4 class="modal-title pull-left">Anomalie</h4>
+        <button type="button" aria-label="Fermer" class="close pull-right" (click)="activeModal.close()">
+            <span aria-hidden="true">×</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-setting__item">
+                    <label class="form-setting__label">
+                        <span>Catégorie</span><sup>*</sup>
+                    </label>
+                    <div class="form-setting__input d-md-flex">
+                        <input [(ngModel)]="anomalie.categorie" type="text" formControlName="category" placeholder="Catégorie"
+                            class="form-control" 
+                            [ngClass]="{'is-invalid': anomalieform.controls['category'].invalid && 
+                            (submitted || anomalieform.controls['category'].touched || anomalieform.controls['category'].dirty)}">
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-setting__item">
+                    <label class="form-setting__label">
+                        <span>Type</span>
+                        <sup>*</sup>
+                    </label>
+                    <div class="form-setting__input d-md-flex">
+                        <input [(ngModel)]="anomalie.type" type="text" formControlName="type" placeholder="Type" class="form-control"
+                        [ngClass]="{'is-invalid': anomalieform.controls['type'].invalid && 
+                            (submitted || anomalieform.controls['type'].touched || anomalieform.controls['type'].dirty)}">
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-primary">Enregistrer</button>
+        <button type="button" class="btn btn-default" (click)="activeModal.close()">Annuler</button>
+    </div>
+</form>

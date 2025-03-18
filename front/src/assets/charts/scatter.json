@@ -1,0 +1,83 @@
+{
+  "theme": "roma",
+  "title": {
+    "show": true,
+    "text": "",
+    "subtext": "",
+    "sublink": "",
+    "textStyle": {
+      "fontSize": 13,
+      "color": "#515253"
+    },
+    "x": "left"
+  },
+  "legend": {
+    "show": false,
+    "data": [],
+    "bottom": 10,
+    "itemGap": 5
+  },
+  "tooltip": {
+    "show": true
+  },
+  "grid": {
+    "left": 20,
+    "right": 50,
+    "top": 75,
+    "bottom": 60,
+    "containLabel": true
+  },
+  "xAxis": {
+    "splitLine": {
+      "lineStyle": {
+        "type": "dashed"
+      }
+    }
+  },
+  "yAxis": {
+    "splitLine": {
+      "lineStyle": {
+        "type": "dashed"
+      }
+    }
+  },
+  "series": [
+    {
+      "symbolSize": 20,
+      "data": [],
+      "type": "scatter",
+      "idY": "",
+      "idX": "",
+      "name": "",
+      "id": "",
+      "color": "#16d423",
+      "symbol": "triangle"
+    }
+  ],
+  "toolbox": {
+    "show": true,
+    "showTitle": true,
+    "feature": {
+      "dataZoom": {
+        "show": true,
+        "title": {
+          "zoom": "area zooming",
+          "back": "restore area zooming"
+        }
+      },
+      "saveAsImage": {
+        "show": true,
+        "title": "save as image",
+        "lang": ["Right-click to save as picture"]
+      }
+    },
+    "tooltip": {
+      "show": false,
+      "backgroundColor": "#222",
+      "textStyle": {
+        "fontSize": 12
+      },
+      "extraCssText": "box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);"
+    }
+  }
+}

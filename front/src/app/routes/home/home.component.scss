@@ -1,0 +1,75 @@
+@import "~bootstrap/scss/_functions.scss";
+@import "~bootstrap/scss/_variables.scss";
+@import "~bootstrap/scss/_mixins";
+@import '../../shared/styles/app/variables.scss';
+
+.home-container {
+    margin: 0 auto;
+    max-width: map-get($container-max-widths, "lg");
+
+    .home-logo {
+        width: 240px;
+    }
+
+    .home-text {
+        text-align: center;
+        @include media-breakpoint-up(lg) {
+            text-align: left;
+        }
+    }
+    .home-text-big {
+        font-size: 3.9375rem;
+    }
+}
+
+.demo-chart {
+  height: 400px;
+}
+
+
+/* time line */
+ul.timeline {
+  list-style-type: none;
+  position: relative;
+}
+ul.timeline:before {
+  content: ' ';
+  background: #d4d9df;
+  display: inline-block;
+  position: absolute;
+  left: 15px;
+  width: 2px;
+  height: 100%;
+  z-index: 400;
+}
+ul.timeline > li {
+  margin: 0;
+  padding-left: 0px;
+}
+ul.timeline > li:before {
+  content: ' ';
+  background: white;
+  display: inline-block;
+  position: absolute;
+  border-radius: 50%;
+  border: 3px solid #aeaeae;
+  left: 6px;
+  width: 20px;
+  height: 20px;
+  z-index: 400;
+}
+
+.timeline-badge {
+  color: blue;
+  background-color: #fff;
+  border: 2pt solid #999;
+}
+
+.search-post{
+  color: #a59d9d;
+}
+.search-post:hover {
+  color: #595c5d;
+  font-size: 14.1px;
+  cursor: pointer;
+}

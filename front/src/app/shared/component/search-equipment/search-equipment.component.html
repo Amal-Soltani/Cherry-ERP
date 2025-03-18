@@ -1,0 +1,29 @@
+<ng-select [items]="equipments"
+           [(ngModel)]="equipment" [ngModelOptions]="{standalone: true}"
+           [multiple]="multiple"
+           [disabled]="disabled" [loading]="loading"
+           placeholder="Recherche équipement"
+           bindLabel="name" (focus)="loadListEquipments()"
+           (change)="onChange($event)" [searchFn]="customSearchFn"
+           i18n-placeholder>
+  <ng-template ng-label-tmp let-item="item">
+    <div style="margin: 3px;">
+      <div class="media mt-1">
+        <div class="media-body">
+          <h5 class="mt-1 text-bold mr-1">
+            <b>[{{item?.reference}}]</b> &nbsp;: <span [innerHTML]="item?.name"></span>
+          </h5>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+  <ng-template ng-option-tmp let-item="item" let-index="index">
+    <div class="media">
+      <div class="media-body text-truncate">
+        <p>
+            <b [innerHTML]="item?.reference"></b> &nbsp;: <span [innerHTML]="item?.name"></span>
+        </p>
+      </div>
+    </div>
+  </ng-template>
+</ng-select>

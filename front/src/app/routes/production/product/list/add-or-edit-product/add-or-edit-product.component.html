@@ -1,0 +1,111 @@
+<form [formGroup]="productform" (ngSubmit)="onSubmit()">
+    <div class="modal-header">
+        <h4 class="modal-title pull-left">Produit</h4>
+        <button type="button" class="close pull-right" aria-label="Fermer" (click)="activeModal.close()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-setting__item">
+                    <label class="form-setting__label">
+                        <span>Référence</span>
+                        <sup>*</sup>
+                    </label>
+                    <div class="form-setting__input d-md-flex">
+                        <input type="text" placeholder="Référence du produit" formControlName="reference"
+                            [(ngModel)]="product.reference" class="form-control"
+                            [ngClass]="{'is-invalid': productform.controls['reference'].invalid && 
+                            (submitted || productform.controls['reference'].touched || productform.controls['reference'].dirty)}" />
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-setting__item">
+                    <label class="form-setting__label">
+                        <span>Nom</span>
+                        <sup>*</sup>
+                    </label>
+                    <div class="form-setting__input d-md-flex">
+                        <input type="text" placeholder="Nom du produit" formControlName="name"
+                            [(ngModel)]="product.name" class="form-control" 
+                            [ngClass]="{'is-invalid': productform.controls['name'].invalid && 
+                            (submitted || productform.controls['name'].touched || productform.controls['name'].dirty)}"/>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-setting__item">
+                            <label class="form-setting__label">
+                                <span>Type de produit</span>
+                                <sup>*</sup>
+                            </label>
+                            <div class="form-setting__input d-md-flex">
+                                <ng-select [(ngModel)]="product.typeProduct" style="width: calc(100% );"
+                                    placeholder="Type de produit" formControlName="typeProduct"
+                                    [ngClass]="{'is-invalid': productform.controls['typeProduct'].invalid && 
+                                        (submitted || productform.controls['typeProduct'].touched || productform.controls['typeProduct'].dirty)}">
+                                    <ng-option *ngFor="let key of keysP(typeP)" [value]="key">
+                                        {{typeP[key]}}
+                                    </ng-option>
+                                </ng-select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-setting__item">
+                            <label class="form-setting__label">
+                                <span>Matière</span>
+                                <sup>*</sup>
+                            </label>
+                            <div class="form-setting__input d-md-flex">
+                                <input type="text" placeholder="Matiére du produit" formControlName="matiere"
+                                    [(ngModel)]="product.matiere" class="form-control" 
+                                    [ngClass]="{'is-invalid': productform.controls['matiere'].invalid && 
+                                    (submitted || productform.controls['matiere'].touched || productform.controls['matiere'].dirty)}"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-setting__item">
+                            <label class="form-setting__label">
+                                <span>Unité de mesure</span>
+                                <sup>*</sup>
+                            </label>
+                            <div class="form-setting__input d-md-flex">
+                                <ng-select [(ngModel)]="product.unitMeasurement" style="width: calc(100% );"
+                                    placeholder="Unité de mesure" formControlName="uniteMesure"
+                                    [ngClass]="{'is-invalid': productform.controls['uniteMesure'].invalid && 
+                                    (submitted || productform.controls['uniteMesure'].touched || productform.controls['uniteMesure'].dirty)}">
+                                    <ng-option *ngFor="let key of keysUM(UM)" [value]="key">
+                                        {{UM[key]}}
+                                    </ng-option>
+                                </ng-select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="form-setting__item">
+                    <label class="form-setting__label">
+                        <span>Description</span>
+                    </label>
+                    <div class="form-setting__input d-md-flex">
+                        <angular-editor placeholder="Ici la description de votre produit!!"
+                            formControlName="designation" [(ngModel)]="product.designation">
+                        </angular-editor>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal footer -->
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-primary">Enregistrer</button>
+        <button type="button" (click)="activeModal.close()" class="btn btn-default">Annuler</button>
+    </div>
+</form>

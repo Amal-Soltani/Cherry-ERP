@@ -1,0 +1,241 @@
+<form [formGroup]="pilotageform" (ngSubmit)="onSubmit()">
+    <div class="modal-header">
+        <h4 class="modal-title pull-left">Pointage de production</h4>
+        <button type="button" aria-label="Femer" class="close pull-right" (click)="activeModal.close()">
+            <span aria-hidden="true">×</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-setting__item">
+                    <label class="form-setting__label">OF</label>
+                    <sup>*</sup>
+                    <div class="form-setting__input">
+                        <div>
+                            <ng-select [(ngModel)]="tache" style="width: calc(100%);" 
+                            (change)="selectedTache($event)" formControlName="tache"
+                                placeholder="Recherche" [ngClass]="{'is-invalid': pilotageform.controls['tache'].invalid && 
+                                (submitted || pilotageform.controls['tache'].touched || pilotageform.controls['tache'].dirty)}">
+                                <ng-option *ngFor=" let tache of tacheList" [value]="tache">
+                                    [{{tache.reference}}] : {{tache.titre}}
+                                </ng-option>
+                            </ng-select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-setting__item">
+                    <label class="form-setting__label">Phase</label>
+                    <div class="form-setting__input">
+                        <ng-select (change)="selectedPhase($event)" style="width: calc(100%);"
+                            [(ngModel)]="phase" formControlName="phase" placeholder="Recherche ">
+                            <ng-option *ngFor=" let phase of phaseList" [value]="phase">
+                                {{phase.name}}
+                            </ng-option>
+                        </ng-select>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-setting__item">
+                    <label class="form-setting__label">
+                        <em class="fa fa-user mr-2"></em>
+                        <span>Opérateur </span>
+                        <sup>*</sup>
+                    </label>
+                    <div class="form-setting__input">
+                        <ng-select [(ngModel)]="employee" (change)="selectedEmployee($event)"  placeholder="Recherche employé(s)" formControlName="empl"
+                        [ngClass]="{'is-invalid': pilotageform.controls['empl'].invalid && 
+                                (submitted || pilotageform.controls['empl'].touched || pilotageform.controls['empl'].dirty)}">
+                            <ng-option *ngFor="let employee of employeeList" [value]="employee">
+                                [ {{employee.employeeNumber}}] : {{employee.firstName}} {{employee.lastName}}
+                            </ng-option>
+                        </ng-select>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-setting__item">
+                    <label class="form-setting__label">
+                        <em class="fas fa-industry mr-2"></em>
+                        <span>Équipement/Machine </span>
+                    </label>
+                    <div class="form-setting__input">
+                        <input [(ngModel)]="pilotage.equipment" type="text" placeholder="Equipement" disabled
+                            class="form-control" formControlName="equipm"/>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-setting__item">
+                    <label class="form-setting__label">
+                        <em class="fas fa-home mr-2"></em>
+                        <span>Ligne de production / Site</span>
+                    </label>
+                    <div class="form-setting__input">
+                        <ng-select [(ngModel)]="ligne" placeholder="Recherche" (change)="selectedLigne($event)" formControlName="lineId"
+                            style="display: block; width: 100%;">
+                            <ng-option *ngFor=" let ligne of ligneList" [value]="ligne">
+                                {{ligne.name}}
+                            </ng-option>
+                        </ng-select>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-setting__item">
+                    <label class="form-setting__label">
+                        <span>Date début</span></label>
+                    <div class="form-setting__input d-md-flex">
+                        <input type="datetime-local" [(ngModel)]="pilotage.dateDebut" formControlName="sDate"
+                            placeholder="Date" class="form-control">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-setting__item">
+                    <label class="form-setting__label">
+                        <span>Date fin</span>
+                    </label>
+                    <div class="form-setting__input d-md-flex">
+                        <input [(ngModel)]="pilotage.dateFin" type="datetime-local" formControlName="eDate"
+                            placeholder="Date" class="form-control">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-setting__item">
+                    <label class="form-setting__label">
+                        <span>Temps d'arrêt non planifié
+                            (minutes)</span>
+                        <sup>*</sup>
+                        <em tooltip="Temps de chargement de série + Temps de Réglage + Temps de panne"
+                            class="ml-2 icon-info float-right"></em>
+                    </label>
+                    <div class="form-setting__input">
+                        <input [(ngModel)]="pilotage.tempsArret" type="number" formControlName="tempsArrets" min="0"
+                            class="form-control" [ngClass]="{'is-invalid': pilotageform.controls['tempsArrets'].invalid && 
+                            (submitted || pilotageform.controls['tempsArrets'].touched || pilotageform.controls['tempsArrets'].dirty)}">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="form-setting__item">
+                    <label class="form-setting__label">
+                        <span>Raison d'arrêt</span>
+                    </label>
+                    <div class="form-setting__input d-md-flex">
+                        <input [(ngModel)]="pilotage.raisonArret" type="text" formControlName="stopReason"
+                            class="form-control">
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="idProjet == null" class="col-md-12">
+                <div class="form-setting__item">
+                    <label class="form-setting__label">
+                        <em class="fa-cube fas mr-2"></em>
+                        <span>Projet </span>
+                        <sup>*</sup></label>
+                    <div class="form-setting__input">
+                        <ng-select [(ngModel)]="project" placeholder="Recherche projet" (change)="selectedProject($event)"
+                            formControlName="project" style="display: block; width: 100%;" 
+                            [ngClass]="{'is-invalid': pilotageform.controls['project'].invalid && 
+                                (submitted || pilotageform.controls['project'].touched || pilotageform.controls['project'].dirty)}">
+                            <ng-option *ngFor=" let project of projectList" [value]="project">
+                                [ {{project.reference}} ] : {{project.titre}}
+                            </ng-option>
+                        </ng-select>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-setting__item">
+                    <label class="form-setting__label">
+                        <span>Temps unitaire théorique
+                            (minutes)</span>
+                    </label>
+                    <div class="form-setting__input">
+                        <input [(ngModel)]="tempsUni" type="number" value="0" disabled class="form-control"
+                            formControlName="tempsuni">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-setting__item">
+                    <label class="form-setting__label">
+                        <span>Temps.Usinage machine (minutes)</span>
+                    </label>
+                    <div class="form-setting__input">
+                        <input [(ngModel)]="pilotage.tempsMachine" type="number" value="0"
+                            formControlName="estimatedDuration" min="0" class="form-control">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-setting__item">
+                    <label class="form-setting__label">
+                        <span>Quantité totale</span><sup>*</sup>
+                    </label>
+                    <div class="form-setting__input">
+                        <input [(ngModel)]="pilotage.qteTotale" type="number" formControlName="qntite" min="0" value="0"
+                            class="form-control" [ngClass]="{'is-invalid': pilotageform.controls['qntite'].invalid && 
+                            (submitted || pilotageform.controls['qntite'].touched || pilotageform.controls['qntite'].dirty)}">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-setting__item">
+                    <label class="form-setting__label">
+                        <span>Quantité Non Conforme</span><sup>*</sup>
+                    </label>
+                    <div class="form-setting__input">
+                        <input [(ngModel)]="pilotage.qteNC" type="number" formControlName="qntiteNc" min="0" value="0"
+                            class="form-control" [ngClass]="{'is-invalid': pilotageform.controls['qntiteNc'].invalid && 
+                            (submitted || pilotageform.controls['qntiteNc'].touched || pilotageform.controls['qntiteNc'].dirty)}">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-setting__item">
+                    <label class="form-setting__label">
+                        <span>Quantité Rébut</span><sup>*</sup>
+                    </label>
+                    <div class="form-setting__input">
+                        <input [(ngModel)]="pilotage.qteRebut" type="number" formControlName="qntiteRebut" min="0"
+                            class="form-control" [ngClass]="{'is-invalid': pilotageform.controls['qntiteRebut'].invalid && 
+                            (submitted || pilotageform.controls['qntiteRebut'].touched || pilotageform.controls['qntiteRebut'].dirty)}">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="form-setting__item">
+                    <label class="form-setting__label">Note</label>
+                    <div class="form-setting__input">
+                        <textarea [(ngModel)]="pilotage.note" formControlName="note" class="form-control">
+                        </textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="form-setting__item">
+                    <label class="form-setting__label">
+                        <span>Temps Travaillé :</span> {{ calculateTimeWorked() }} <b class="ml-1">Minutes</b> -
+                        {{pilotage.tempsArret}}
+                        <b class="ml-1">Minutes</b>
+                    </label><br>
+                    <label class="form-setting__label">
+                        <span>Temps Machine :</span><span style="color: green;"> {{ pilotage.tempsMachine *
+                            pilotage.qteTotale}} minutes </span>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer" style="background-color: #fff;">
+        <button type="submit" class="btn btn-primary">Enregistrer</button>
+        <button type="button" class="btn btn-default" (click)="activeModal.close()">Annuler</button>
+    </div>
+</form>

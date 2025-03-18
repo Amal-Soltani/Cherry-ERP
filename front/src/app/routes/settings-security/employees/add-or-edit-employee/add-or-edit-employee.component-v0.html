@@ -1,0 +1,98 @@
+<form (ngSubmit)="onSubmit()">
+    <div class="modal-header">
+        <h4 class="modal-title pull-left" *ngIf="!external" i18n>Employé</h4>
+        <h4 class="modal-title pull-left" *ngIf="external" i18n>Partenaire externe</h4>
+        <button type="button" class="close pull-right" aria-label="Femer" (click)="activeModal.close()" i18n-aria-label>
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="row" *ngIf="external">
+          <div class="col-md-6">
+            <div class="form-setting__item">
+              <label class="form-setting__label"><span i18n>Type</span> <sup>*</sup></label>
+              <div class="form-setting__input ">
+                <label class="c-radio">
+                  <input id="inlineradio1"
+
+                         type="radio"
+                         name="client"
+                         value="CLIENT"
+                         (change)="onTypeChange($event)">
+                  <span class="fas fa-circle"></span> <strong i18n>Client</strong>
+                </label>
+                <label class="c-radio">
+                  <input id="inlineradio2"
+
+                         type="radio"
+                         name="supplier"
+                         value="SUPPLIER"
+                         (change)="onTypeChange($event)">
+                  <span class="fas fa-circle"></span> <strong i18n>Fournisseur</strong>
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-setting__item">
+              <label class="form-setting__label" i18n>Client/Fournisseur</label>
+              <div class="form-setting__input d-md-flex">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-setting__item">
+                    <label class="form-setting__label"><span i18n>Matricule</span> <sup>*</sup></label>
+                    <div class="form-setting__input d-md-flex">
+                        <input type="text" formControlName="employeeNumber" placeholder="Matricule" class="form-control" i18n-placeholder/>
+                    </div>
+                    <span *ngIf="!employeeform.controls['employeeNumber'].valid&&employeeform.controls['employeeNumber'].dirty" i18n>
+                      La référence est obligatoire</span>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-setting__item">
+                    <label class="form-setting__label" i18n>Prénom</label>
+                    <div class="form-setting__input d-md-flex">
+                        <input type="text" formControlName="firstName" placeholder="Prénom"
+                            class="form-control" i18n-placeholder/>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-setting__item">
+                    <label class="form-setting__label" i18n>Nom</label>
+                    <div class="form-setting__input d-md-flex">
+                        <input type="text" formControlName="lastName" placeholder="Nom"
+                            class="form-control" i18n-placeholder/>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-setting__item">
+                    <label class="form-setting__label" i18n>Poste</label>
+                    <div class="form-setting__input d-md-flex">
+                        <input type="text" formControlName="post" placeholder="Poste"
+                            class="form-control" i18n-placeholder/>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-setting__item">
+                    <label class="form-setting__label" i18n>Téléphone</label>
+                    <div class="form-setting__input d-md-flex">
+                        <input type="text" formControlName="phone" placeholder="Téléphone" class="form-control" i18n-placeholder/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal footer -->
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-primary" i18n>Enregistrer</button>
+        <button type="button" (click)="activeModal.close()" class="btn btn-default" i18n>Annuler</button>
+    </div>
+</form>

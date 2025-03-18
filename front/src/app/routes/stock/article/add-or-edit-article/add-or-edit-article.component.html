@@ -1,0 +1,153 @@
+<form [formGroup]="articleform" (ngSubmit)="onSubmit()">
+    <div class="modal-header">
+        <h4 class="modal-title pull-left">Article</h4>
+        <button type="button" class="close pull-right" aria-label="Fermer" (click)="activeModal.close()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-setting__item">
+                    <label class="form-setting__label">
+                        <span>Nom</span>
+                        <sup>*</sup>
+                    </label>
+                    <div class="form-setting__input d-md-flex">
+                        <input type="text" placeholder="Nom de l'article" formControlName="name"
+                            [(ngModel)]="article.name" class="form-control"
+                            [ngClass]="{'is-invalid': articleform.controls['name'].invalid && 
+                            (submitted || articleform.controls['name'].touched || articleform.controls['name'].dirty)}" />
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-setting__item">
+                    <label class="form-setting__label">
+                        <span>Référence</span>
+                        <sup>*</sup>
+                    </label>
+                    <div class="form-setting__input d-md-flex">
+                        <input type="text" placeholder="Référence de l'article" formControlName="reference"
+                            [(ngModel)]="article.reference" class="form-control"/>
+                            <!-- [ngClass]="{'is-invalid': articleform.controls['reference'].invalid && 
+                            (submitted || articleform.controls['reference'].touched || articleform.controls['reference'].dirty)}" -->
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-setting__item">
+                            <label class="form-setting__label">
+                                <span>Matière</span>
+                                <sup>*</sup>
+                            </label>
+                            <div class="form-setting__input d-md-flex">
+                                <input type="text" placeholder="Matiére de l'article" formControlName="matiere"
+                                    [(ngModel)]="article.matiere" class="form-control"
+                                    [ngClass]="{'is-invalid': articleform.controls['matiere'].invalid && 
+                            (submitted || articleform.controls['matiere'].touched || articleform.controls['matiere'].dirty)}" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-setting__item">
+                            <label class="form-setting__label">
+                                <span>Unité de mesure</span>
+                                <sup>*</sup>
+                            </label>
+                            <div class="form-setting__input d-md-flex">
+                                <ng-select [(ngModel)]="article.uniteMesure" style="width: calc(100% );"
+                                    placeholder="Unité de mesure" formControlName="uniteMesure"
+                                    [ngClass]="{'is-invalid': articleform.controls['uniteMesure'].invalid && 
+                            (submitted || articleform.controls['uniteMesure'].touched || articleform.controls['uniteMesure'].dirty)}">
+                                    <ng-option *ngFor="let key of keysUM(UM)" [value]="key">
+                                        {{UM[key]}}
+                                    </ng-option>
+                                </ng-select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="form-setting__item">
+                    <label class="form-setting__label">
+                        <span>Description</span>
+                    </label>
+                    <div class="form-setting__input d-md-flex">
+                        <angular-editor placeholder="Ici la description de votre produit!!"
+                            formControlName="designation" [(ngModel)]="article.designation">
+                        </angular-editor>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-setting__item">
+                            <label class="form-setting__label">
+                                <span>Couleur</span>
+                            </label>
+                            <div class="form-setting__input d-md-flex">
+                                <input type="text" placeholder="Couleur de l'article" formControlName="couleur"
+                                    [(ngModel)]="article.couleur" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-setting__item">
+                            <label class="form-setting__label">
+                                <span>Taille (CM)</span>
+                            </label>
+                            <div class="form-setting__input d-md-flex">
+                                <input type="text" placeholder="Taille de l'article" formControlName="taille"
+                                    [(ngModel)]="article.taille" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-setting__item">
+                            <label class="form-setting__label">
+                                <span>Longueur (CM)</span>
+                            </label>
+                            <div class="form-setting__input d-md-flex">
+                                <input type="text" placeholder="Longueur de l'article" formControlName="longueur"
+                                    [(ngModel)]="article.longueur" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-setting__item">
+                            <label class="form-setting__label">
+                                <span>Largeur (CM)</span>
+                            </label>
+                            <div class="form-setting__input d-md-flex">
+                                <input type="text" placeholder="Largeur de l'article" formControlName="largeur"
+                                    [(ngModel)]="article.largeur" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-setting__item">
+                            <label class="form-setting__label">
+                                <span>Hauteur (CM)</span>
+                            </label>
+                            <div class="form-setting__input d-md-flex">
+                                <input type="text" placeholder="Hauteur de l'article" formControlName="hauteur"
+                                    [(ngModel)]="article.hauteur" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal footer -->
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-primary">Enregistrer</button>
+        <button type="button" (click)="activeModal.close()" class="btn btn-default">Annuler</button>
+    </div>
+</form>

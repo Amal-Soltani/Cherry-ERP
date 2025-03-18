@@ -1,0 +1,53 @@
+{
+  "theme": "roma",
+  "animation": true,
+  "calculable": true,
+  "animationEasing": "elasticOut",
+  "title": {
+    "show": false,
+    "text": "",
+    "subtext": "",
+    "sublink": ""
+  },
+  "tooltip": {
+    "show": true,
+    "trigger": "axis",
+    "axisPointer": {
+      "type": "cross"
+    }
+  },
+  "legend": {
+    "show": true,
+    "data": [],
+    "bottom": 5
+  },
+  "grid": {
+    "left": 30,
+    "right": 30,
+    "bottom": 35,
+    "containLabel": true
+  },
+  "dataZoom": {
+    "show": true,
+    "start": 0,
+    "end": 70,
+    "bottom": 75,
+    "handleSize": 25,
+    "yAxisIndex": 0,
+    "handleIcon": "image://assets/img/logo/Cherry-erp-Icon.png"
+  },
+  "yAxis": [],
+  "xAxis": [
+    {
+      "show": true,
+      "type": "value",
+      "position": "buttom",
+      "splitLine": {
+        "lineStyle": {
+          "type": "dashed"
+        }
+      }
+    }
+  ],
+  "series": []
+}

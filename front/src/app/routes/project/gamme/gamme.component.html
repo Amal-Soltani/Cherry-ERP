@@ -1,0 +1,168 @@
+<form [formGroup]="gammeform">
+    <div class="modal-header">
+        <h4 class="modal-title pull-left">Gamme d'usinage</h4>
+        <button type="button" class="close pull-right" aria-label="Fermer" (click)="activeModal.close()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-setting__item">
+                    <label class="form-setting__label">
+                        <span>Produit </span>
+                    </label>
+                    <div class="form-setting__input d-md-flex">
+                        <input type="text" class="form-control" formControlName="productName"
+                            [(ngModel)]="product.libelle" disabled>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-setting__item">
+                    <label class="form-setting__label">
+                        <span>Type de Produit</span>
+                    </label>
+                    <div class="form-setting__input d-md-flex">
+                        <input type="text" class="form-control" formControlName="productType"
+                            [(ngModel)]="product.typeProduct" disabled>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <table width="100%" cellpadding="2" class="summary">
+                    <tr style="text-align: center;">
+                        <th class="grid-template_th">
+                            <em class="mr-2 fas fa-tasks"></em> Phase<sup>*</sup>
+                        </th>
+                        <th class="grid-template_th">
+                            <em class="mr-2 far fa-clock"></em> Temps (minutes)<sup>*</sup>
+                        </th>
+                        <th class="grid-template_th no_display_onmobile">
+                            <em class="mr-2 fas fa-screwdriver"></em> Aricle
+                        </th>
+                        <th class="grid-template_th no_display_onmobile">
+                            <em class="mr-2 fas fa-screwdriver"></em> Produit
+                        </th>
+                        <th class="grid-template_th no_display_onmobile">
+                            <em class="mr-2 fas fa-microchip"></em> Machine
+                        </th>
+                        <td class="grid-template_th" style="width: 45px; text-align: right;"
+                            *ngIf="AuthenticationService.hasPermission(['PJ_A','PJ_W','GL_A','ERP_A'])">
+                            <a placement="left" tooltip="Ajouter" (click)="addRow()" class="link-blue"
+                                aria-describedby="tooltip-812">
+                                <em class="fa mr-2 fa-plus-square" style="color: #54afe8;"></em>
+                            </a>
+                        </td>
+                    </tr>
+                    <tbody *ngFor="let row of Rows">
+                        <tr>
+                            <td style="width: 15rem;">
+                                <ng-select *ngIf="!row.added" [(ngModel)]="row.col2" style="width: calc(100%);"
+                                    formControlName="phase" placeholder="Recherche phase">
+                                    <ng-option *ngFor=" let p of phaselist" [value]="p.name">
+                                        {{p.name}}
+                                    </ng-option>
+                                </ng-select>
+                                <div style="text-align: center;" *ngIf="row.added">{{row.col2}}</div>
+                            </td>
+                            <td style="width: 15rem;">
+                                <input *ngIf="!row.added" [(ngModel)]="row.col3" type="number" class="form-control"
+                                    min="0" formControlName="temps" placeholder="0">
+                                <div style="text-align: center;" *ngIf="row.added">{{row.col3}}</div>
+                            </td>
+                            <td style="width: 15rem;">
+                                <ng-select *ngIf="!row.added" [(ngModel)]="row.col4" style="width: calc(100%);"
+                                    formControlName="article" placeholder="Recherche article" [multiple]="true">
+                                    <ng-option *ngFor=" let p of articlelist" [value]="p.libelle">
+                                        {{p.libelle}}
+                                    </ng-option>
+                                </ng-select>
+                                <div style="text-align: center;" *ngIf="row.added">{{row.col4}}</div>
+                            </td>
+                            <td style="width: 15rem;">
+                                <ng-select *ngIf="!row.added" [(ngModel)]="row.col5" style="width: calc(100%);"
+                                    formControlName="produits" placeholder="Recherche produit" [multiple]="true">
+                                    <ng-option *ngFor=" let p of produitlist" [value]="p.child.libelle">
+                                        {{p.child.libelle}}
+                                    </ng-option>
+                                </ng-select>
+                                <div style="text-align: center;" *ngIf="row.added">{{row.col5}}</div>
+                            </td>
+                            <td style="width: 15rem;">
+                                <ng-select *ngIf="!row.added" [(ngModel)]="row.col6" style="width: calc(100%);"
+                                    formControlName="machine" placeholder="Recherche équipement">
+                                    <ng-option *ngFor=" let e of equipmentlist" [value]="e.name">
+                                        {{e.name}}
+                                    </ng-option>
+                                </ng-select>
+                                <div style="text-align: center;" *ngIf="row.added">{{row.col6}}</div>
+                            </td>
+                            <td>
+                                <a *ngIf="!row.added" (click)="Ajouter(row)" placement="left" tooltip="Ajouter"
+                                    class="link-blue ng-star-inserted">
+                                    <em class="fa mr-2 fa-save"></em>
+                                </a>
+                                <a *ngIf="!row.added" (click)="Annuler()" placement="left" tooltip="Annuler"
+                                    class="link-blue">
+                                    <em class="fa mr-2 fas fa-undo"></em>
+                                </a>
+                                <a *ngIf="AuthenticationService.hasPermission(['PJ_A','PJ_W','GL_A','ERP_A']) && 
+                                row.added" (click)="update(row)" tooltip="Modifier" class="link-blue"
+                                    draggable="false">
+                                    <em class="fa mr-2 fas fa-pencil-alt"></em>
+                                </a>
+                                <a *ngIf="AuthenticationService.hasPermission(['PJ_A','PJ_W','GL_A','ERP_A']) && 
+                                row.added" (click)="delete(row)" tooltip="Supprimer" class="link-blue"
+                                    draggable="false">
+                                    <em class="fa mr-2 fas fa-times"></em>
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div *ngIf="Rows?.length==0" class="alert"
+                    style="text-align: center; color: #838282; border: 1pt solid #d1d1d1;">
+                    <em class="fas fa-info-circle"></em> Pas de données à afficher
+                </div>
+            </div>
+            <div *ngIf="sousTacheList.length !== 0">
+                <div class="col-md-12" style="margin-top: 5%; font-weight: bold;">
+                    <div class="header-block">
+                        <label class="form-setting__label">Sous Tache</label>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <table width="100%" cellpadding="2" class="summary">
+                        <tr style="text-align: center;">
+                            <th class="grid-template_th">Produit</th>
+                            <th class="grid-template_th">Type de Produit</th>
+                            <th class="grid-template_th">Titre (Tâche/OF)</th>
+                            <th class="grid-template_th">Référence (tâche/OF)</th>
+                        </tr>
+                        <tbody style="text-align: center;">
+                            <tr *ngFor="let s of sousTacheList">
+                                <td style="width: 15rem;">
+                                    <div>{{s.product.libelle}}</div>
+                                </td>
+                                <td style="width: 15rem;">
+                                    <div>{{s.product.typeProduct}}</div>
+                                </td>
+                                <td style="width: 15rem;">
+                                    <div>{{s.titre}}</div>
+                                </td>
+                                <td style="width: 15rem;">
+                                    <div>{{s.reference}}</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" (click)="activeModal.close()" class="btn btn-default">Annuler</button>
+    </div>
+</form>

@@ -1,0 +1,241 @@
+<form [formGroup]="nomenclatureform" (ngSubmit)="onSubmit()">
+    <div class="modal-header">
+        <h4 class="modal-title pull-left">Nomenclature</h4>
+        <button type="button" class="close pull-right" aria-label="Fermer" (click)="activeModal.close()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-setting__item">
+                    <label class="form-setting__label">
+                        <span>Produit</span>
+                        <sup>*</sup>
+                    </label>
+                    <div class="form-setting__input d-md-flex">
+                        <ng-select [(ngModel)]="libelle" style="width: calc(100%);" formControlName="libelle"
+                            placeholder="Produit" (change)="getParentEvent($event)"
+                            [ngClass]="{'is-invalid': nomenclatureform.controls['libelle'].invalid && 
+                            (submitted || nomenclatureform.controls['libelle'].touched || nomenclatureform.controls['libelle'].dirty)}">
+                            <ng-option *ngFor=" let p of productlist" [value]="p.libelle">
+                                {{p.libelle}}
+                            </ng-option>
+                        </ng-select>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-setting__item">
+                    <label class="form-setting__label">
+                        <span>Type de produit</span>
+                    </label>
+                    <div class="form-setting__input d-md-flex">
+                        <input *ngIf="typeProduct == null" type="text" formControlName="typeProduct" class="form-control" disabled />
+                        <input *ngIf="typeProduct === 'CONSTRUIRE'" type="text" formControlName="typeProduct"
+                            placeholder="Produit à construire" class="form-control" disabled />
+                        <input *ngIf="typeProduct === 'ASSEMBLAGE'" type="text" formControlName="typeProduct"
+                            placeholder="Produit Assemblé" class="form-control" disabled />
+                        <input *ngIf="typeProduct === 'MATERIEL'" type="text" formControlName="typeProduct"
+                            placeholder="Matériel" class="form-control" disabled />
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-setting__item">
+                            <label class="form-setting__label">
+                                <span>Type de fabrication</span>
+                                <sup>*</sup>
+                            </label>
+                            <div class="form-setting__input d-md-flex">
+                                <ng-select [(ngModel)]="nomenclature.manufacturingType" style="width: calc(100% );"
+                                    formControlName="typeFabrication" placeholder="Type de Fabrication"
+                                    [ngClass]="{'is-invalid': nomenclatureform.controls['typeFabrication'].invalid && 
+                            (submitted || nomenclatureform.controls['typeFabrication'].touched || nomenclatureform.controls['typeFabrication'].dirty)}">
+                                    <ng-option *ngFor="let key of keysF(typeF)" [value]="key">
+                                        {{typeF[key]}}
+                                    </ng-option>
+                                </ng-select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-setting__item">
+                            <label class="form-setting__label">
+                                <span>Procédés de fabication</span>
+                                <sup>*</sup>
+                            </label>
+                            <div class="form-setting__input d-md-flex">
+                                <ng-select [multiple]="true" [(ngModel)]="nomenclature.manufacturingProcesses"
+                                    style="width: calc(100% );" formControlName="procedesDeFabrication"
+                                    placeholder="Procédés de fabication"
+                                    [ngClass]="{'is-invalid': nomenclatureform.controls['procedesDeFabrication'].invalid && 
+                            (submitted || nomenclatureform.controls['procedesDeFabrication'].touched || nomenclatureform.controls['procedesDeFabrication'].dirty)}">
+                                    <ng-option *ngFor="let p of manufacturingProcesses" [value]="p">
+                                        {{p}}
+                                    </ng-option>
+                                </ng-select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-setting__item">
+                            <label class="form-setting__label">
+                                <span>Indice du plan</span>
+                            </label>
+                            <div class="form-setting__input d-md-flex" style="gap: 2px;" >
+                                    <ng-select style="width: calc(100%);" formControlName="indice" placeholder="indice"
+                                    [(ngModel)]="document" (change)="getIndice($event)">
+                                    <ng-option *ngFor="let doc of documents" [value]="doc">
+                                        <div>
+                                            <strong>[{{doc.reference}}] : {{doc.name}}</strong>
+                                            <p class="mb-1" style="text-align: end;" >
+                                              <i>Indice:  {{doc.indice}}</i>
+                                            </p>
+                                          </div>
+                                    </ng-option>
+                                </ng-select> 
+                                
+                                <button (click) = "addDoc()"type="button" class="btn btn-primary">
+                                    <em class="fas fa-plus-circle"></em>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="form-setting__item">
+                    <label class="form-setting__label">
+                        <span>Désignation</span>
+                    </label>
+                    <div class="form-setting__input d-md-flex">
+                        <angular-editor placeholder="Ici la description de votre nomenclature!!"
+                            formControlName="designation" [(ngModel)]="nomenclature.designation">
+                        </angular-editor>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="form-setting__item">
+                    <div class=" form-inline justify-content-end" style="text-align: end;">
+                        <button (click)="addRow()" type="button" class="btn btn-primary ml-2" *ngIf="typeProduct !== 'MATERIEL'">
+                            <em class="mr-2
+                             fas fa-plus-circle"></em>
+                            <span class="no_display_onmobile" *ngIf="typeProduct==='CONSTRUIRE'">Ajouter Matière
+                                première</span>
+                            <span class="no_display_onmobile" *ngIf="typeProduct==='ASSEMBLAGE'">Ajouter Matière
+                                première/Sous Produit</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12" *ngIf="typeProduct !== 'MATERIEL'">
+                <div class="form-setting__item">
+                    <table class="display nowrap dataTable no-footer dtr-inline collapsed grid-template table-striped">
+                        <thead class="col-md-12">
+                            <tr>
+                                <th class="grid-template_th no_display_onmobile col-md-1"
+                                    *ngIf="typeProduct==='ASSEMBLAGE'"></th>
+                                <th class="grid-template_th no_display_onmobile col-md-3">
+                                    Libelle</th>
+                                <th class="grid-template_th no_display_onmobile col-md-2"
+                                    *ngIf="typeProduct==='ASSEMBLAGE'">
+                                    Type</th>
+                                <th class="grid-template_th no_display_onmobile col-md-3">
+                                    Dimension brute</th>
+                                <th class="grid-template_th no_display_onmobile col-md-2"
+                                    *ngIf="typeProduct==='ASSEMBLAGE'">
+                                    Quantité par assemblage</th>
+                                <th class="grid-template_th no_display_onmobile col-md-2"
+                                    *ngIf="typeProduct==='CONSTRUIRE' || typeProduct==='MATERIEL'">
+                                    Quantité</th>
+                                <th class="grid-template_th no_display_onmobile col-md-1"></th>
+                            </tr>
+                        </thead>
+                        <tbody *ngFor="let row of Rows; let i = index">
+                            <tr class="grid-template__row col-md-12">
+                                <td class="col-md-1" *ngIf="typeProduct==='ASSEMBLAGE'">
+                                    <div class="ml-1" *ngIf="!row.isSaved">
+                                        <mat-radio-group (change)="getProductList2($event)" [(ngModel)]="row.col1"
+                                            formControlName="col1">
+                                            <mat-radio-button value="article">Article</mat-radio-button>
+                                            <mat-radio-button value="produit">Produit</mat-radio-button>
+                                        </mat-radio-group>
+                                    </div>
+                                </td>
+                                <td class="col-md-3">
+                                    <div *ngIf="!row.isSaved">
+                                        <ng-select (ngModelChange)="getTheType2($event, row)" [(ngModel)]="row.col2"
+                                            formControlName="col2" style="width: calc(100%);" placeholder="Libelle">
+                                            <ng-option *ngFor=" let p of productlist2" [value]="p.libelle">
+                                                {{p.libelle}}
+                                            </ng-option>
+                                        </ng-select>
+                                    </div>
+                                    <div *ngIf="row.isSaved">{{row.col2}}</div>
+                                </td>
+                                <td class="col-md-2" *ngIf="typeProduct==='ASSEMBLAGE'">
+                                    <div *ngIf="!row.isSaved">
+                                        <input *ngIf="row.col3 === 'CONSTRUIRE'" type="text" formControlName="col3"
+                                            placeholder="Produit à construire" class="form-control" disabled />
+                                        <input *ngIf="row.col3 === 'ASSEMBLAGE'" type="text" formControlName="col3"
+                                            placeholder="Produit Assemblé" class="form-control" disabled />
+                                        <input *ngIf="row.col3 === 'MATERIEL'" type="text" formControlName="col3"
+                                            placeholder="Matériel" class="form-control" disabled />
+                                            
+                                    </div>
+                                    <div *ngIf="row.isSaved && row.col3 === 'ASSEMBLAGE'">Produit Assemblé
+                                    </div>
+                                    <div *ngIf="row.isSaved && row.col3 === 'CONSTRUIRE'">Produit à
+                                        construire</div>
+                                        <div *ngIf="row.isSaved && row.col3 === 'MATERIEL'">Matériel</div>
+                                </td>
+                                <td class="col-md-3">
+                                    <div *ngIf="!row.isSaved">
+                                        <input type="test" placeholder="Dimension brute" formControlName="col4"
+                                            [(ngModel)]="row.col4" class="form-control">
+                                    </div>
+                                    <div *ngIf="row.isSaved">{{row.col4}}</div>
+                                </td>
+
+                                <td class="col-md-2">
+                                    <div *ngIf="!row.isSaved">
+                                        <input type="number" placeholder="0" min="0" formControlName="col5"
+                                            [(ngModel)]="row.col5" class="form-control">
+                                    </div>
+                                    <div *ngIf="row.isSaved">{{row.col5}}</div>
+                                </td>
+                                <td class="col-md-1" style="width: 45px; text-align: center;">
+                                    <a *ngIf="!row.isSaved" (click)="addUpdateProduct(row)" tooltip="Ajouter"
+                                        class="link-blue">
+                                        <em class="fa mr-2 fa-save"></em>
+                                    </a>
+                                    <a *ngIf="!row.isSaved" (click)="Annuler()" tooltip="Annuler" class="link-blue"
+                                        draggable="false">
+                                        <em class="fa mr-2 fas fa-undo"></em>
+                                    </a>
+                                    <a *ngIf="row.isSaved" (click)="updateProduct(row)" tooltip="Modifier"
+                                        class="link-blue" draggable="false">
+                                        <em class="fa mr-2 fas fa-pencil-alt"></em>
+                                    </a>
+                                    <a *ngIf="row.isSaved" (click)="deleteProduct(row)" tooltip="Supprimer"
+                                        class="link-blue" draggable="false">
+                                        <em class="fa mr-2 fas fa-times"></em>
+                                    </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal footer -->
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-primary">Enregistrer</button>
+        <button type="button" (click)="activeModal.close()" class="btn btn-default">Annuler</button>
+    </div>
+</form>

@@ -1,0 +1,56 @@
+<h1 class="login-tile" style="text-align: center;" i18n>Authentification</h1>
+<div class="alert alert-info" role="alert" *ngIf="waitingValidation==='true'" i18n>
+  Votre compte a été créé avec succès. Consultez votre email pour continuer l'inscription.
+</div>
+<div class="alert alert-success" role="alert" *ngIf="validAccount==='true'" i18n>
+    Félicitations! Votre compte a été activé. Vous pouvez maintenant s'authentifier.
+</div>
+<form class="form-login" [formGroup]="loginForm" (ngSubmit)="onSubmitLogin()">
+  <div class="row form-group">
+    <div class="input-group">
+      <span class="input-icon">
+        <em class="fas fa-envelope"></em>
+      </span>
+      <input type="email" autocomplete="on" formControlName="username" name="email" class="form-control" placeholder="Email"
+              [ngClass]="{ 'is-invalid': submitted && f.username.errors }" i18n-placeholder/>
+    </div>
+    <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+      <div *ngIf="f.username.errors.required" i18n>L'email est obligatoire</div>
+    </div>
+  </div>
+  <div class="row form-group">
+    <div class="input-group">
+      <span class="input-icon">
+        <em class="fa fa-lock" aria-hidden="true"></em>
+      </span>
+      <input autocomplete="on" [type]="isVisible ? 'text' : 'password'" id="password" formControlName="password" password="password" placeholder="Password"
+              [ngClass]="{ 'is-invalid': submitted && f.password.errors }" class="form-control" i18n-placeholder/>
+      <span (click)="isVisible = !isVisible" (mouseout)="isVisible=false" class="input-icon-show-password">
+        <em class="fa fa-eye" aria-hidden="true"></em>
+      </span>
+    </div>
+
+    <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+      <div *ngIf="f.password.errors.required" i18n>Le mot de passe est obligatoire</div>
+    </div>
+    <div class="invalid-feedback" style="display: inline; ">
+      <div>{{errorMsg}}</div>
+    </div>
+  </div>
+  <div class="row form-group ">
+    <button [disabled]="loading" class="btn btn-login" type="submit" i18n>
+      <img src="assets/img/ajax-loader.gif" *ngIf="loading" alt=""/>
+      &nbsp; &nbsp; Se connecter
+    </button>
+  </div>
+  <br/>
+  <br/>
+  <p style="color: #501905;" i18n>
+
+    Vous n'avez pas de compte ? <a [routerLink]="['/page/signup']" routerLinkActive="active">S'inscrire</a>
+  </p>
+  <p style="color: #501905;" i18n>
+    Mot de passe oublié ? <a [routerLink]="['/page/send-reset-password']" routerLinkActive="active">Cliquez ici</a>
+  </p>
+</form>
+

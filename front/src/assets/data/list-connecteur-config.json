@@ -1,0 +1,138 @@
+{
+  "MYSQL" : {
+    "name" : "",
+    "category": "SGBD",
+    "type": "MYSQL",
+    "host": "localhost",
+    "port": "3306",
+    "user": "root",
+    "password": "",
+    "database": "",
+    "usessh" : false
+  },
+  "MARIADB" : {
+    "name" : "",
+    "category": "SGBD",
+    "type": "MARIADB",
+    "host": "localhost",
+    "port": "3306",
+    "user": "root",
+    "password": "",
+    "database": "",
+    "usessh" : false
+  },
+  "POSTGRES" : {
+    "name" : "",
+    "category": "SGBD",
+    "type" : "POSTGRES",
+    "host" : "localhost",
+    "port" : "5432",
+    "user" : "postgres",
+    "password" : "postgres",
+    "database" : "",
+    "usessh" : false
+  },
+  "ORACLE" : {
+    "name" : "",
+    "category": "SGBD",
+    "type" : "ORACLE",
+    "host" : "localhost",
+    "port" : "1521",
+    "user" : "",
+    "password" : "",
+    "database" : "",
+    "usessh" : false
+  },
+  "SQLSERVER" : {
+    "name" : "",
+    "category": "SGBD",
+    "type" : "SQLSERVER",
+    "host" : "localhost",
+    "database" : "master",
+    "port" : "1433",
+    "user" : "",
+    "password" : "",
+    "instance" : "\\SQLEXPRESS",
+    "windows_authentication" : false
+  },
+  "H2" : {
+    "name" : "",
+    "category": "SGBD",
+    "type" : "H2",
+    "host" : "localhost",
+    "database" : "",
+    "port" : "9990",
+    "user" : "",
+    "password" : ""
+  },
+  "CSV" : {
+    "name" : "",
+    "location" : "spidrive",
+    "category": "FILE",
+    "type": "CSV",
+    "path": "/data/file.csv",
+    "separator" : ";",
+    "fields": [],
+    "fileModificationDate" : ""
+  },
+  "EXCEL": {
+    "name" : "",
+    "location" : "spidrive",
+    "category": "FILE",
+    "type": "EXCEL",
+    "path": "/data/file.xsl",
+    "sheet" : 0,
+    "startFromLine" : 0,
+    "fields": [],
+    "fileModificationDate" : ""
+  },
+  "REST": {
+    "name" : ""
+  },
+  "SOAP" : {
+    "name" : ""
+  },
+  "mandrian" : {
+    "name" : "",
+    "category": "OLAP",
+    "Catalog" : "/WEB-INF/queries/FoodMart.xml;",
+    "Role" : "California manager"
+  },
+  "microsoft-olap" : {
+    "name" : "",
+    "category": "OLAP",
+    "Catalog" : "",
+    "server" : "http://example.com/xmla/msmdpump.dll;",
+    "cache-mode" : "LFU",
+    "cache-size" : "100",
+    "cache-timeout" : "600"
+  },
+  "MONGODB" : {
+    "name" : "",
+    "category": "BIG_DATA",
+    "type": "MONGODB",
+    "host": "localhost",
+    "port": "27017",
+    "user": "",
+    "password": "",
+    "database": ""
+  },
+  "CASSENDRA" : {
+    "name" : "",
+    "category": "BIG_DATA",
+    "type": "CASSENDRA",
+    "host": "localhost",
+    "port": "27017",
+    "user": "",
+    "password": "",
+    "database": ""
+  },
+  "API" : {
+    "name" : "",
+    "category": "REST_API",
+    "type": "API",
+    "url": "localhost",
+    "user": "",
+    "password": ""
+  }
+}

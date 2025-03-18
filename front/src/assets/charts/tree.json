@@ -1,0 +1,442 @@
+{
+  "textStyle": {
+    "fontFamily": "Microsoft YaHei",
+    "fontSize": 12,
+    "fontStyle": "normal",
+    "fontWeight": "normal"
+  },
+  "animation": "auto",
+  "animationDuration": 1000,
+  "axisPointer": [
+    {
+      "show": "auto",
+      "triggerOn": null,
+      "zlevel": 0,
+      "z": 50,
+      "type": "line",
+      "snap": false,
+      "triggerTooltip": true,
+      "value": null,
+      "status": null,
+      "link": [],
+      "animation": null,
+      "animationDurationUpdate": 200,
+      "lineStyle": {
+        "color": "#aaa",
+        "width": 1,
+        "type": "solid"
+      },
+      "shadowStyle": {
+        "color": "rgba(150,150,150,0.3)"
+      },
+      "label": {
+        "show": true,
+        "formatter": null,
+        "precision": "auto",
+        "margin": 3,
+        "color": "#fff",
+        "padding": [
+          5,
+          7,
+          5,
+          7
+        ],
+        "backgroundColor": "auto",
+        "borderColor": null,
+        "borderWidth": 0,
+        "shadowBlur": 3,
+        "shadowColor": "#aaa"
+      },
+      "handle": {
+        "show": false,
+        "icon": "M10.7,11.9v1.3H9.3v1.3c4.9,0.38.8,4.48.8,9.4c0,5,3.9,9.1,8.8,9.4h1.3c4.90.3,8.84.4,8.89.4C19.5,16.3,15.6,12.2,10.7,11.9z M13.3,24.4H6.7v1.2h6.6z M13.3,22H6.7v1.2h6.6z M13.3,19.6H6.7v1.2h6.6z",
+        "size": 45,
+        "margin": 50,
+        "color": "#333",
+        "shadowBlur": 3,
+        "shadowColor": "#aaa",
+        "shadowOffsetX": 0,
+        "shadowOffsetY": 2,
+        "throttle": 40
+      }
+    }
+  ],
+  "tooltip": [
+    {
+      "trigger": "item",
+      "triggerOn": "mousemove",
+      "zlevel": 0,
+      "z": 60,
+      "show": true,
+      "showContent": true,
+      "alwaysShowContent": false,
+      "displayMode": "single",
+      "renderMode": "auto",
+      "confine": false,
+      "showDelay": 0,
+      "hideDelay": 100,
+      "transitionDuration": 0.4,
+      "enterable": false,
+      "backgroundColor": "rgba(50,50,50,0.7)",
+      "borderColor": "#333",
+      "borderRadius": 4,
+      "borderWidth": 0,
+      "padding": 5,
+      "extraCssText": "",
+      "axisPointer": {
+        "type": "line",
+        "axis": "auto",
+        "animation": "auto",
+        "animationDurationUpdate": 200,
+        "animationEasingUpdate": "exponentialOut",
+        "crossStyle": {
+          "color": "#999",
+          "width": 1,
+          "type": "dashed",
+          "textStyle": {}
+        }
+      },
+      "textStyle": {
+        "color": "#fff",
+        "fontSize": 14
+      }
+    }
+  ],
+  "series": [
+    {
+      "type": "tree",
+      "initialTreeDepth": 1,
+      "data": [
+        {
+          "name": "Rapport",
+          "children": [
+            {
+              "name": "Plan HSSE",
+              "symbolSize": 16,
+              "label": {
+                "fontSize": 16,
+                "color": "#000"
+              },
+              "itemStyle": {
+                "color": "#ff0000",
+                "borderColor": "#0000ff",
+                "borderWidth": 3,
+                "normal": {
+                  "color": "#00ff00"
+                }
+              },
+              "lineStyle": {
+                "color": "#888",
+                "width": 4,
+                "type": "dotted"
+              },
+              "children": [
+                {
+                  "name": "KPI1",
+                  "value": 17010
+                },
+                {
+                  "name": "KPI2",
+                  "value": 5842
+                },
+                {
+                  "name": "KPI3",
+                  "value": 1983
+                }
+              ]
+            },
+            {
+              "name": "Dossier",
+              "category": "tree2",
+              "label": {
+                "normal": {
+                  "show": true
+                }
+              },
+              "itemStyle": {
+                "normal": {
+                  "show": true,
+                  "color": {
+                    "type": "radial",
+                    "x": 0.5,
+                    "y": 0.5,
+                    "r": 0.5,
+                    "colorStops": [
+                      {
+                        "offset": 0,
+                        "color": "green"
+                      },
+                      {
+                        "offset": 1,
+                        "color": "white"
+                      }
+                    ],
+                    "globalCoord": false
+                  },
+                  "borderColor": "blue",
+                  "borderWidth": 2,
+                  "shadowColor": "rgba(0, 0, 0, 1)",
+                  "shadowBlur": 10
+                },
+                "emphasis": {
+                  "color": {
+                    "type": "radial",
+                    "x": 0.5,
+                    "y": 0.5,
+                    "r": 0.5,
+                    "colorStops": [
+                      {
+                        "offset": 0,
+                        "color": "green"
+                      },
+                      {
+                        "offset": 1,
+                        "color": "white"
+                      }
+                    ],
+                    "globalCoord": false
+                  }
+                }
+              },
+              "children": [
+                {
+                  "name": "KPI4",
+                  "value": 17010
+                },
+                {
+                  "name": "KPI5",
+                  "value": 5842
+                },
+                {
+                  "name": "KPI6",
+                  "value": 1983
+                }
+              ]
+            },
+            {
+              "name": "KPI's",
+              "category": "tree2",
+              "label": {
+                "normal": {
+                  "show": true
+                }
+              },
+              "itemStyle": {
+                "normal": {
+                  "show": true,
+                  "color": {
+                    "type": "radial",
+                    "x": 0.5,
+                    "y": 0.5,
+                    "r": 0.5,
+                    "colorStops": [
+                      {
+                        "offset": 0,
+                        "color": "green"
+                      },
+                      {
+                        "offset": 1,
+                        "color": "white"
+                      }
+                    ],
+                    "globalCoord": false
+                  },
+                  "borderColor": "blue",
+                  "borderWidth": 2,
+                  "shadowColor": "rgba(0, 0, 0, 1)",
+                  "shadowBlur": 10
+                },
+                "emphasis": {
+                  "color": {
+                    "type": "radial",
+                    "x": 0.5,
+                    "y": 0.5,
+                    "r": 0.5,
+                    "colorStops": [
+                      {
+                        "offset": 0,
+                        "color": "green"
+                      },
+                      {
+                        "offset": 1,
+                        "color": "white"
+                      }
+                    ],
+                    "globalCoord": false
+                  }
+                }
+              },
+              "children": [
+                {
+                  "name": "KPI1",
+                  "value": 17010
+                },
+                {
+                  "name": "KPI2",
+                  "value": 5842
+                },
+                {
+                  "name": "KPI3",
+                  "value": 1983
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "top": "1%",
+      "left": "7%",
+      "bottom": "1%",
+      "right": "20%",
+      "symbolSize": 10,
+      "label": {
+        "position": "left",
+        "verticalAlign": "middle",
+        "align": "right",
+        "color": "black",
+        "show": true
+      },
+      "leaves": {
+        "label": {
+          "position": "right",
+          "verticalAlign": "middle",
+          "align": "left",
+          "show": true
+        },
+        "itemStyle": {
+          "color": {
+            "type": "radial",
+            "x": 0.5,
+            "y": 0.5,
+            "r": 0.5,
+            "colorStops": [
+              {
+                "offset": 0,
+                "color": "red"
+              },
+              {
+                "offset": 1,
+                "color": "blue"
+              }
+            ],
+            "globalCoord": false
+          }
+        }
+      },
+      "zlevel": 0,
+      "z": 2,
+      "coordinateSystem": "view",
+      "layout": "orthogonal",
+      "roam": false,
+      "nodeScaleRatio": 0.4,
+      "center": null,
+      "zoom": 1,
+      "orient": "LR",
+      "symbol": "emptyCircle",
+      "expandAndCollapse": true,
+      "lineStyle": {
+        "color": "#ccc",
+        "width": 1.5,
+        "curveness": 0.5
+      },
+      "itemStyle": {
+        "color": "lightsteelblue",
+        "borderColor": "#c23531",
+        "borderWidth": 1.5
+      },
+      "animationEasing": "linear",
+      "animationDuration": 700,
+      "animationDurationUpdate": 1000,
+      "emphasis": {
+        "label": {
+          "show": true
+        }
+      }
+    }
+  ],
+  "visualMap": [],
+  "legend": [],
+  "markArea": [
+    {
+      "zlevel": 0,
+      "z": 1,
+      "tooltip": {
+        "trigger": "item"
+      },
+      "animation": false,
+      "label": {
+        "show": true,
+        "position": "top"
+      },
+      "itemStyle": {
+        "borderWidth": 0
+      },
+      "emphasis": {
+        "label": {
+          "show": true,
+          "position": "top"
+        }
+      }
+    }
+  ],
+  "markLine": [
+    {
+      "zlevel": 0,
+      "z": 5,
+      "symbol": [
+        "circle",
+        "arrow"
+      ],
+      "symbolSize": [
+        8,
+        16
+      ],
+      "precision": 2,
+      "tooltip": {
+        "trigger": "item"
+      },
+      "label": {
+        "show": true,
+        "position": "end"
+      },
+      "lineStyle": {
+        "type": "dashed"
+      },
+      "emphasis": {
+        "label": {
+          "show": true
+        },
+        "lineStyle": {
+          "width": 3
+        }
+      },
+      "animationEasing": "linear"
+    }
+  ],
+  "markPoint": [
+    {
+      "zlevel": 0,
+      "z": 5,
+      "symbol": "pin",
+      "symbolSize": 50,
+      "tooltip": {
+        "trigger": "item"
+      },
+      "label": {
+        "show": true,
+        "position": "inside"
+      },
+      "itemStyle": {
+        "borderWidth": 2
+      },
+      "emphasis": {
+        "label": {
+          "show": true
+        }
+      }
+    }
+  ],
+  "marker": [],
+  "brush": [],
+  "dataZoom": []
+}

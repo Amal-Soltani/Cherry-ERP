@@ -1,0 +1,73 @@
+<div class="panel-widget_dash">
+    <div class="settings-panel">
+        <div class="panel-widget_inner pt-4 flex-column align-items-stretch">
+            <div class="settings-panel__titre">Gestion des lignes de production</div>
+            <br>
+            <div class="row">
+                <!--SEARCH-->
+                <div class="col-md-4 mt-2">
+                    <div class="group">
+                        <i class="fas fa-search" style="position: absolute;
+                                top: 55%;
+                                transform: translateY(-50%);
+                                left: 5%;"></i>
+                        <input placeholder="Chercher" type="search" class="input"
+                            (input)="onSearchChange($event.target.value)">
+                    </div>
+                </div>
+                <!---->
+                <div *ngIf="AuthenticationService.hasPermission(['PR_M_A','PR_M_W','GL_A','ERP_A'])"
+                 class="col-md-8 mt-1">
+                    <div class="col-auto justify-content-end" style="text-align: end;">
+                        <button type="button" class="btn btn-primary ml-2" (click)="add()">
+                            <em class="mr-2 fas fa-plus-circle"></em>
+                            <span>Ajouter</span>
+                        </button>
+                    </div>
+                </div>
+
+            </div><br>
+            <div>
+                <table class="display nowrap dataTable no-footer dtr-inline collapsed grid-template table-striped">
+                    <thead>
+                        <tr>
+                            <th class="grid-template_th no_display_onmobile">Référence</th>
+                            <th class="grid-template_th">Nom</th>
+                            <th class="grid-template_th no_display_onmobile">Date de création
+                            </th>
+                            <th class="grid-template_th no_display_onmobile">Date de
+                                modification</th>
+                            <th class="grid-template_th no_display_onmobile">Responsable</th>
+                            <th data-priority="2" class="grid-template_th"></th>
+                        </tr>
+                    </thead>
+                    <tbody *ngFor="let ligne of ligneProductionList">
+                        <tr class="grid-template__row">
+                            <td class="no_display_onmobile"><b>{{ligne.reference}}</b></td>
+                            <td><b>{{ligne.name}}</b></td>
+                            <td class="no_display_onmobile">{{ligne.creationDate | date : 'dd-mm-yyyy hh:mm'}} </td>
+                            <td class="no_display_onmobile">{{ligne.modificationDate | date : 'dd-mm-yyyy hh:mm'}} </td>
+                            <td class="no_display_onmobile">[ {{ligne.employee.employeeNumber}} ]
+                                {{ligne.employee.firstName}} {{ligne.employee.lastName}}</td>
+                            <td *ngIf="AuthenticationService.hasPermission(['PR_M_A','PR_M_W','GL_A','ERP_A'])"
+                             width="120" data-priority="2" class="grid-template__action">
+                                <a placement="left" tooltip="Modifier" class="link-blue" (click)="update(ligne)">
+                                    <em class="fa mr-2 fas fa-pencil-alt"></em>
+                                </a>
+                                <a placement="left" tooltip="Supprimer" class="link-blue" (click)="delete(ligne)">
+                                    <em class="fa mr-2 fas fa-trash"></em>
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <app-empty-data-info [ifEmpty]=ifEmpty [message]="message"></app-empty-data-info>
+                 <!-- pagination -->
+                 <app-spi-pagination
+                 (onGetPage)="pageSize = $event.pageSize;getPage($event.currentPage)" [currentPage]="currentPage"
+                 [lastPage]="lastPage" [pageSize]="pageSize"
+                 [totalElements]="totalElements"></app-spi-pagination>
+            </div>
+        </div>
+    </div>
+</div>

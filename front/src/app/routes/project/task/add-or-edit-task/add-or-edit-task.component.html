@@ -1,0 +1,224 @@
+<form [formGroup]="tacheform" (ngSubmit)="onSubmit()">
+    <div class="modal-header">
+        <h4 class="modal-title pull-left">Tâche</h4>
+        <button type="button" class="close pull-right" aria-label="Fermer" (click)="activeModal.close()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-setting__item">
+                            <label class="form-setting__label">
+                                <span>Bon de commande <sup>*</sup></span>
+                            </label>
+                            <div class="form-setting__input d-md-flex">
+                                <input type="text" class="form-control" formControlName="BNC"
+                                    placeholder="Bon de commande" [(ngModel)]="tache.bonCmd" [ngClass]="{'is-invalid': tacheform.controls['BNC'].invalid && 
+                                (submitted || tacheform.controls['BNC'].touched || tacheform.controls['BNC'].dirty)}">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12" *ngIf="tache.parent != null">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-setting__item">
+                            <label class="form-setting__label">
+                                <span>Tache Parent : </span>
+                                <span style="color: red;"> {{parentTitle}}</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-setting__item">
+                            <label class="form-setting__label">
+                                <span>Reference Tache Parent : </span>
+                                <span style="color: red;"> {{parentReference}}</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-setting__item">
+                    <label class="form-setting__label">
+                        <span>Titre <sup>*</sup></span>
+                    </label>
+                    <div class="form-setting__input d-md-flex">
+                        <input type="text" class="form-control" formControlName="titre" placeholder="Titre"
+                            [(ngModel)]="tache.titre" [ngClass]="{'is-invalid': tacheform.controls['titre'].invalid && 
+                            (submitted || tacheform.controls['titre'].touched || tacheform.controls['titre'].dirty)}">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-setting__item">
+                    <label class="form-setting__label">
+                        <span>Priorité<sup>*</sup></span>
+                    </label>
+                    <div class="form-setting__input">
+                        <ng-select [(ngModel)]="tache.priority" formControlName="priority" placeholder="Priorité"
+                            [ngClass]="{'is-invalid': tacheform.controls['priority'].invalid && 
+                        (submitted || tacheform.controls['priority'].touched || tacheform.controls['priority'].dirty)}">
+                            <ng-option *ngFor="let key of keyP(priority)" [value]="key">
+                                {{priority[key]}}
+                            </ng-option>
+                        </ng-select>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-setting__item">
+                    <label class="form-setting__label">
+                        <span>Statut<sup>*</sup></span>
+                    </label>
+                    <div class="form-setting__input ">
+                        <ng-select [(ngModel)]="tache.status" formControlName="status" placeholder="Statut"
+                        [ngClass]="{'is-invalid': tacheform.controls['status'].invalid && 
+                        (submitted || tacheform.controls['status'].touched || tacheform.controls['status'].dirty)}">
+                            <ng-option *ngFor="let key of keyP(status)" [value]="key">
+                                {{status[key]}}
+                            </ng-option>
+                        </ng-select>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-setting__item">
+                    <label class="form-setting__label">
+                        <span>Date de début planifiée</span>
+                    </label>
+                    <div class="form-setting__input d-md-flex">
+                        <input type="date" class="form-control" [(ngModel)]="tache.dateDebutPrev"
+                            formControlName="dateDebutPrev">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-setting__item">
+                    <label class="form-setting__label">
+                        <span>Date de début</span>
+                    </label>
+                    <div class="form-setting__input d-md-flex">
+                        <input type="date" class="form-control" [(ngModel)]="tache.dateDebutReel"
+                            formControlName="dateDebutReel">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-setting__item">
+                    <label class="form-setting__label">
+                        <span>Date de fin planifiée</span>
+                    </label>
+                    <div class="form-setting__input d-md-flex">
+                        <input type="date" class="form-control" min="tache.dateDebutPrev"
+                            [(ngModel)]="tache.dateFinPrev" formControlName="dateFinPrev">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-setting__item">
+                    <label class="form-setting__label">
+                        <span>Date de fin</span>
+                    </label>
+                    <div class="form-setting__input d-md-flex">
+                        <input type="date" class="form-control" [(ngModel)]="tache.dateFinReel"
+                            formControlName="dateFinReel">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-setting__item">
+                    <label class="form-setting__label">
+                        <span>Produit<sup>*</sup></span>
+                    </label>
+                    <div class="form-setting__input d-md-flex" style="gap: 2px;">
+                        <ng-select [(ngModel)]="product" style="width: calc(100%);" placeholder="Produit"
+                            formControlName="product" (change)="selectedProduct($event)">
+                            <ng-option *ngFor=" let p of productlist" [value]="p">
+                                {{p.libelle}}
+                            </ng-option>
+                        </ng-select>
+
+                        <button (click) = "addProduct()"type="button" class="btn btn-primary">
+                            <em class="fas fa-plus-circle"></em>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-setting__item">
+                    <label class="form-setting__label">
+                        <span>OF Externe</span>
+                    </label>
+                    <div class="form-setting__input d-md-flex">
+                        <input type="text" class="form-control" [(ngModel)]="tache.ofexterne" formControlName="OF"
+                            placeholder="Of Externe">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-setting__item">
+                    <label class="form-setting__label">
+                        <span>Quantité</span>
+                    </label>
+                    <div class="form-setting__input d-md-flex">
+                        <input type="number" formControlName="quantite" min="0" class="form-control"
+                            [(ngModel)]="tache.quantite" placeholder="0">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12" *ngIf="idProjet == null">
+                <div class="form-setting__item">
+                    <label class="form-setting__label">
+                        <span>Projet</span>
+                    </label>
+                    <div class="form-setting__input d-md-flex">
+                        <ng-select [(ngModel)]="project" style="width: calc(100%);" placeholder="Recherche projet"
+                            (change)="selectedProject($event)" formControlName="projet">
+                            <ng-option *ngFor=" let project of projectList" [value]="project">
+                                [ {{project.reference}} ] : {{project.titre}}
+                            </ng-option>
+                        </ng-select>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="form-setting__item">
+                    <label class="form-setting__label">
+                        <span>Responsable</span>
+                    </label>
+                    <div class="form-setting__input d-md-flex">
+                        <ng-select [(ngModel)]="employee" style="width: calc(100%);" placeholder="Responsable"
+                            formControlName="responsible" (change)="selectedRes($event)">
+                            <ng-option *ngFor=" let employee of employeelist" [value]="employee">
+                                [{{employee.employeeNumber}}] : {{employee.firstName}} {{employee.lastName}}
+                            </ng-option>
+                        </ng-select>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="form-setting__item">
+                    <label class="form-setting__label">
+                        <span>Description</span>
+                    </label>
+                    <div class="form-setting__input d-md-flex">
+                        <angular-editor placeholder="Ici la description de votre tâche!!" formControlName="designation"
+                            [(ngModel)]="tache.designation">
+                        </angular-editor>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal footer -->
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-primary">Enregistrer</button>
+        <button type="button" (click)="activeModal.close()" class="btn btn-default">Annuler</button>
+    </div>
+</form>

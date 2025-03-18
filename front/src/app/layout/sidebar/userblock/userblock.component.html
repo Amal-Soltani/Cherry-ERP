@@ -1,0 +1,14 @@
+<div class="item user-block" *ngIf="userBlockIsVisible()">
+    <!-- User picture-->
+    <div class="user-block-picture1" style="width: 60%;margin: 0 auto;">
+        <div class="user-block-status">
+            <img class="puff-in-center img-thumbnail rounded-circle1" [src]="currentCompany?.logo" appImgFallback="assets/img/company.png"/>
+            <div class="circle bg-success circle-lg" *ngIf="!isConnected"></div>
+        </div>
+    </div>
+    <!-- Name and Job-->
+    <div class="user-block-info">
+        <span class="user-block-name">{{currentCompany?.name}}</span>
+        <span class="user-block-role" *ngIf="!isConnected">{{status}}</span>
+    </div>
+</div>

@@ -1,0 +1,15 @@
+input.ng-touched.ng-invalid {
+    outline-color: red;
+    outline-style: solid;
+    outline-width: 1px;
+    border-radius: 5px 5px 5px 5px;
+}
+
+ng-select.ng-touched.ng-invalid {
+    border: red solid 1px;
+    border-radius: 5px 5px 5px 5px;
+}
+
+.is-invalid {
+    border: 1px solid red;
+}

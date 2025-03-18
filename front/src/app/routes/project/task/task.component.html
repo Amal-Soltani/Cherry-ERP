@@ -1,0 +1,263 @@
+<div class="settings-panel panel-widget_dash-content">
+  <div class="panel-widget_inner pt-4 flex-column align-items-stretch">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="settings-panel__titre" *ngIf="idProjet == null">
+          <b>
+            <em class="fa-1x mr-2 fa fa-list-alt"></em>
+            <span> Liste des taches</span>
+          </b>
+        </div>
+        <br>
+        <div class="row">
+          <!--SEARCH-->
+          <div class="col-md-4 mt-2">
+            <div class="group">
+              <i class="fas fa-search" style="position: absolute;
+                        top: 55%;
+                        transform: translateY(-50%);
+                        left: 5%;"></i>
+              <input placeholder="Chercher" type="search" class="input" (input)="onSearchChange($event.target.value)">
+            </div>
+          </div>
+          <!---->
+          <div class="col-md-8 justify-content-end" style="text-align: end;"
+            *ngIf="AuthenticationService.hasPermission(['PJ_A','PJ_W','GL_A','ERP_A'])">
+            <button (click)="add()" type="button" class="btn btn-primary">
+              <em class="fas fa-plus-circle"></em>
+              <span class="ml-1 ">Ajouter</span>
+            </button>
+          </div>
+        </div>
+        <br />
+        <div class="row mt-3">
+          <div class="col-md-12" style="text-align: right;">
+            <span>
+              <span (click)="get('tous')" class="mr-1 badge"
+                style=" cursor: pointer; background-color: rgb(125, 34, 34); border-color: rgb(176, 175, 175);"><em
+                  class="mr-2 fas fa-bullseye"></em><b>Tous</b></span>
+              <span (click)="get('a_faire')" class="mr-1 badge badge-info" style=" cursor: pointer; "><b>À
+                  faire</b></span>
+              <span (click)="get('en_cours')" class="mr-1 badge badge-secondary" style=" cursor: pointer;"><b>En
+                  cours</b></span>
+              <span (click)="get('termine')" class="mr-1 badge badge-success"
+                style=" cursor: pointer;"><b>Terminé</b></span>
+              <span (click)="get('bloque')" class="mr-1 badge badge-warning"
+                style=" cursor: pointer;"><b>Bloqué</b></span>
+              <span (click)="get('en_validation')" class="mr-1 badge badge-primary" style=" cursor: pointer; "><b>En
+                  validation</b></span>
+              <span (click)="get('valide')" class="mr-1 badge badge-success"
+                style=" cursor: pointer;"><b>Validé</b></span>
+              <span (click)="get('rejete')" class="mr-1 badge badge-danger"
+                style=" cursor: pointer;"><b>Rejeté</b></span>
+              <span (click)="get('annule')" class="mr-1 badge badge-dark" style=" cursor: pointer;"><b>Annulé</b></span>
+            </span>
+          </div>
+        </div>
+        <table class="table cherry-table-rounded" style="border-collapse: collapse; ">
+          <thead>
+            <tr>
+              <th style="border: none;">Priorité</th>
+              <th style="border: none;">Référence</th>
+              <th style="border: none;">Titre</th>
+              <th *ngIf="idProjet == null" style="border: none;">Planification</th>
+              <th *ngIf="production == true && idProjet != null" style="border: none;">OF</th>
+              <th *ngIf="idProjet !=null" style="border: none;">Bon de commande</th>
+              <th *ngIf="idProjet !=null" style="border: none;">Date de création</th>
+              <th style="border: none;">Responsables</th>
+              <th style="border: none;">Statut</th>
+              <th *ngIf="idProjet == null" style="border: none;">Projet</th>
+              <th *ngIf="idProjet != null" style="border: none;"></th>
+            </tr>
+          </thead>
+          <tbody *ngFor="let t of tacheList">
+            <tr style="cursor: pointer;" class="accordion-toggle">
+              <td class="grid-template_th " (click)="detail(t)">
+                <em class="mr-2 fas fa-angle-down"></em>
+                <em *ngIf="t.priority === 'haute'" class="circle circle-lg bg-warning" tooltip="Haute"></em>
+                <em *ngIf="t.priority === 'tres_haute'" class="circle circle-lg bg-danger" tooltip="Trés haute"></em>
+                <em *ngIf="t.priority === 'moyenne'" class="circle circle-lg bg-primary" tooltip="Moyenne"></em>
+                <em *ngIf="t.priority === 'basse'" class="circle circle-lg bg-info" tooltip="Basse"></em>
+                <em *ngIf="t.priority === 'tres_basse'" class="circle circle-lg bg-dark" tooltip="Trés Basse"></em>
+              </td>
+              <td class="grid-template_th " (click)="detail(t)"> {{t.reference}} </td>
+              <td class="grid-template_th " (click)="detail(t)"> {{t.titre}} </td>
+              <td *ngIf="idProjet == null" class="grid-template_th " (click)="detail(t)">
+                <em class="mr-2 far fa-clock"></em>
+                {{t.dateDebutPrev | date: 'dd-MM-yyyy'}} <em class="fas fa-arrow-right"></em> {{t.dateFinPrev | date:
+                'dd-MM-yyyy'}}
+              </td>
+
+              <td *ngIf="production == true && idProjet != null" class="grid-template_th " (click)="detail(t)">
+                <div>
+                  <b>Produit : </b>
+                  <a style="color: blue; " routerLink="/mes/product/list/{{t.product.id}}/nomenclature">
+                    {{t.product.libelle}}</a>
+                  <br />
+                  <b> Type : </b> {{t.product.typeProduct}}
+                  <br />
+                  <b>Orde de fabrication Externe : </b> {{t.ofexterne}}
+                  <br />
+                  <b>Orde de fabrication Interne : </b> {{t.reference}}
+                  <br />
+                  <b>Quantité demandée : </b> {{t.quantite}}
+                  <br />
+                </div>
+                <div>
+                  <button type="button" (click)="Gamme(t)" class="mb-1 mr-1 btn-xs btn btn-outline-primary"
+                    style="font-size: 10px; padding: 7px 7px; line-height: 10px;">
+                    <em class="fas mr-2 fas fa-laptop"></em>
+                    <span> Gamme</span>
+                  </button>
+                </div>
+              </td>
+              <td *ngIf="idProjet != null" class="grid-template_th " (click)="detail(t)"> {{t.bonCmd}}</td>
+              <td *ngIf="idProjet != null" class="grid-template_th " (click)="detail(t)"> {{t.creationDate | date:
+                'dd-MM-yyyy hh:mm'}} </td>
+              <td class="grid-template_th " (click)="detail(t)">
+                <span>
+                  <a class="inline" *ngIf="t.employee != null">
+                    <div class="rounded-circle img-profil__photo24"
+                    tooltip="{{t.employee.firstName}} {{t.employee.lastName}}">{{t.employee.firstName.substring(0,1)}}
+                      {{t.employee.lastName.substring(0,1)}}</div>
+                  </a>
+                </span>
+              </td>
+              <td class="grid-template_th " (click)="detail(t)">
+                <div *ngIf="t.status === 'a_faire'">
+                  <span class="badge badge-info px-2"><b>À faire</b></span>
+                </div>
+                <div *ngIf="t.status === 'en_cours'">
+                  <span class="badge badge-secondary px-2"><b>En cours</b></span>
+                </div>
+                <div *ngIf="t.status === 'termine'">
+                  <span class="badge badge-success px-2"><b>Terminé</b></span>
+                </div>
+                <div *ngIf="t.status === 'bloque'">
+                  <span class="badge badge-warning px-2"><b>Bloqué</b></span>
+                </div>
+                <div *ngIf="t.status === 'en_validation'">
+                  <span class="badge badge-primary px-2"><b>En validation</b></span>
+                </div>
+                <div *ngIf="t.status === 'valide'">
+                  <span class="badge badge-success px-2"><b>Validé</b></span>
+                </div>
+                <div *ngIf="t.status === 'rejete'">
+                  <span class="badge badge-danger px-2"><b>Rejeté</b></span>
+                </div>
+                <div *ngIf="t.status === 'annule'">
+                  <span class="badge badge-dark px-2"><b>Annulé</b></span>
+                </div>
+              </td>
+              <td *ngIf="idProjet == null" class="grid-template_th " (click)="detail(t)">
+                <a *ngIf="t.projet != null" style="color: blue; " routerLink="/project/list/{{t.projet.id}}/task">
+                  {{t.projet.reference}}
+                </a>
+              </td>
+              <td class="grid-template_th grid-template__action" width="120"
+                *ngIf="AuthenticationService.hasPermission(['PJ_A','PJ_W','GL_A','ERP_A'])">
+                <a *ngIf="t.projet == null || t.projet.production != null" (click)="addSousTache(t)" class="link-blue"
+                  placement="left" tooltip="Ajouter Sous-Taches"><em class="fa mr-2 fas fa-plus"></em></a>
+                <a (click)="update(t)" class="link-blue" placement="left" tooltip="Modifier"><em
+                    class="fa mr-2 fas fa-pencil-alt"></em></a>
+                <a (click)="delete(t)" placement="left" tooltip="Supprimer" class="link-blue"><em
+                    class="fa mr-2 fas fa-trash"></em></a>
+                <a *ngIf="idProjet == null && t.projet.production == true" (click)="Gamme(t)" placement="left" class="mb-1 mr-1 btn-xs btn btn-outline-primary"
+                  style="font-size: 10px; padding: 7px 7px; line-height: 10px;">
+                  <em class="fas mr-2 fas fa-laptop"></em>
+                  <span> Gamme</span>
+                </a>
+              </td>
+            </tr>
+            <tr *ngIf="info == true && tache == t">
+              <td colspan="8" class="hiddenRow" style="background-color: #fff;">
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="form-setting__item">
+                      <label class="form-setting__label">
+                        <span>Description</span>
+                      </label>
+                      <div class="form-setting__input"> {{t.designation}} </div>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-setting__item">
+                      <label class="form-setting__label">
+                        <span>Date début</span>
+                      </label>
+                      <div class="form-setting__input">
+                        <span>Planifiée: </span>{{t.dateDebutPrev | date:'dd-MM-yyyy hh:mm'}}<br>
+                        <span>Réelle: </span>{{t.dateDebutReel | date:'dd-MM-yyyy hh:mm'}}
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-setting__item">
+                      <label class="form-setting__label">
+                        <span>Date fin</span>
+                      </label>
+                      <div class="form-setting__input">
+                        <span>Planifiée: </span>{{t.dateFinPrev | date:'dd-MM-yyyy hh:mm'}}<br>
+                        <span>Réelle: </span>{{t.dateFinReel | date:'dd-MM-yyyy hh:mm'}}
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-setting__item">
+                      <label class="form-setting__label">
+                        <span>Durée (heures)</span>
+                      </label>
+                      <div class="form-setting__input">
+                        <span>Estimée: {{ calculateTimeE(t) }} </span><em class="far fa-clock mr-2"></em><br>
+                        <span>Réelle: {{ calculateTimeR(t) }} </span> <em class="far fa-clock mr-2"></em>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <app-empty-data-info [ifEmpty]=ifEmpty [message]="message"></app-empty-data-info>
+        <!-- pagination -->
+        <app-spi-pagination (onGetPage)="pageSize = $event.pageSize;getPage($event.currentPage)"
+          [currentPage]="currentPage" [lastPage]="lastPage" [pageSize]="pageSize"
+          [totalElements]="totalElements"></app-spi-pagination>
+
+        <table width="100%" cellpadding="2" class="summary">
+          <tr>
+            <td style="width: 40px;">
+              <div class="circle circle-lg bg-danger"></div>
+            </td>
+            <td> Priorité la plus élevée </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="circle circle-lg bg-warning"></div>
+            </td>
+            <td> Priorité haute </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="circle circle-lg bg-primary"></div>
+            </td>
+            <td> Priorité moyenne </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="circle circle-lg bg-info"></div>
+            </td>
+            <td> Priorité faible </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="circle circle-lg bg-dark"></div>
+            </td>
+            <td> Priorité la plus basse </td>
+          </tr>
+        </table>
+      </div>
+      <br />
+    </div>
+  </div>
+</div>

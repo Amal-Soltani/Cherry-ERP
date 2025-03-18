@@ -1,0 +1,382 @@
+[
+  {
+    "Produit": "Tablettes",
+    "Pays": "Belgium",
+    "Vendeur": "Vendeur A",
+    "date": "31/01/2010",
+    "Objectifs": 116439,
+    "Chiffre_affaires": 61659,
+    "Unites_vendues": 851,
+    "Marge": 14326
+  },
+  {
+    "Produit": "Tablettes",
+    "Pays": "France",
+    "Vendeur": "Vendeur A",
+    "date": "31/01/2010",
+    "Objectifs": 185966,
+    "Chiffre_affaires": 25723,
+    "Unites_vendues": 807,
+    "Marge": 18981
+  },
+  {
+    "Produit": "Tablettes",
+    "Pays": "Germany",
+    "Vendeur": "Vendeur D",
+    "date": "31/01/2010",
+    "Objectifs": 96485,
+    "Chiffre_affaires": 15646,
+    "Unites_vendues": 595,
+    "Marge": 14963
+  },
+  {
+    "Produit": "Tablettes",
+    "Pays": "Italy",
+    "Vendeur": "Vendeur D",
+    "date": "31/01/2010",
+    "Objectifs": 114698,
+    "Chiffre_affaires": 251723,
+    "Unites_vendues": 1123,
+    "Marge": 43871
+  },
+  {
+    "Produit": "Tablettes",
+    "Pays": "Netherlands",
+    "Vendeur": "Vendeur A",
+    "date": "31/01/2010",
+    "Objectifs": 122729,
+    "Chiffre_affaires": 55920,
+    "Unites_vendues": 341,
+    "Marge": 17357
+  },
+  {
+    "Produit": "Tablettes",
+    "Pays": "Spain",
+    "Vendeur": "Vendeur B",
+    "date": "31/01/2010",
+    "Objectifs": 81993,
+    "Chiffre_affaires": 22039,
+    "Unites_vendues": 1349,
+    "Marge": 21060
+  },
+  {
+    "Produit": "Tablettes",
+    "Pays": "United Kingdom",
+    "Vendeur": "Vendeur A",
+    "date": "31/01/2010",
+    "Objectifs": 196996,
+    "Chiffre_affaires": 263176,
+    "Unites_vendues": 1275,
+    "Marge": 32751
+  },
+  {
+    "Produit": "Ordinateurs",
+    "Pays": "Belgium",
+    "Vendeur": "Vendeur C",
+    "date": "31/01/2010",
+    "Objectifs": 58300,
+    "Chiffre_affaires": 275566,
+    "Unites_vendues": 1230,
+    "Marge": 14395
+  },
+  {
+    "Produit": "Ordinateurs",
+    "Pays": "France",
+    "Vendeur": "Vendeur C",
+    "date": "31/01/2010",
+    "Objectifs": 66705,
+    "Chiffre_affaires": 111884,
+    "Unites_vendues": 232,
+    "Marge": 39910
+  },
+  {
+    "Produit": "Ordinateurs",
+    "Pays": "Germany",
+    "Vendeur": "Vendeur B",
+    "date": "31/01/2010",
+    "Objectifs": 117315,
+    "Chiffre_affaires": 134824,
+    "Unites_vendues": 341,
+    "Marge": 46118
+  },
+  {
+    "Produit": "Ordinateurs",
+    "Pays": "Italy",
+    "Vendeur": "Vendeur A",
+    "date": "31/01/2010",
+    "Objectifs": 167304,
+    "Chiffre_affaires": 41244,
+    "Unites_vendues": 469,
+    "Marge": 47518
+  },
+  {
+    "Produit": "Ordinateurs",
+    "Pays": "Netherlands",
+    "Vendeur": "Vendeur A",
+    "date": "31/01/2010",
+    "Objectifs": 97349,
+    "Chiffre_affaires": 107127,
+    "Unites_vendues": 222,
+    "Marge": 21155
+  },
+  {
+    "Produit": "Ordinateurs",
+    "Pays": "Spain",
+    "Vendeur": "Vendeur A",
+    "date": "31/01/2010",
+    "Objectifs": 202036,
+    "Chiffre_affaires": 272193,
+    "Unites_vendues": 145,
+    "Marge": 14703
+  },
+  {
+    "Produit": "Ordinateurs",
+    "Pays": "United Kingdom",
+    "Vendeur": "Vendeur A",
+    "date": "31/01/2010",
+    "Objectifs": 164263,
+    "Chiffre_affaires": 248709,
+    "Unites_vendues": 209,
+    "Marge": 16705
+  },
+  {
+    "Produit": "Smartphones",
+    "Pays": "Belgium",
+    "Vendeur": "Vendeur B",
+    "date": "31/01/2010",
+    "Objectifs": 150217,
+    "Chiffre_affaires": 252942,
+    "Unites_vendues": 167,
+    "Marge": 14326
+  },
+  {
+    "Produit": "Smartphones",
+    "Pays": "France",
+    "Vendeur": "Vendeur B",
+    "date": "31/01/2010",
+    "Objectifs": 219738,
+    "Chiffre_affaires": 234098,
+    "Unites_vendues": 375,
+    "Marge": 46486
+  },
+  {
+    "Produit": "Smartphones",
+    "Pays": "Germany",
+    "Vendeur": "Vendeur A",
+    "date": "31/01/2010",
+    "Objectifs": 150123,
+    "Chiffre_affaires": 235953,
+    "Unites_vendues": 100,
+    "Marge": 20000
+  },
+  {
+    "Produit": "Smartphones",
+    "Pays": "Italy",
+    "Vendeur": "Vendeur B",
+    "date": "31/01/2010",
+    "Objectifs": 161274,
+    "Chiffre_affaires": 266259,
+    "Unites_vendues": 1167,
+    "Marge": 43871
+  },
+  {
+    "Produit": "Smartphones",
+    "Pays": "Netherlands",
+    "Vendeur": "Vendeur C",
+    "date": "31/01/2010",
+    "Objectifs": 197975,
+    "Chiffre_affaires": 249619,
+    "Unites_vendues": 438,
+    "Marge": 10356
+  },
+  {
+    "Produit": "Smartphones",
+    "Pays": "Spain",
+    "Vendeur": "Vendeur A",
+    "date": "31/01/2010",
+    "Objectifs": 157453,
+    "Chiffre_affaires": 257239,
+    "Unites_vendues": 869,
+    "Marge": 21060
+  },
+  {
+    "Produit": "Smartphones",
+    "Pays": "United Kingdom",
+    "Vendeur": "Vendeur A",
+    "date": "31/01/2010",
+    "Objectifs": 211941,
+    "Chiffre_affaires": 234384,
+    "Unites_vendues": 930,
+    "Marge": 32751
+  },
+  {
+    "Produit": "TVs",
+    "Pays": "Belgium",
+    "Vendeur": "Vendeur A",
+    "date": "31/01/2010",
+    "Objectifs": 159648,
+    "Chiffre_affaires": 273132,
+    "Unites_vendues": 703,
+    "Marge": 17273
+  },
+  {
+    "Produit": "TVs",
+    "Pays": "France",
+    "Vendeur": "Vendeur D",
+    "date": "31/01/2010",
+    "Objectifs": 187526,
+    "Chiffre_affaires": 272083,
+    "Unites_vendues": 692,
+    "Marge": 23757
+  },
+  {
+    "Produit": "TVs",
+    "Pays": "Italy",
+    "Vendeur": "Vendeur A",
+    "date": "31/01/2010",
+    "Objectifs": 198046,
+    "Chiffre_affaires": 52856,
+    "Unites_vendues": 654,
+    "Marge": 43892
+  },
+  {
+    "Produit": "TVs",
+    "Pays": "Netherlands",
+    "Vendeur": "Vendeur C",
+    "date": "31/01/2010",
+    "Objectifs": 181047,
+    "Chiffre_affaires": 272690,
+    "Unites_vendues": 902,
+    "Marge": 14705
+  },
+  {
+    "Produit": "TVs",
+    "Pays": "Spain",
+    "Vendeur": "Vendeur A",
+    "date": "31/01/2010",
+    "Objectifs": 211833,
+    "Chiffre_affaires": 170982,
+    "Unites_vendues": 594,
+    "Marge": 31229
+  },
+  {
+    "Produit": "TVs",
+    "Pays": "United Kingdom",
+    "Vendeur": "Vendeur B",
+    "date": "31/01/2010",
+    "Objectifs": 211972,
+    "Chiffre_affaires": 269961,
+    "Unites_vendues": 618,
+    "Marge": 19960
+  },
+  {
+    "Produit": "Tablettes",
+    "Pays": "Belgium",
+    "Vendeur": "Vendeur D",
+    "date": "01/02/2010",
+    "Objectifs": 161351,
+    "Chiffre_affaires": 55553,
+    "Unites_vendues": 916,
+    "Marge": 38467
+  },
+  {
+    "Produit": "Tablettes",
+    "Pays": "France",
+    "Vendeur": "Vendeur A",
+    "date": "01/02/2010",
+    "Objectifs": 55941,
+    "Chiffre_affaires": 51593,
+    "Unites_vendues": 807,
+    "Marge": 18981
+  },
+  {
+    "Produit": "Tablettes",
+    "Pays": "Germany",
+    "Vendeur": "Vendeur D",
+    "date": "01/02/2010",
+    "Objectifs": 113872,
+    "Chiffre_affaires": 31289,
+    "Unites_vendues": 640,
+    "Marge": 15953
+  },
+  {
+    "Produit": "Tablettes",
+    "Pays": "Italy",
+    "Vendeur": "Vendeur D",
+    "date": "01/02/2010",
+    "Objectifs": 98305,
+    "Chiffre_affaires": 335800,
+    "Unites_vendues": 1242,
+    "Marge": 14292
+  },
+  {
+    "Produit": "Tablettes",
+    "Pays": "Netherlands",
+    "Vendeur": "Vendeur D",
+    "date": "01/02/2010",
+    "Objectifs": 197162,
+    "Chiffre_affaires": 45912,
+    "Unites_vendues": 341,
+    "Marge": 12350
+  },
+  {
+    "Produit": "Tablettes",
+    "Pays": "Spain",
+    "Vendeur": "Vendeur B",
+    "date": "01/02/2010",
+    "Objectifs": 158460,
+    "Chiffre_affaires": 30032,
+    "Unites_vendues": 1214,
+    "Marge": 24638
+  },
+  {
+    "Produit": "Tablettes",
+    "Pays": "United Kingdom",
+    "Vendeur": "Vendeur A",
+    "date": "01/02/2010",
+    "Objectifs": 120226,
+    "Chiffre_affaires": 263582,
+    "Unites_vendues": 1262,
+    "Marge": 42675
+  },
+  {
+    "Produit": "Ordinateurs",
+    "Pays": "Belgium",
+    "Vendeur": "Vendeur C",
+    "date": "01/02/2010",
+    "Objectifs": 137240,
+    "Chiffre_affaires": 246705,
+    "Unites_vendues": 1066,
+    "Marge": 45724
+  },
+  {
+    "Produit": "Ordinateurs",
+    "Pays": "France",
+    "Vendeur": "Vendeur C",
+    "date": "01/02/2010",
+    "Objectifs": 76611,
+    "Chiffre_affaires": 196491,
+    "Unites_vendues": 671,
+    "Marge": 37107
+  },
+  {
+    "Produit": "Ordinateurs",
+    "Pays": "Germany",
+    "Vendeur": "Vendeur C",
+    "date": "01/02/2010",
+    "Objectifs": 181758,
+    "Chiffre_affaires": 199030,
+    "Unites_vendues": 142,
+    "Marge": 32279
+  },
+  {
+    "Produit": "Ordinateurs",
+    "Pays": "Italy",
+    "Vendeur": "Vendeur C",
+    "date": "01/02/2010",
+    "Objectifs": 167304,
+    "Chiffre_affaires": 48717,
+    "Unites_vendues": 469,
+    "Marge": 47518
+  }
+]

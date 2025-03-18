@@ -1,0 +1,42 @@
+<div class="content-app-admin">
+  <div class="app_dashboard container_app">
+
+    <div class="breadcrumb-page panel-widget_dash">
+      <div class="panel-widget_inner">
+        <div class="row w-100 align-items-center">
+          <div class="col-md-6">
+            <h1 class="page__titre-h1">
+              <em class="fas fa-user-shield mr-1"></em><span i18n>Utilisateurs et sécurité</span>
+            </h1>
+          </div>
+          <div class="col-md-6"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="main-page settings-content">
+      <div class="panel-widget_dash">
+        <div class="menu-tabs">
+          <div class="panel-widget_inner">
+            <a (click)="navigateTo('/settings-security/employees-list', 'employees')"
+                class="menu-tabs__item">
+              <em class="fa-users fas mr-1"></em> <span class="no_display_onmobile" i18n>Employées</span></a>
+            <a (click)="navigateTo('/settings-security/users', 'users')"
+                class="menu-tabs__item">
+              <em class="fa-user fas mr-1"></em> <span class="no_display_onmobile" i18n>Utilisateurs</span>
+            </a>
+            <a (click)="navigateTo('/settings-security/communauty', 'communauty')"
+              class="menu-tabs__item">
+              <em class="mr-1 fab fa-first-order"></em> <span class="no_display_onmobile" i18n>Communautés</span></a>
+            <a (click)="navigateTo('/settings-security/external', 'external')"
+              class="menu-tabs__item">
+              <em class="fas fa-building mr-1"></em> <span class="no_display_onmobile" i18n>Partenaires externes</span>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>

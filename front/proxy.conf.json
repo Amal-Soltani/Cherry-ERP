@@ -1,0 +1,8 @@
+{
+  "/cherry-hse/*": {
+    "target": "http://localhost:8888",
+    "secure": false,
+    "logLevel": "error",
+    "changeOrigin": true
+  }
+}

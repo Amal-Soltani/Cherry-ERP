@@ -1,0 +1,273 @@
+<div>
+    <div class="settings-panel">
+        <div class="panel-widget_inner pt-4 flex-column align-items-stretch">
+            <div class="settings-panel__titre"> Tableau de bord </div>
+            <div class="row">
+                <div class="col-xl-3">
+                    <div class="card border-0">
+                        <div class="row row-flush">
+                            <div style="color: #fff !important;"
+                                class="align-items-center bg-blue col-4 d-flex justify-content-center rounded-left text-center">
+                                <em class="fa-2x fa-box fas"></em>
+                            </div>
+                            <div class="col-8" style="border: 1px solid #cccccc42; border-radius: 5px;">
+                                <div class="card-body text-center">
+                                    <h6 class="mt-0">{{projects.length}}</h6>
+                                    <p class="mb-0 text-muted">PROJETS</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3">
+                    <div class="card border-0">
+                        <div class="row row-flush">
+                            <div style="color: #fff !important;"
+                                class="align-items-center bg-grey col-4 d-flex justify-content-center rounded-left text-center">
+                                <em class="fa-2x fa-battery-empty fas"></em>
+                            </div>
+                            <div class="col-8" style="border: 1px solid #cccccc42; border-radius: 5px;">
+                                <div class="card-body text-center">
+                                    <h6 class="mt-0">{{brouillon}}</h6>
+                                    <p class="mb-0 text-muted">BROUILLON</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3">
+                    <div class="card border-0">
+                        <div class="row row-flush">
+                            <div style="color: #fff !important;"
+                                class="align-items-center bg-warning col-4 d-flex justify-content-center rounded-left text-center">
+                                <em class="fa-2x fa-battery-half fas"></em>
+                            </div>
+                            <div class="col-8" style="border: 1px solid #cccccc42; border-radius: 5px;">
+                                <div class="card-body text-center">
+                                    <h6 class="mt-0">{{enCours}}</h6>
+                                    <p class="mb-0 text-muted">EN COURS</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3">
+                    <div class="card border-0">
+                        <div class="row row-flush">
+                            <div style="color: #fff !important;"
+                                class="align-items-center bg-greenfluo col-4 d-flex justify-content-center rounded-left text-center">
+                                <em class="fa-2x fa-battery-full fas"></em>
+                            </div>
+                            <div class="col-8" style="border: 1px solid #cccccc42; border-radius: 5px;">
+                                <div class="card-body text-center">
+                                    <h6 class="mt-0">{{termine}}</h6>
+                                    <p class="mb-0 text-muted">TERMINÉS</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!--select project-->
+            </div><br>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-setting__item">
+                        <label class="form-setting__label">Projet</label>
+                        <div class="form-setting__input">
+                            <div>
+                                <ng-select placeholder="-- Tous Les Projets --"
+                                    class="ng-select-searchable ng-select-clearable ng-select ng-select-single ng-valid ng-touched ng-dirty ng-select-bottom"
+                                    [(ngModel)]="projet" (change)="selectedValue($event)"
+                                    [items]="projects"
+                                    bindLabel="reference"
+                                    bindValue="id">
+                                    <ng-template ng-option-tmp let-item="item">
+                                        <div>
+                                          <strong>[{{item.reference}}] : {{item.titre}}</strong>
+                                          <p class="mb-1" style="text-align: end;">
+                                            <b>Client: </b>[{{item.employee.employeeNumber}}]  {{item.employee.lastName}} {{item.employee.firstName}}
+                                          </p>
+                                        </div>
+                                      </ng-template>
+                                    
+                                      <ng-option [value]="null">
+                                        <strong>-- Tous Les Projets --</strong>
+                                      </ng-option>
+                                </ng-select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div><br>
+
+
+             <!--TRs-->
+            <div class="list-group mb-2 mt-2">
+                <a class="list-group-item">
+                    <table class="wd-wide">
+                        <tbody>
+                            <tr>
+                                <td class="wd-xs no_display_onmobile">
+                                    <div class="px-2"><em class="fa-2x mr-2 fas fa-chart-line"></em></div>
+                                </td>
+                                <td>
+                                    <div class="px-2">
+                                        <h4 class="mb-2"><span>TRS : 
+                                            </span>{{TRS}} %</h4><small class="text-muted">Taux
+                                            de Disponibilité * Taux de Performance * Taux de Qualité</small>
+                                    </div>
+                                </td>
+                                <td class="wd-sm d-none d-lg-table-cell">
+                                    <div class="px-2">
+                                        <p class="m-0">Taux de Disponibilité</p><small
+                                            class="text-muted">{{diponibility}} %</small>
+                                    </div>
+                                </td>
+                                <td class="wd-sm d-none d-lg-table-cell">
+                                    <div class="px-2">
+                                        <p class="m-0">Taux de Performance</p><small class="text-muted">{{performance}}
+                                            %</small>
+                                    </div>
+                                </td>
+                                <td class="wd-sm d-none d-lg-table-cell">
+                                    <div class="px-2">
+                                        <p class="m-0">Taux de Qualité</p><small class="text-muted">{{quality}}
+                                            %</small>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </a>
+            </div><br>
+
+            
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card card-default">
+                        <div class="card-header"><b> % TRS par Phase</b>
+                            <div class="float-right"></div>
+                        </div>
+                        <div style="height: 370px; overflow-y: auto;">
+                            <table
+                                class="display nowrap dataTable no-footer dtr-inline collapsed grid-template table-striped">
+                                <thead>
+                                    <tr>
+                                        <th class="grid-template_th">Phase</th>
+                                        <th class="grid-template_th no_display_onmobile">% Disponibilité</th>
+                                        <th class="grid-template_th no_display_onmobile">% Peformance</th>
+                                        <th class="grid-template_th no_display_onmobile">% Qualité</th>
+                                        <th class="grid-template_th">TRS</th>
+                                    </tr>
+                                </thead>
+                                <tbody *ngFor="let p of phases">
+                                    <tr>
+                                        <td><b>{{p.phase}}</b></td>
+                                        <td class="no_display_onmobile">{{p.tauxDisponibilite}} % </td>
+                                        <td class="no_display_onmobile">{{p.tauxPerformance}} % </td>
+                                        <td class="no_display_onmobile">{{p.tauxQualite}} % </td>
+                                        <td>{{p.trs}} % </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card card-default">
+                        <div class="card-header"><b> % TRS par opérateur</b>
+                            <div class="float-right"></div>
+                        </div>
+                        <div style="height: 370px; overflow-y: auto;">
+                            <table
+                                class="display nowrap dataTable no-footer dtr-inline collapsed grid-template table-striped">
+                                <thead>
+                                    <tr>
+                                        <th class="grid-template_th">Opérateur</th>
+                                        <th class="grid-template_th no_display_onmobile">% Disponibilité</th>
+                                        <th class="grid-template_th no_display_onmobile">% Performance</th>
+                                        <th class="grid-template_th no_display_onmobile">% Qualité</th>
+                                        <th class="grid-template_th">TRS</th>
+                                    </tr>
+                                </thead>
+                                <tbody *ngFor="let emp of employees">
+                                    <tr>
+                                        <td><b>[{{emp.employeeNumber}}]{{emp.firstName}} {{emp.lastName}}</b></td>
+                                        <td class="no_display_onmobile">{{emp.tauxDisponibilite}} % </td>
+                                        <td class="no_display_onmobile">{{emp.tauxPerformance}} % </td>
+                                        <td class="no_display_onmobile">{{emp.tauxQualite}} % </td>
+                                        <td>{{emp.trs}} % </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card card-default">
+                        <div class="card-header"><b> % TRS par machine</b>
+                            <div class="float-right"></div>
+                        </div>
+                        <div style="height: 370px; overflow-y: auto;">
+                            <table
+                                class="display nowrap dataTable no-footer dtr-inline collapsed grid-template table-striped">
+                                <thead>
+                                    <tr>
+                                        <th class="grid-template_th">Machine</th>
+                                        <th class="grid-template_th no_display_onmobile">% Disponibilité</th>
+                                        <th class="grid-template_th no_display_onmobile">% Performance</th>
+                                        <th class="grid-template_th no_display_onmobile">% Qualité</th>
+                                        <th class="grid-template_th">TRS</th>
+                                    </tr>
+                                </thead>
+                                <tbody *ngFor="let equip of equipments">
+                                    <tr>
+                                        <td><b>{{equip.equipment}}</b></td>
+                                        <td class="no_display_onmobile">{{equip.tauxDisponibilite}} % </td>
+                                        <td class="no_display_onmobile">{{equip.tauxPerformance}} % </td>
+                                        <td class="no_display_onmobile">{{equip.tauxQualite}} % </td>
+                                        <td>{{equip.trs}} % </td>
+                                    </tr>
+                                    
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card card-default">
+                        <div class="card-header"><b> % TRS par ligne de
+                                production</b>
+                            <div class="float-right"></div>
+                        </div>
+                        <div style="height: 370px; overflow-y: auto;">
+                            <table
+                                class="display nowrap dataTable no-footer dtr-inline collapsed grid-template table-striped">
+                                <thead>
+                                    <tr>
+                                        <th class="grid-template_th">ligne de production</th>
+                                        <th class="grid-template_th no_display_onmobile">% Disponibilité</th>
+                                        <th class="grid-template_th no_display_onmobile">% Performance</th>
+                                        <th class="grid-template_th no_display_onmobile">% Qualité</th>
+                                        <th class="grid-template_th">TRS</th>
+                                    </tr>
+                                </thead>
+                                <tbody *ngFor="let ligne of lignes">
+                                    <tr>
+                                        <td><b>{{ligne.name}}</b></td>
+                                        <td class="no_display_onmobile">{{ligne.tauxDisponibilite}} % </td>
+                                        <td class="no_display_onmobile">{{ligne.tauxPerformance}} % </td>
+                                        <td class="no_display_onmobile">{{ligne.tauxQualite}} % </td>
+                                        <td>{{ligne.trs}} % </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

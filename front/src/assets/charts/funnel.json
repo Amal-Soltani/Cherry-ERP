@@ -1,0 +1,81 @@
+{
+  "title": {
+    "text": "",
+    "subtext": ""
+  },
+  "tooltip": {
+    "show": true,
+    "trigger": "item"
+  },
+  "legend": {
+    "top": 25,
+    "show": true,
+    "type": "scroll",
+    "data": []
+  },
+  "grid": {
+    "left": 20,
+    "right": 75,
+    "top": 75,
+    "bottom": 60,
+    "containLabel": true
+  },
+  "toolbox": {
+    "show": true,
+    "showTitle": true,
+    "feature": {
+      "saveAsImage": {
+        "show": true,
+        "title": "save as image",
+        "lang": [
+          "Right-click to save as picture"
+        ]
+      }
+    },
+    "tooltip": {
+      "show": false,
+      "backgroundColor": "#222",
+      "textStyle": {
+        "fontSize": 12
+      },
+      "extraCssText": "box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);"
+    }
+  },
+  "series": [
+    {
+      "name": "",
+      "type": "funnel",
+      "left": "10%",
+      "top": 70,
+      "bottom": 30,
+      "width": "80%",
+      "minSize": "0%",
+      "maxSize": "100%",
+      "sort": "descending",
+      "gap": 2,
+      "label": {
+        "show": true,
+        "position": "inside"
+      },
+      "labelLine": {
+        "length": 10,
+        "lineStyle": {
+          "width": 1,
+          "type": "solid"
+        }
+      },
+      "itemStyle": {
+        "borderColor": "#fff",
+        "borderWidth": 1
+      },
+      "emphasis": {
+        "label": {
+          "fontSize": 20
+        }
+      },
+      "data": [],
+      "idValue": "",
+      "idName": ""
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "graphic": [
+    {
+      "type": "image",
+      "id": "logo",
+      "left": "center",
+      "top": "center",
+      "draggable": true,
+      "bounding": "raw",
+      "origin": [
+        75,
+        75
+      ],
+      "style": {
+        "image": "https://www.spidash.com/assets/img/logo.svg",
+        "width": 245,
+        "height": 70,
+        "opacity": 0.9
+      }
+    }
+  ]
+}

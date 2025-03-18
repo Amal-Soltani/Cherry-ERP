@@ -1,0 +1,100 @@
+<div class="menu-tabs">
+    <div class="panel-widget_inner">
+        <a class="menu-tabs__item" [class.is-active]="activeTab === 'tous'"
+        (click)="setActiveTab('tous')"> Tous </a>
+        <a class="menu-tabs__item" [class.is-active]="activeTab === 'CONSTRUIRE'" 
+        (click)="setActiveTab('CONSTRUIRE')"> Produit à construire (Atelier) </a>
+        <a class="menu-tabs__item" [class.is-active]="activeTab === 'ASSEMBLAGE'" 
+        (click)="setActiveTab('ASSEMBLAGE')"> Produit assemblé (Produit composé) </a>
+        <a class="menu-tabs__item" [class.is-active]="activeTab === 'MATERIEL'" 
+        (click)="setActiveTab('MATERIEL')"> Matériel </a>
+    </div>
+</div>
+<div class="settings-panel panel-widget_dash-content">
+    <div class="panel-widget_inner pt-4 flex-column align-items-stretch">
+        <div class="settings-panel__titre">
+            <span>Liste des produits</span>
+            <br>
+            <br>
+        </div>
+        <div class="row ">
+            <div class="col-md-12">
+                <div class="row">
+                     <!--SEARCH-->
+                <div class="col-md-4 mt-2">
+                    <div class="group">
+                                <i class="fas fa-search" style="position: absolute;
+                                top: 55%;
+                                transform: translateY(-50%);
+                                left: 5%;"></i>
+                                <input placeholder="Chercher" type="search" class="input"
+                                    (input)="onSearchChange($event.target.value)">
+                    </div>
+                </div>
+                <!---->
+                    <div *ngIf="AuthenticationService.hasPermission(['PJ_A','PRJ_W','GL_A','ERP_A'])"
+                    class="col-md-8 justify-content-end" style="text-align: end;">
+                        <button (click)="add()" type="button" class="btn btn-primary">
+                            <em class="fas fa-plus-circle"></em>
+                            <span class="ml-1 ">Ajouter</span>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <br />
+        <div class="row ">
+            <div class=" col-md-12">
+                <table class="display nowrap dataTable no-footer dtr-inline collapsed grid-template
+                table-striped">
+                    <thead>
+                        <tr>
+                            <th class="grid-template_th">Libelle</th>
+                            <th class="grid-template_th">Type</th>
+                            <th class="grid-template_th">Matière</th>
+                            <th class="grid-template_th">Unité de mesure </th>
+                            <th class="grid-template_th">Date de modification </th>
+
+                            <th class="grid-template_th" style=" width: 70px;"></th>
+                        </tr>
+                    </thead>
+                    <tbody *ngFor="let product of productList ; let i = index">
+                        <tr>
+                            <td class="no_display_onmobile "> {{product.libelle}} </td>
+                            <td *ngIf="product.typeProduct === 'ASSEMBLAGE'" class="no_display_onmobile "> Produit
+                                Assemblé </td>
+                            <td *ngIf="product.typeProduct === 'CONSTRUIRE'" class="no_display_onmobile "> Produit à
+                                construire </td>
+                            <td *ngIf="product.typeProduct === 'MATERIEL'" class="no_display_onmobile "> Matériel </td>
+                            <td class="no_display_onmobile "> {{product.matiere}} </td>
+                            <td class="no_display_onmobile "> {{product.unitMeasurement}} </td>
+                            <td class="no_display_onmobile "> {{product.modificationDate | date: 'dd-mm-yyy hh:mm'}}
+                            </td>
+                            <td 
+                            class="no_display_onmobile" width="120">
+                                <a *ngIf="AuthenticationService.hasPermission(['PJ_A','PRJ_W','GL_A','ERP_A'])"
+                                (click)="update(product)" class="link-blue" placement="left" tooltip="Modifier">
+                                    <em class="fa mr-2 fas fa-pencil-alt"></em></a>
+                                <a *ngIf="AuthenticationService.hasPermission(['PJ_A','PRJ_W','GL_A','ERP_A','PR_M_R', 'PR_A_R'])"
+                                routerLink="/mes/product/list/{{product.id}}/nomenclature" placement="left"
+                                    tooltip="Afficher" class="link-blue">
+                                    <em class="fa mr-2 fas fa-eye"></em></a>
+                                <a *ngIf="AuthenticationService.hasPermission(['PJ_A','PRJ_W','GL_A','ERP_A'])"
+                                (click)="delete(product)" placement="left" tooltip="Supprimer" class="link-blue">
+                                    <em class="fa mr-2 fas fa-trash"></em></a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="col-md-12">
+                </div>
+                <app-empty-data-info [ifEmpty]=ifEmpty [message]="message"></app-empty-data-info>
+                <!-- pagination -->
+                <app-spi-pagination (onGetPage)="pageSize = $event.pageSize;getPage($event.currentPage)"
+                [currentPage]="currentPage" [lastPage]="lastPage" [pageSize]="pageSize"
+                [totalElements]="totalElements"></app-spi-pagination>
+            </div>
+        </div>
+    </div>
+</div>

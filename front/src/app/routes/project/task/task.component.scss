@@ -1,0 +1,107 @@
+table {
+    display: table;
+    border-collapse: separate;
+    box-sizing: border-box;
+    text-indent: initial;
+    border-spacing: 2px;
+    border-color: gray;
+}
+
+.cherry-table-rounded {
+    border: none;
+}
+
+.table {
+    background-color: #fff!important;
+    width: 100%;
+    margin-bottom: 1rem;
+    color: #656565;
+}
+
+table .table .cherry-table-rounded thead {
+    display: table-header-group;
+    vertical-align: middle;
+    border-color: inherit;
+}
+
+table .table .cherry-table-rounded tr {
+    display: table-row;
+    vertical-align: inherit;
+    border-color: inherit;
+}
+
+table .table .cherry-table-rounded tbody { 
+    display: table-row-group;
+    vertical-align: middle;
+    border-color: inherit;
+}
+
+table .table .cherry-table-rounded .accordion-toggle{
+    display: table-row;
+    vertical-align: inherit;
+    border-color: inherit;
+}
+
+.cherry-table-rounded tbody tr td:first-child {
+    border-radius: 10px 0 0 10px;
+}
+
+.cherry-table-rounded tbody td {
+    border: none;
+    border-top: solid 4px #ffffff;
+    background-color: #f6f6f6;
+    padding: 10px;
+    line-height: 40px;
+}
+
+tr .accordion-toggle td {
+    display: table-cell;
+    word-break: break-all;
+    vertical-align: inherit;
+}
+
+.cherry-table-rounded tbody tr td:last-child {
+    border-radius: 0 10px 10px 0;
+}
+
+.hiddenRow {
+    padding: 0 4px!important;
+    background-color: #eee;
+    font-size: 13px;
+}
+
+.p-3 {
+    padding: 1rem!important;
+}
+
+td .hiddenRow div {
+    display: block;
+}
+
+.group {
+    display: flex;
+    line-height: 28px;
+    align-items: center;
+    position: relative;
+    max-width: 250px;
+  }
+  
+  .input {
+    height: 33px;
+    line-height: 28px;
+    padding: 0 1rem;
+    width: 100%;
+    padding-left: 2.5rem;
+    border: 2px solid transparent;
+    border-radius: 8px;
+    outline: none;
+    background-color: #e6effa;
+    color: #0d0c22;
+    box-shadow: 0 0 5px #BFDBFE, 0 0 0 5px #f5f5f5eb;
+    transition: .3s ease;
+  }
+  
+  .input::placeholder {
+    color: #777;
+  }
+

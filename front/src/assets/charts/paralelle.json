@@ -1,0 +1,325 @@
+{
+  "title": {
+    "text": "OEM",
+    "subtext": "Electric Bike Items"
+  },
+  "legend": {
+    "data": [
+      "Drive Unit",
+      "Battery",
+      "Derailleur",
+      "Cassette",
+      "Stem",
+      "Geam shifter",
+      "Brake",
+      "Saddle",
+      "Frame"
+    ],
+    "bottom": 10
+  },
+  "parallelAxis": [
+    {
+      "dim": 0,
+      "name": "Parts ID",
+      "type": "category",
+      "data": [
+        "Drive Unit",
+        "Battery",
+        "Derailleur",
+        "Cassette",
+        "Stem",
+        "Geam shifter",
+        "Brake",
+        "Saddle",
+        "Frame"
+      ]
+    },
+    {
+      "dim": 1,
+      "name": "Quantity",
+      "type": "category",
+      "data": [
+        "7000 - 10000",
+        "6000 - 7000",
+        "5000 - 6000",
+        "4000 - 5000",
+        "3000 - 4000",
+        "2000 - 3000",
+        "1000 - 2000",
+        "500 - 1000",
+        "200 - 500",
+        "100 - 200"
+      ]
+    },
+    {
+      "dim": 2,
+      "name": "OEM",
+      "type": "category",
+      "data": [
+        "Compagnolo",
+        "SRAM",
+        "Globeride",
+        "Shimano",
+        "Eurocycle"
+      ]
+    },
+    {
+      "dim": 3,
+      "name": "Usine",
+      "type": "category",
+      "data": [
+        "South Africa",
+        "KSA",
+        "Malysia",
+        "Japon",
+        "Germany",
+        "Polyne"
+      ]
+    },
+    {
+      "dim": 4,
+      "name": "Modèle",
+      "type": "category",
+      "data": [
+        "BMX",
+        "Trakking",
+        "Urbain",
+        "E.Bike",
+        "VTT",
+        "Gravel/Aventure",
+        "Route"
+      ]
+    },
+    {
+      "dim": 5,
+      "name": "Client",
+      "type": "category",
+      "data": [
+        "Pedge",
+        "Trek",
+        "Wallerang",
+        "carratex",
+        "Merida"
+      ]
+    },
+    {
+      "dim": 6,
+      "name": "",
+      "type": "value",
+      "min": 0,
+      "max": 1000
+    }
+  ],
+  "parallel": {
+    "gridIndex": 0,
+    "left": "5%",
+    "right": "13%",
+    "bottom": 60,
+    "top": "20%",
+    "parallelAxisDefault": {
+      "type": "value",
+      "nameLocation": "end",
+      "nameGap": 20
+    }
+  },
+  "series": [
+    {
+      "name": "Drive Unit",
+      "type": "parallel",
+      "lineStyle": {
+        "normal": {
+          "width": 1,
+          "opacity": 1
+        }
+      },
+      "smooth": true,
+      "data": [
+        [
+          "Drive Unit",
+          "2000 - 3000",
+          "Eurocycle",
+          "Malysia",
+          "E.Bike",
+          "Merida",
+          800
+        ]
+      ]
+    },
+    {
+      "name": "Battery",
+      "type": "parallel",
+      "lineStyle": {
+        "normal": {
+          "width": 1,
+          "opacity": 1
+        }
+      },
+      "smooth": true,
+      "data": [
+        [
+          "Battery",
+          "500 - 1000",
+          "SRAM",
+          "Malysia",
+          "E.Bike",
+          "Wallerang",
+          150
+        ]
+      ]
+    },
+    {
+      "name": "Derailleur",
+      "type": "parallel",
+      "lineStyle": {
+        "normal": {
+          "width": 1,
+          "opacity": 1
+        }
+      },
+      "smooth": true,
+      "data": [
+        [
+          "Derailleur",
+          "500 - 1000",
+          "Eurocycle",
+          "KSA",
+          "VTT",
+          "Pedge",
+          400
+        ]
+      ]
+    },
+    {
+      "name": "Cassette",
+      "type": "parallel",
+      "lineStyle": {
+        "normal": {
+          "width": 1,
+          "opacity": 1
+        }
+      },
+      "smooth": true,
+      "data": [
+        [
+          "Cassette",
+          "1000 - 2000",
+          "SRAM",
+          "Germany",
+          "VTT",
+          "Trek",
+          250
+        ]
+      ]
+    },
+    {
+      "name": "Stem",
+      "type": "parallel",
+      "lineStyle": {
+        "normal": {
+          "width": 1,
+          "opacity": 1
+        }
+      },
+      "smooth": true,
+      "data": [
+        [
+          "Stem",
+          "700 - 10000",
+          "Shimano",
+          "Malysia",
+          "E.Bike",
+          "carratex",
+          450
+        ]
+      ]
+    },
+    {
+      "name": "Geam shifter",
+      "type": "parallel",
+      "lineStyle": {
+        "normal": {
+          "width": 1,
+          "opacity": 1
+        }
+      },
+      "smooth": true,
+      "data": [
+        [
+          "Geam shifter",
+          "500 - 1000",
+          "Shimano",
+          "Malysia",
+          "E.Bike",
+          "carratex",
+          660
+        ]
+      ]
+    },
+    {
+      "name": "Brake",
+      "type": "parallel",
+      "lineStyle": {
+        "normal": {
+          "width": 1,
+          "opacity": 1
+        }
+      },
+      "smooth": true,
+      "data": [
+        [
+          "Brake",
+          "500 - 1000",
+          "SRAM",
+          "Malysia",
+          "E.Bike",
+          "carratex",
+          259
+        ]
+      ]
+    },
+    {
+      "name": "Saddle",
+      "type": "parallel",
+      "lineStyle": {
+        "normal": {
+          "width": 1,
+          "opacity": 1
+        }
+      },
+      "smooth": true,
+      "data": [
+        [
+          "Saddle",
+          "4000 - 5000",
+          "SRAM",
+          "Japon",
+          "E.Bike",
+          "carratex",
+          150
+        ]
+      ]
+    },
+    {
+      "name": "Frame",
+      "type": "parallel",
+      "lineStyle": {
+        "normal": {
+          "width": 1,
+          "opacity": 1
+        }
+      },
+      "smooth": true,
+      "data": [
+        [
+          "Frame",
+          "100 - 200",
+          "SRAM",
+          "South Africa",
+          "E.Bike",
+          "carratex",
+          360
+        ]
+      ]
+    }
+  ]
+}

@@ -1,0 +1,122 @@
+<form [formGroup]="equipmentform" (ngSubmit)="onSubmit()">
+    <div class="modal-header">
+        <h4 class="modal-title pull-left">Équipement</h4>
+        <button type="button" aria-label="Fermer" class="close pull-right" (click)="activeModal.close()">
+            <span aria-hidden="true">×</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-setting__item">
+                    <label class="form-setting__label">
+                        <span>Categorie</span>
+                        <sup>*</sup>
+                    </label>
+                    <div class="form-setting__input">
+                        <ng-select formControlName="category" [(ngModel)]="equipment.categoryEnum"
+                            placeholder="Catégories" [ngClass]="{'is-invalid': equipmentform.controls['category'].invalid && 
+                            (submitted || equipmentform.controls['category'].touched || equipmentform.controls['category'].dirty)}">
+                            <ng-option *ngFor="let key of keysCat(catEnum)" [value]="key">
+                                {{catEnum[key]}}
+                            </ng-option>
+                        </ng-select>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-setting__item">
+                    <label class="form-setting__label">
+                        <span>Référence</span>
+                        <sup>*</sup>
+                    </label>
+                    <div class="form-setting__input d-md-flex">
+                        <input [(ngModel)]="equipment.reference" type="text" formControlName="reference"
+                            placeholder="Référence" class="form-control" [ngClass]="{'is-invalid': equipmentform.controls['reference'].invalid && 
+                            (submitted || equipmentform.controls['reference'].touched || equipmentform.controls['reference'].dirty)}">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-setting__item">
+                    <label class="form-setting__label">Nom</label>
+                    <div class="form-setting__input d-md-flex">
+                        <input [(ngModel)]="equipment.name" type="text" formControlName="name" placeholder="Nom"
+                            class="form-control">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-setting__item">
+                    <label class="form-setting__label">
+                        <span>Emplacement</span>
+                    </label>
+                    <div class="form-setting__input d-md-flex">
+                        <input [(ngModel)]="equipment.emplacement" type="text" formControlName="position"
+                            placeholder="Emplacement" class="form-control ">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-setting__item">
+                    <label class="form-setting__label">
+                        <span>Date achat</span>
+                    </label>
+                    <div class="form-setting__input d-md-flex">
+                        <input [(ngModel)]="equipment.purchaseDate" type="date" formControlName="dateAchat"
+                            placeholder="Date achat" class="form-control">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-setting__item">
+                    <label class="form-setting__label">
+                        <span>Prix achat</span>
+                    </label>
+                    <div class="form-setting__input d-md-flex">
+                        <input [(ngModel)]="equipment.purchasePrice" type="number" formControlName="priceAchat" min="0"
+                            placeholder="prix achat" class="form-control">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-setting__item">
+                    <label class="form-setting__label">Etat</label>
+                    <div class="form-setting__input">
+                        <ng-select formControlName="eta" [(ngModel)]="equipment.stateEnum" placeholder="Statut">
+                            <ng-option *ngFor="let key of keysEtat(etatEnum)" [value]="key">
+                                {{etatEnum[key]}}
+                            </ng-option>
+                        </ng-select>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-setting__item">
+                    <label class="form-setting__label">
+                        <span>Date de sortie</span>
+                    </label>
+                    <div class="form-setting__input d-md-flex">
+                        <input [(ngModel)]="equipment.releaseDate" type="date" formControlName="dateSortie"
+                            placeholder="Date sortie" class="form-control">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="form-setting__item">
+                    <label class="form-setting__label">Description</label>
+                    <div class="form-setting__input d-md-flex">
+                        <angular-editor placeholder="Ici la description de votre produit!!"
+                        formControlName="descrip" [(ngModel)]="equipment.description">
+                        </angular-editor>
+                    </div>
+                </div>
+            </div>
+            <hr>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-primary">Enregistrer</button>
+        <button type="button" (click)="activeModal.close()" class="btn btn-default">Annuler</button>
+    </div>
+</form>

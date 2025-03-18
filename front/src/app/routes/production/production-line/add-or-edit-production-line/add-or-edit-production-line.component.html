@@ -1,0 +1,57 @@
+<form [formGroup]="ligneform" (ngSubmit)="onSubmit()">
+    <div class="modal-header">
+        <h4 class="modal-title pull-left">ligne de production</h4>
+        <button type="button" aria-label="Fermer" class="close pull-right" (click)="activeModal.close()">
+            <span aria-hidden="true">×</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-setting__item">
+                    <label class="form-setting__label">
+                        <span>Référence
+                        </span><sup>*</sup>
+                    </label>
+                    <div class="form-setting__input d-md-flex">
+                        <input type="text" [(ngModel)]="ligneProduction.reference" formControlName="reference"
+                            placeholder="reference" class="form-control" [ngClass]="{'is-invalid': ligneform.controls['reference'].invalid && 
+                            (submitted || ligneform.controls['reference'].touched || ligneform.controls['reference'].dirty)}" >
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-setting__item">
+                    <label class="form-setting__label">
+                        <span>Nom </span>
+                        <sup>*</sup>
+                    </label>
+                    <div class="form-setting__input d-md-flex">
+                        <input type="text" formControlName="name" placeholder="Nom" class="form-control"
+                            [(ngModel)]="ligneProduction.name" [ngClass]="{'is-invalid': ligneform.controls['name'].invalid && 
+                            (submitted || ligneform.controls['name'].touched || ligneform.controls['name'].dirty)}">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="form-setting__item">
+                    <label class="form-setting__label">Responsable </label>
+                    <div class="form-setting__input">
+                        <ng-select [(ngModel)]="employee" placeholder="Recherche employé(s)" (change)="selectedResponsible($event)"
+                            formControlName="employe">
+                            <ng-option *ngFor=" let e of employeelist" [value]="e">
+                             {{e.employeeNumber}} : {{e.firstName}} {{e.lastName}}
+                            </ng-option>
+                        </ng-select>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-primary">Enregistrer</button>
+        <button type="button" class="btn btn-default" (click)="activeModal.close()">Annuler</button>
+    </div>
+</form>

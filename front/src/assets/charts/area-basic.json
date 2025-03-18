@@ -1,0 +1,87 @@
+{
+  "theme": "",
+  "title": {
+    "show": true,
+    "text": "",
+    "subtext": "",
+    "sublink": "",
+    "textStyle": {
+      "fontSize": 13,
+      "color": "#515253"
+    },
+    "x": "left"
+  },
+  "animation": true,
+  "calculable": true,
+  "animationEasing": "elasticOut",
+  "tooltip": {
+    "show": true,
+    "trigger": "axis"
+  },
+  "toolbox": {
+    "show": true,
+    "showTitle": true,
+    "feature": {
+      "mark": {
+        "show": true
+      },
+      "dataZoom": {
+        "show": true,
+        "title": {
+          "zoom": "area zooming",
+          "back": "restore area zooming"
+        }
+      },
+      "restore": {
+        "show": true,
+        "title": "restore"
+      },
+      "saveAsImage": {
+        "show": true,
+        "title": "save as image",
+        "lang": [
+          "Right-click to save as picture"
+        ]
+      }
+    },
+    "tooltip": {
+      "show": false,
+      "backgroundColor": "#222",
+      "textStyle": {
+        "fontSize": 12
+      },
+      "extraCssText": "box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);"
+    }
+  },
+  "legend": {
+    "show": true,
+    "bottom": 5,
+    "type": "scroll",
+    "data": []
+  },
+  "grid": {
+    "left": 15,
+    "right": 25,
+    "top": 75,
+    "bottom": 60,
+    "containLabel": true
+  },
+  "dataZoom": {
+    "show": true,
+    "start": 0,
+    "end": 20,
+    "bottom": 30,
+    "handleSize": 25,
+    "handleIcon": "image://assets/img/logo/Cherry-erp-Icon.png"
+  },
+  "yAxis": [
+    {
+      "type": "value",
+      "id": "",
+      "name": "",
+      "data": []
+    }
+  ],
+  "xAxis": [],
+  "series": []
+}

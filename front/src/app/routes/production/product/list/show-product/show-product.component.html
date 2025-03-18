@@ -1,0 +1,61 @@
+<div class="content-app-admin">
+    <div class="app_dashboard container_app">
+        <div class="breadcrumb-page panel-widget_dash">
+            <div class="panel-widget_inner">
+                <div class="row w-100 align-items-center">
+                    <div class="col-md-4">
+                        <div>
+                            <h1 class="page__titre-h2-blue"><span>Référence : </span>{{product.reference}}</h1>
+                            <div class="text-muted">
+                                <strong>Type : </strong>
+                                <span *ngIf="product.typeProduct === 'ASSEMBLAGE'">Produit Assemblé</span>
+                                <span *ngIf="product.typeProduct === 'CONSTRUIRE'">Produit à construire</span>
+                                <span *ngIf="product.typeProduct === 'MATERIEL'" > Matériel </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4" style="text-align: center;">
+                        <div>
+                            <h1 class="page__titre-h1"><span>{{product.name}}</span></h1>
+                        </div>
+                    </div>
+                    <div *ngIf="AuthenticationService.hasPermission(['PR_M_A','PR_M_W','GL_A','ERP_A'])"
+                     class="col-md-4" style="text-align: end;">
+                        <span>
+                            <button (click)="Open()" class="btn btn-link">
+                                <em class="fa fa-ellipsis-v fa-lg"></em>
+                            </button>
+                            <ul *ngIf="info == true" role="menu" class="dropdown-menu dropdown-menu-right-forced show"
+                                style="inset: 100% auto auto 0px; transform: translateY(0px);">
+                                <a class="dropdown-item link-blue" (click)="update()">
+                                    <em class="fa mr-2 fas fa-pencil-alt" ></em>
+                                    <span>Modifier</span>
+                                </a>
+                            </ul>
+                        </span>
+                        <div class="text-muted">
+                            <strong>Unité de mesure :</strong> {{product.unitMeasurement}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="main-page settings-content">
+            <div class="menu-tabs">
+                <div class="panel-widget_inner">
+                    <a class="menu-tabs__item" [routerLink]="['/mes/settings']">
+                        <em class="fas fa-chevron-circle-left"></em>
+                    </a>
+                    <a class="menu-tabs__item" [class.is-active]="activeTab === 'Nomenclature'" (click)="setActiveTab('Nomenclature')"
+                    [routerLink]="['nomenclature']">Nomenclature</a>
+                    <a class="menu-tabs__item" [class.is-active]="activeTab === 'Document'" (click)="setActiveTab('Document')"
+                    [routerLink]="['document']">Document</a>
+                </div>
+            </div>
+            <div>
+                <router-outlet></router-outlet>
+            </div>
+        </div>
+    </div>
+</div>

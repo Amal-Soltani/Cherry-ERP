@@ -1,0 +1,77 @@
+<div class="settings-panel">
+    <div class="panel-widget_inner pt-4 flex-column align-items-stretch">
+        <div class="settings-panel__titre">
+            <em class="fa-1x mr-2 fas fa-chart-pie"></em> Statistiques
+        </div>
+        <br>
+        <div class="row" >
+            <div class="col-md-3">
+                <div class="form-setting__item">
+                    <label class="form-setting__label">
+                        <span>Année</span>
+                        <sup>*</sup>
+                    </label>
+                    <div class="form-setting__input d-md-flex">
+                        <ng-select style="display: inline-block; width: 100%; text-align: initial;"
+                        [(ngModel)]="selectedYear"
+                        (change)="onYearChange($event)"
+                        [items]="years" bindLabel="year">
+                        </ng-select>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-setting__item">
+                    <label class="form-setting__label">
+                        <span>Granularité</span>
+                        <sup>*</sup>
+                    </label>
+                    <div class="form-setting__input d-md-flex">
+                        <label class="c-radio">
+                            <input type="radio" name="transactionType" value="month" checked="checked" [(ngModel)]="transactionType"
+                            (change)="getChartGranularity(transactionType)">
+                            <span class="fas fa-check-circle"></span> Par mois
+                        </label>
+                        <label class="c-radio">
+                            <input type="radio" name="transactionType" value="week" [(ngModel)]="transactionType"
+                            (change)="getChartGranularity(transactionType)">
+                            <span class="fas fa-check-circle"></span> Par semaine
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card card-default">
+                    <div>
+                        <highcharts-chart [Highcharts]="Highcharts" [options]="chartFNC.options"></highcharts-chart>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card card-default">
+                    <div>
+                        <highcharts-chart [Highcharts]="Highcharts" [options]="chartNC_rebut.options"></highcharts-chart>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card card-default">
+                    <div>
+                        <highcharts-chart [Highcharts]="Highcharts" [options]="chartCout.options"></highcharts-chart>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card card-default">
+                    <div>
+                        <highcharts-chart [Highcharts]="Highcharts" [options]="chartAnomaliesCateg.options"></highcharts-chart>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

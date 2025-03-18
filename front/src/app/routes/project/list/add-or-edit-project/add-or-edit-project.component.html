@@ -1,0 +1,176 @@
+<form [formGroup]="projetform" (ngSubmit)="onSubmit()">
+    <div class="modal-header">
+        <h4 class="modal-title pull-left">Projet</h4>
+        <button type="button" class="close pull-right" aria-label="Femer" (click)="activeModal.close()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-setting__item">
+                    <label class="form-setting__label">
+                        <span>reference</span>
+                        <sup>*</sup>
+                    </label>
+                    <div class="form-setting__input">
+                        <input type="text" placeholder="Reference" class="form-control" formControlName="reference"
+                            [(ngModel)]="projet.reference" [ngClass]="{'is-invalid': projetform.controls['reference'].invalid && 
+                            (submitted || projetform.controls['reference'].touched || projetform.controls['reference'].dirty)}">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="form-setting__item">
+                    <label class="form-setting__label">
+                        <span>Titre</span>
+                        <sup>*</sup>
+                    </label>
+                    <div class="form-setting__input">
+                        <input type="text" placeholder="Titre" class="form-control" formControlName="titre"
+                            [(ngModel)]="projet.titre" [ngClass]="{'is-invalid': projetform.controls['titre'].invalid && 
+                            (submitted || projetform.controls['titre'].touched || projetform.controls['titre'].dirty)}">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-setting__item">
+                    <label class="form-setting__label"><span>Client</span></label>
+                    <div class="form-setting__input">
+                        <div class="input-group">
+                            <ng-select (change)="selectedClient($event)" style="width: calc(100%);" formControlName="client" placeholder="Client"
+                                [(ngModel)]="client">
+                                <ng-option *ngFor="let client of clientList" [value]="client">
+                                    {{client.employeeNumber}}: {{client.firstName}} {{client.lastName}}
+                                </ng-option>
+                            </ng-select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-setting__item">
+                    <label class="form-setting__label">
+                        <span>Statut </span>
+                    </label>
+                    <div class="form-setting__input d-md-flex">
+                        <ng-select [(ngModel)]="projet.statut" style="width: calc(100% );" placeholder="Statut"
+                            formControlName="statut">
+                            <ng-option *ngFor="let key of keys(status)" [value]="key">
+                                {{status[key]}}
+                            </ng-option>
+                        </ng-select>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-setting__item">
+                    <label class="form-setting__label">
+                        <span>Localisation</span></label>
+                    <div class="form-setting__input">
+                        <input type="text" placeholder="Localisation" formControlName="localisation"
+                            class="form-control" [(ngModel)]="projet.localisation">
+                        <!---->
+                    </div>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="form-setting__item">
+                    <div class="form-setting__input">
+                        <div class="checkbox c-checkbox">
+                            <label>
+                                <input type="checkbox" name="productionType" formControlName="checked"
+                                    [(ngModel)]="projet.production">
+                                <span class="fa fa-check"></span>
+                                <b> Projet de production ?</b>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="form-setting__item">
+                    <label class="form-setting__label">Description</label>
+                    <div class="form-setting__input d-md-flex">
+                        <angular-editor placeholder="Ici la description de votre projet!!"
+                            formControlName="designationProjet" [(ngModel)]="projet.designationProjet">
+                        </angular-editor>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-setting__item">
+                    <label class="form-setting__label">
+                        <span>Date prévue de lancement</span>
+                    </label>
+                    <div class="form-setting__input" *ngIf="projetform.value['statut'] != 'cloture'">
+                        <input type="date" class="form-control" placeholder="DatePrevueLancement"
+                            formControlName="DatePrevueLancement" [(ngModel)]="projet.datePrevueLancement">
+                    </div>
+                    <div class="form-setting__input" *ngIf="projetform.value['statut'] === 'cloture'">
+                        <input type="date" class="form-control" placeholder="DatePrevueLancement" disabled
+                            formControlName="DatePrevueLancement" [(ngModel)]="projet.datePrevueLancement">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-setting__item">
+                    <label class="form-setting__label"><span>Date de lancement</span></label>
+                    <div class="form-setting__input" *ngIf="projetform.value['statut'] != 'cloture'">
+                        <input type="date" class="form-control" placeholder="DateLancement"
+                            formControlName="DateLancement" [(ngModel)]="projet.dateLancement">
+                    </div>
+                    <div class="form-setting__input" *ngIf="projetform.value['statut'] === 'cloture'">
+                        <input type="date" class="form-control" placeholder="DateLancement" disabled
+                            formControlName="DateLancement" [(ngModel)]="projet.dateLancement">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-setting__item">
+                    <label class="form-setting__label">Date prévue de livraison</label>
+                    <div class="form-setting__input" *ngIf="projetform.value['statut'] != 'cloture'">
+                        <input type="date" class="form-control" placeholder="DatePrevueLivraison"
+                            formControlName="DatePrevueLivraison" [(ngModel)]="projet.datePrevueLivraison">
+                    </div>
+                    <div class="form-setting__input" *ngIf="projetform.value['statut'] === 'cloture'">
+                        <input type="date" class="form-control" placeholder="DatePrevueLivraison" disabled
+                            formControlName="DatePrevueLivraison" [(ngModel)]="projet.datePrevueLivraison">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-setting__item">
+                    <label class="form-setting__label">Date de livraison</label>
+                    <div class="form-setting__input" *ngIf="projetform.value['statut'] != 'cloture'">
+                        <input type="date" placeholder="DateLivraison" class="form-control" disabled
+                            formControlName="DateLivraison" [(ngModel)]="projet.dateLivraison">
+                    </div>
+                    <div class="form-setting__input" *ngIf="projetform.value['statut'] === 'cloture'">
+                        <input type="date" placeholder="DateLivraison" class="form-control"
+                            formControlName="DateLivraison" [(ngModel)]="projet.dateLivraison">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-setting__item">
+                    <label class="form-setting__label">Date de clôture</label>
+                    <div class="form-setting__input" *ngIf="projetform.value['statut'] != 'cloture'">
+                        <input type="date" placeholder="DateCloture" class="form-control" disabled
+                            formControlName="DateCloture" [(ngModel)]="projet.dateCloture">
+                    </div>
+                    <div class="form-setting__input" *ngIf="projetform.value['statut'] === 'cloture'">
+                        <input type="date" placeholder="DateCloture" class="form-control" formControlName="DateCloture"
+                            [(ngModel)]="projet.dateCloture">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal footer -->
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-primary">Enregistrer</button>
+        <button type="button" (click)="activeModal.close()" class="btn btn-default">Annuler</button>
+    </div>
+</form>

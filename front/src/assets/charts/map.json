@@ -1,0 +1,110 @@
+{
+  "theme": "",
+  "title": {
+    "show": true,
+    "text": "",
+    "subtext": "",
+    "sublink": "",
+    "textStyle": {
+      "fontSize": 13,
+      "color": "#515253"
+    },
+    "x": "left"
+  },
+  "tooltip": {
+    "show": true
+  },
+  "legend": {
+    "show": true,
+    "bottom": 5,
+    "type": "scroll",
+    "data": []
+  },
+  "grid": {
+    "left": 10,
+    "right": 10,
+    "top": 10,
+    "bottom": 20,
+    "containLabel": true
+  },
+  "visualMap": {
+    "min": 0,
+    "max": 1000,
+    "left": 26,
+    "bottom": 40,
+    "showLabel": true,
+    "text": [ "Min", "Max" ],
+    "pieces": [
+      {
+        "gt": 20,
+        "label": "> 20",
+        "color": "red"
+      },
+      {
+        "gte": 10,
+        "lt": 20,
+        "label": "10 - 20",
+        "color": "#ff8c71"
+      },
+      {
+        "gt": 0,
+        "lt": 10,
+        "label": "0 - 10",
+        "color": "#ffd768"
+      },
+      {
+        "value": 0,
+        "color": "#cccccc"
+      }
+    ],
+    "show": true
+  },
+  "geo": {
+    "gedodataId": 2,
+    "show": true,
+    "zoom": 1.23,
+    "map": "",
+    "label": {
+      "normal": {
+        "show": false
+      },
+      "emphasis": {
+        "show": false
+      }
+    },
+    "roam": false,
+    "itemStyle": {
+      "normal": {
+        "areaColor": "#ffffff",
+        "borderColor": "#cccccc"
+      },
+      "emphasis": {
+        "areaColor": "#ffffff"
+      }
+    },
+    "name": "map_2"
+  },
+  "series": [
+    {
+      "id": "",
+      "name": "",
+      "geoIndex": 0,
+      "coordinateSystem": "geo",
+      "url": "",
+      "joinBy": [ "",  "" ],
+      "color": "",
+      "symbol": "",
+      "symbolSize": 20,
+      "label": {
+        "emphasis": {
+          "show": true,
+          "formatter": "{a} : {@[2]}",
+          "position": "top"
+        }
+      },
+      "data": [],
+      "type": "map",
+      "kpi": ""
+    }
+  ]
+}

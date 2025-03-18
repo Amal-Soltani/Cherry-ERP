@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="b23124b2-0a79-43e0-8f14-892f87e8fa72" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/main/java/com/cherry/erp/article/repository/ArticleRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/main/java/com/cherry/erp/article/repository/ArticleRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/java/com/cherry/erp/client/business/ClientBusiness.java" beforeDir="false" afterPath="$PROJECT_DIR$/main/java/com/cherry/erp/client/business/ClientBusiness.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/java/com/cherry/erp/client/business/imp/ClientBusinessImp.java" beforeDir="false" afterPath="$PROJECT_DIR$/main/java/com/cherry/erp/client/business/imp/ClientBusinessImp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/java/com/cherry/erp/client/controller/ClientController.java" beforeDir="false" afterPath="$PROJECT_DIR$/main/java/com/cherry/erp/client/controller/ClientController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/java/com/cherry/erp/client/model/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/main/java/com/cherry/erp/client/model/Client.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/java/com/cherry/erp/client/repository/ClientRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/main/java/com/cherry/erp/client/repository/ClientRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/java/com/cherry/erp/gamme/business/GammeBusiness.java" beforeDir="false" afterPath="$PROJECT_DIR$/main/java/com/cherry/erp/gamme/business/GammeBusiness.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/java/com/cherry/erp/gamme/business/imp/GammeBusinessImp.java" beforeDir="false" afterPath="$PROJECT_DIR$/main/java/com/cherry/erp/gamme/business/imp/GammeBusinessImp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/java/com/cherry/erp/gamme/controller/GammeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/main/java/com/cherry/erp/gamme/controller/GammeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/java/com/cherry/erp/gamme/model/Gamme.java" beforeDir="false" afterPath="$PROJECT_DIR$/main/java/com/cherry/erp/gamme/model/Gamme.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/java/com/cherry/erp/gamme/repository/GammeRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/main/java/com/cherry/erp/gamme/repository/GammeRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/java/com/cherry/erp/matierePremiere/business/MatierePremiereBusiness.java" beforeDir="false" afterPath="$PROJECT_DIR$/main/java/com/cherry/erp/matierePremiere/business/MatierePremiereBusiness.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/java/com/cherry/erp/matierePremiere/business/imp/MatierePremiereImp.java" beforeDir="false" afterPath="$PROJECT_DIR$/main/java/com/cherry/erp/matierePremiere/business/imp/MatierePremiereImp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/java/com/cherry/erp/matierePremiere/controller/MatierePremiereController.java" beforeDir="false" afterPath="$PROJECT_DIR$/main/java/com/cherry/erp/matierePremiere/controller/MatierePremiereController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/java/com/cherry/erp/matierePremiere/model/MatierePremiere.java" beforeDir="false" afterPath="$PROJECT_DIR$/main/java/com/cherry/erp/matierePremiere/model/MatierePremiere.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/java/com/cherry/erp/matierePremiere/repository/MatierePremiereRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/main/java/com/cherry/erp/matierePremiere/repository/MatierePremiereRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/java/com/cherry/erp/nomenclature/business/NomenclatureBusiness.java" beforeDir="false" afterPath="$PROJECT_DIR$/main/java/com/cherry/erp/nomenclature/business/NomenclatureBusiness.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/java/com/cherry/erp/nomenclature/business/imp/NomenclatureBusinessImp.java" beforeDir="false" afterPath="$PROJECT_DIR$/main/java/com/cherry/erp/nomenclature/business/imp/NomenclatureBusinessImp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/java/com/cherry/erp/nomenclature/controller/NomenclatureController.java" beforeDir="false" afterPath="$PROJECT_DIR$/main/java/com/cherry/erp/nomenclature/controller/NomenclatureController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/java/com/cherry/erp/nomenclature/model/Nomenclature.java" beforeDir="false" afterPath="$PROJECT_DIR$/main/java/com/cherry/erp/nomenclature/model/Nomenclature.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/java/com/cherry/erp/nomenclature/model/enums/ProcedesDeFabication.java" beforeDir="false" afterPath="$PROJECT_DIR$/main/java/com/cherry/erp/nomenclature/model/enums/ProcedesDeFabrication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/java/com/cherry/erp/nomenclature/model/enums/TypeProduit.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/java/com/cherry/erp/nomenclature/repository/NomenclatureRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/main/java/com/cherry/erp/nomenclature/repository/NomenclatureRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/java/com/cherry/erp/phase/business/PhaseBusiness.java" beforeDir="false" afterPath="$PROJECT_DIR$/main/java/com/cherry/erp/phase/business/PhaseBusiness.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/java/com/cherry/erp/phase/business/imp/PhaseBusinessImp.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/java/com/cherry/erp/phase/controller/PhaseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/main/java/com/cherry/erp/phase/controller/PhaseController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/java/com/cherry/erp/phase/repository/PhaseRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/main/java/com/cherry/erp/phase/repository/PhaseRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/java/com/cherry/erp/plan/business/PlanBusiness.java" beforeDir="false" afterPath="$PROJECT_DIR$/main/java/com/cherry/erp/plan/business/PlanBusiness.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/java/com/cherry/erp/plan/business/imp/PlanBusinessImp.java" beforeDir="false" afterPath="$PROJECT_DIR$/main/java/com/cherry/erp/plan/business/imp/PlanBusinessImp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/java/com/cherry/erp/plan/controller/PlanController.java" beforeDir="false" afterPath="$PROJECT_DIR$/main/java/com/cherry/erp/plan/controller/PlanController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/java/com/cherry/erp/plan/model/Plan.java" beforeDir="false" afterPath="$PROJECT_DIR$/main/java/com/cherry/erp/plan/model/Plan.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/java/com/cherry/erp/plan/repository/PlanRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/main/java/com/cherry/erp/plan/repository/PlanRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/java/com/cherry/erp/produit/business/ProduitBusiness.java" beforeDir="false" afterPath="$PROJECT_DIR$/main/java/com/cherry/erp/product/business/ProductBusiness.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/java/com/cherry/erp/produit/business/imp/ProduitBusinessImp.java" beforeDir="false" afterPath="$PROJECT_DIR$/main/java/com/cherry/erp/product/business/imp/ProductBusinessImp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/java/com/cherry/erp/produit/controller/ProduitController.java" beforeDir="false" afterPath="$PROJECT_DIR$/main/java/com/cherry/erp/product/controller/ProductController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/java/com/cherry/erp/produit/model/Produit.java" beforeDir="false" afterPath="$PROJECT_DIR$/main/java/com/cherry/erp/product/model/Product.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/java/com/cherry/erp/produit/repository/ProduitRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/main/java/com/cherry/erp/product/repository/ProductRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/java/com/cherry/erp/projet/business/ProjetBusiness.java" beforeDir="false" afterPath="$PROJECT_DIR$/main/java/com/cherry/erp/projet/business/ProjetBusiness.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/java/com/cherry/erp/projet/business/imp/ProjetBusinessImp.java" beforeDir="false" afterPath="$PROJECT_DIR$/main/java/com/cherry/erp/projet/business/imp/ProjetBusinessImp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/java/com/cherry/erp/projet/controller/ProjetController.java" beforeDir="false" afterPath="$PROJECT_DIR$/main/java/com/cherry/erp/projet/controller/ProjetController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/java/com/cherry/erp/projet/model/Projet.java" beforeDir="false" afterPath="$PROJECT_DIR$/main/java/com/cherry/erp/projet/model/Projet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/java/com/cherry/erp/projet/repository/ProjetRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/main/java/com/cherry/erp/projet/repository/ProjetRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/java/com/cherry/erp/qualification/business/imp/QualificationBusinessImp.java" beforeDir="false" afterPath="$PROJECT_DIR$/main/java/com/cherry/erp/qualification/business/imp/QualificationBusinessImp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/java/com/cherry/erp/qualification/controller/QualificationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/main/java/com/cherry/erp/qualification/controller/QualificationController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/java/com/cherry/erp/qualification/model/Qualification.java" beforeDir="false" afterPath="$PROJECT_DIR$/main/java/com/cherry/erp/qualification/model/Qualification.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/java/com/cherry/erp/qualification/repository/QualificationRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/main/java/com/cherry/erp/qualification/repository/QualificationRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/java/com/cherry/erp/tache/business/TacheBusiness.java" beforeDir="false" afterPath="$PROJECT_DIR$/main/java/com/cherry/erp/tache/business/TacheBusiness.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/java/com/cherry/erp/tache/business/imp/TacheBusinessImp.java" beforeDir="false" afterPath="$PROJECT_DIR$/main/java/com/cherry/erp/tache/business/imp/TacheBusinessImp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/java/com/cherry/erp/tache/controller/TacheController.java" beforeDir="false" afterPath="$PROJECT_DIR$/main/java/com/cherry/erp/tache/controller/TacheController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/java/com/cherry/erp/tache/model/Tache.java" beforeDir="false" afterPath="$PROJECT_DIR$/main/java/com/cherry/erp/tache/model/Tache.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/java/com/cherry/erp/tache/repository/TacheRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/main/java/com/cherry/erp/tache/repository/TacheRepository.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectId" id="2NjeVU6yXdU5wsBwZrpukvl9iJb" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "last_opened_file_path": "C:/Users/USER/Desktop/amal/back/cherry-erp-api-gpao"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="b23124b2-0a79-43e0-8f14-892f87e8fa72" name="Changes" comment="" />
+      <created>1680181944301</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1680181944301</updated>
+    </task>
+    <servers />
+  </component>
+</project>

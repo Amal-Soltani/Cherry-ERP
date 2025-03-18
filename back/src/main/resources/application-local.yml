@@ -1,0 +1,123 @@
+server:
+    servlet:
+        context-path: /cherry-hse
+    port: 8888
+
+spring:
+    application:
+        name: cherry-hse
+    jpa:
+        database: POSTGRESQL
+        show-sql: false
+        database-platform: org.hibernate.dialect.PostgreSQLDialect
+        #database-platform: com.cherry.erp.spistock.config.JsonbPostgresDialect
+        hibernate:
+            ddl-auto: update
+    datasource:
+        platform: postgres
+        url: jdbc:postgresql://localhost:5432/cheryy-hse
+        username: postgres
+        password: postgres
+        driverClassName: org.postgresql.Driver
+    main:
+        allow-bean-definition-overriding: true
+    #SMTP MAIL CONFIGURATION
+    mail:
+        host: ssl0.ovh.net
+        port: 587
+        username: contact@cherry-erp.com
+        password: blablablabla
+        protocol: smtp
+        tls: false
+        test-connection: true
+        properties:
+            smtp:
+                port: 22
+                auth: true
+                starttls:
+                    enable: false
+                ssl:
+                    enable: false
+                    trust: '*'
+    servlet:
+        multipart:
+            max-file-size: 20MB
+            max-request-size: 20MB
+logging:
+    level:
+        org:
+            springframework:
+                security: ERROR
+        springfox:
+            documentation: ERROR
+spistock:
+    title: spistock server application
+    year : 2020
+    logo : spistock.png
+    dir : /
+    serial : 123456
+    cron : 18 * * 30 1 *
+    gmail-mail:
+        template: tpl/mail-template.html
+    support-contact-to: khemiri.mohamedamine@gcom
+    support-contact-from: spidash.entreprise@gcom
+    support-contact-sender: Support spistock
+    spider-user-sender: Spider document spiUser
+    mail-template-directory: ${spistock.dir}/template/
+    default-pwd: 123456
+    tempDir: ${spistock.dir}/temp/
+    highchartsExportUrl: http://127.0.0.1:3003
+    total-chart-width : 600
+    default-chart-heigh : 250
+    pathLogo: E:/Spisoft/spistock/sse-client/app/images/
+    files:
+        base-path: ${spistock.dir}/data/
+    template:
+        bon-entree: templates/word/bon_entree_template.docx
+        bon-sortie: templates/word/bon_sortie_template.docx
+    bi-db-host: localhost
+    bi-db-port: 5432
+    bi-db-name: spistock-prod
+    bi-db-user: postgres
+    bi-db-password: postgres
+
+platform:
+    url: http://localhost:4202
+    cron:
+        maintenance: "0 0 1 1/1 * ? *"
+        check-license: "0 0 1 1/1 * ? *"
+        timesheetCreation: "0 0 1 1/1 * ? *"
+        bdcPartialPayment: "0 0 1 1/1 * ? *"
+    email:
+        enabled: false
+
+repository:
+    base-url: D:/spistock/data/
+    base-url-pattern: $base-url-pattern$/
+
+# Use "*" to expose all endpoints, or a comma-separated list to expose selected ones
+management:
+    endpoint:
+        health:
+            show-details: always
+    endpoints:
+        web:
+            exposure:
+                include: "prometheus,health,info,auditevents,metrics,loggers,logfile,httptrace,env,flyway,liquidbase,shutdown,mappings,scheduledtasks,threaddump,heapdump"
+                #include: "*"
+        jmx:
+            exposure:
+                include: "*"
+
+## PostNotification
+app:
+    firebase-configuration-file: google/cherry-erp-firebase-adminsdk-dev.json
+
+# SPDASH DATA DATASOURCE
+spidash:
+    spidash-data-db-host : localhost
+    spidash-data-db-port : 5432
+    spidash-data-db-name : spidash_data
+    spidash-data-db-user : postgres
+    spidash-data-db-password : postgres
+    mail-template-directory : classpath:/template/

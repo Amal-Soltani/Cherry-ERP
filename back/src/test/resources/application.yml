@@ -1,0 +1,125 @@
+server:
+    servlet:
+        context-path: /spistock
+    port: 9999
+
+spring:
+    application:
+        name: CHERRY-ERP
+    jpa:
+        database: POSTGRESQL
+        show-sql: false
+        database-platform: org.hibernate.dialect.PostgreSQLDialect
+        #database-platform: com.cherry.erp.spistock.config.JsonbPostgresDialect
+        hibernate:
+            ddl-auto: update
+    datasource:
+        platform: postgres
+        url: jdbc:postgresql://localhost:5432/spistocktest
+        username: postgres
+        password: postgres
+        driverClassName: org.postgresql.Driver
+    main:
+        allow-bean-definition-overriding: true
+    #SMTP MAIL CONFIGURATION
+    mail:
+        host: smtp.gmail.com
+        port: 587
+        username: cherryerp.dev@gmail.com
+        password: ch$21erry
+        protocol: smtp
+        tls: true
+        test-connection: true
+        properties:
+            smtp:
+                port: 22
+                auth: true
+                starttls:
+                    enable: true
+                ssl:
+                    enable: false
+                    trust: '*'
+    servlet:
+        multipart:
+            max-file-size: 20MB
+            max-request-size: 20MB
+logging:
+    level:
+        org:
+            springframework:
+                security: ERROR
+        springfox:
+            documentation: ERROR
+spistock:
+    title: spistock server application
+    year: 2020
+    logo: spistock.png
+    dir: /
+    serial: 123456
+    cron: 18 * * 30 1 *
+    gmail-mail:
+        template: tpl/mail-template.html
+    support-contact-to: khemiri.mohamedamine@gcom
+    support-contact-from: spidash.entreprise@gcom
+    support-contact-sender: Support spistock
+    spider-user-sender: Spider document spiUser
+    mail-template-directory: ${spistock.dir}/template/
+    default-pwd: 123456
+    tempDir: ${spistock.dir}/temp/
+    highchartsExportUrl: http://127.0.0.1:3003
+    total-chart-width: 600
+    default-chart-heigh: 250
+    pathLogo: E:/Spisoft/spistock/sse-client/app/images/
+    files:
+        base-path: ${spistock.dir}/data/
+    template:
+        bon-entree: templates/word/bon_entree_template.docx
+        bon-sortie: templates/word/bon_sortie_template.docx
+    bi-db-host: localhost
+    bi-db-port: 5432
+    bi-db-name: spistocktest
+    bi-db-user: postgres
+    bi-db-password: postgres
+
+platform:
+    url: http://localhost:4202
+    cron:
+        maintenance: "0 0/1 * 1/1 * ? *"
+        check-license: "0 0/1 * 1/1 * ? *"
+    email:
+        enabled: true
+
+repository:
+    base-url: D:/spistock/data/
+    base-url-pattern: $base-url-pattern$/
+
+# Use "*" to expose all endpoints, or a comma-separated list to expose selected ones
+management:
+    endpoint:
+        health:
+            show-details: always
+    endpoints:
+        web:
+            exposure:
+                include: "prometheus,health,info,auditevents,metrics,loggers,logfile,httptrace,env,flyway,liquidbase,shutdown,mappings,scheduledtasks,threaddump,heapdump"
+                #include: "*"
+        jmx:
+            exposure:
+                include: "*"
+
+# INFO ENDPOINT CONFIGURATION
+info:
+    app:
+        name: @project.name@
+        description: @project.name@
+        version: @project.description@
+        encoding: @project.build.sourceEncoding@
+        java:
+            version: @java.version@
+
+## PostNotification
+optiquai.push.fcm:
+    url: https://fcm.googleapis.com/fcm/send
+    to: /topics/allUsers
+    serverKeyNotification: AAAAStZdi80:APA91bEJWI0xncLhR6PRa_nz-7Kn97NtOwPN3xwP79EPL6lj6Z5bSKBSGuMWNBV5dMfP5oVxFH8UafzCuWbW203fQWC6_8wHkCmmVoHVSN_pGYMTxq0cWF10ooUCK1qni46aQSLARoTl
+    iconNotification: titiconiconle
